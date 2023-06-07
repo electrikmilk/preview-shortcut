@@ -102,7 +102,7 @@
 }
 
 .shortcut-preview-container .sp-list ul ul {
-    padding-left: calc(16px + 30px);
+    padding-left: 46px;
 }
 
 .shortcut-preview-container .sp-list li {
@@ -196,7 +196,7 @@
     height: 1px;
     width: 100%;
     transform-origin: 50% 100%;
-    transform: scaleY(calc(1 / 2));
+    transform: scaleY(0.5);
 }
 
 .shortcut-preview-container .sp-placeholder-value,
@@ -288,12 +288,12 @@
 }
 
 .sp-toggle-icon:after {
-    height: calc(32px - 4px);
-    width: calc(32px - 4px);
+    height: 36px;
+    width: 36px;
     top: 2px;
     left: 2px;
     box-shadow: 0 2px 4px #0000004d;
-    border-radius: calc(32px - 4px);
+    border-radius: 36px;
     background: #fff;
     position: absolute;
     z-index: 2;
@@ -305,8 +305,8 @@
     position: absolute;
     left: 2px;
     top: 2px;
-    width: calc(52px - 4px);
-    height: calc(32px - 4px);
+    width: 56px;
+    height: 5px;
     border-radius: 32px;
     box-sizing: border-box;
     background: #fff;
@@ -324,27 +324,5 @@
 }
 
 .sp-toggle input[type=checkbox]:checked + .sp-toggle-icon:after {
-    transform: translate(calc(52px - 32px));
+    transform: translate(20px);
 }
-
-/*.sp-card {*/
-/*    @apply sp-bg-white;*/
-/*    @apply sp-shadow-md;*/
-/*    @apply sp-rounded-2xl;*/
-/*    @apply sp-shadow-xl;*/
-/*}*/
-
-/*.sp-card-content {*/
-
-/*}*/
-
-/*.sp-action-icon {*/
-/*    @apply sp-flex;*/
-/*    @apply sp-place-content-center;*/
-/*    @apply sp-place-items-center;*/
-/*    @apply sp-bg-gray-400;*/
-/*    @apply sp-relative;*/
-/*    @apply sp-rounded;*/
-/*    @apply sp-box-border;*/
-/*    @apply sp-p-1;*/
-/*}*/
