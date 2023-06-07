@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/electrikmilk/preview-shortcut)](https://github.com/electrikmilk/preview-shortcut/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/preview-shortcut)](https://www.npmjs.com/package/preview-shortcut)
 
-iOS Siri Shortcut cross-framework previewer for the web.
+iOS Siri Shortcut cross-framework preview for the web.
 
 ## Usage
 
