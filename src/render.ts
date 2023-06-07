@@ -62,10 +62,6 @@ function renderAction(action: Action): Node {
         params.forEach(p => paramsul.appendChild(p));
         paramsli.appendChild(paramsul);
         ul.appendChild(paramsli);
-        // ul.appendChild(subul);
-        // const li = document.createElement('li');
-        // params.forEach(p => subul.appendChild(p));
-        // ul.appendChild(li);
     }
     list.appendChild(ul);
     content.appendChild(list);

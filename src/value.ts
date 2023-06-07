@@ -6,7 +6,6 @@ interface AttachmentValue {
 
 export function renderValue(value?: any, placeholder?: string): string {
     const container = document.createElement('div');
-    // console.log('value', value, typeof value);
     if (value || typeof value === 'boolean') {
         container.className = 'sp-value';
         switch (typeof value) {
