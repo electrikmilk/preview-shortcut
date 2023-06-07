@@ -1,7 +1,3 @@
-interface Attachment {
-    Value: AttachmentValue
-}
-
 interface AttachmentValue {
     string: string
     OutputName: string
