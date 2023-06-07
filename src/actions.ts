@@ -1,5 +1,5 @@
-import {renderValue} from "./value.js";
-import {renderActionContent, renderActionHeader, renderActionIcon, renderHeader, renderListItem} from "./render.js";
+import {renderValue} from "~/value";
+import {renderActionContent, renderActionHeader, renderActionIcon, renderListItem} from "~/render";
 
 interface CommentActionParameters {
     WFCommentActionText: any
