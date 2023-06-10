@@ -1,8 +1,6 @@
 import {defineConfig} from "vite";
 import typescript from "@rollup/plugin-typescript";
 import {typescriptPaths} from "rollup-plugin-typescript-paths";
-
-// @ts-ignore
 import path from "path";
 
 export default defineConfig({
@@ -30,9 +28,11 @@ export default defineConfig({
         rollupOptions: {
             external: [],
             plugins: [
+                // @ts-ignore
                 typescriptPaths({
                     preserveExtensions: true,
                 }),
+                // @ts-ignore
                 typescript({
                     sourceMap: false,
                     declaration: true,
