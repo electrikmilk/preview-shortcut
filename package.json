@@ -4,7 +4,7 @@
   "version": "0.0.5",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electrikmilk/shortcut-preview.git"
+    "url": "git+https://github.com/electrikmilk/preview-shortcut.git"
   },
   "keywords": [
     "shortcuts",
@@ -15,9 +15,9 @@
   "author": "electrikmilk",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/electrikmilk/shortcut-preview/issues"
+    "url": "https://github.com/electrikmilk/preview-shortcut/issues"
   },
-  "homepage": "https://github.com/electrikmilk/shortcut-preview#readme",
+  "homepage": "https://github.com/electrikmilk/preview-shortcut#readme",
   "exports": {
     ".": {
       "import": "./dist/main.es.js",
