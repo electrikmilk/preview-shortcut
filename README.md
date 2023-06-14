@@ -8,32 +8,57 @@ iOS Siri Shortcut cross-framework preview for the web.
 
 ## Usage
 
-Install via NPM:
+### Install
+
+NPM:
 
 ```console
 npm i preview-shortcut
 ```
 
-Preview Shortcut JSON data using the `previewShortcut()` function.
+Yarn:
+
+```console
+yarn add preview-shortcut
+```
+
+[//]: # (Preview Shortcut JSON data using the `previewShortcut&#40;data&#41;` function.)
+
+```html
+
+<div id="shortcut-preview"></div>
+```
+
+### Load the Shortcut
+
+Syntax:
+
+```
+previewShortcut(shortcut: string, selector: string = '#shortcut-preview');
+previewShortcutURL(url: string, selector: string = '#shortcut-preview');
+```
 
 ```javascript
 import 'preview-shortcut/css';
-import {previewShortcut} from 'preview-shortcut';
+import {previewShortcut, previewShortcutURL} from 'preview-shortcut';
 
-// Shortcut property list needs to be converted to JSON.
-// `data` can either be a JSON file URL or a JSON data value.
-const data = './src/test.json';
+// Load by providing a JSON or unsigned Property List string, or an object.
+previewShortcut('<?xml><plist>...</plist>');
+previewShortcut('{...}');
+previewShortcut({...});
 
-previewShortcut(data, '#custom-selector');
+// ...or load from a JSON or unsigned Property List file URL.
+previewShortcutURL('https://example.com/data.json');
+previewShortcutURL('https://example.com/unsigned.plist');
 ```
 
 ### Result
 
-<img width="490" alt="Screenshot 2023-06-06 at 22 31 52" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/8ea83434-7ad7-40a1-9e0a-25aa7c33c226">
+<img width="490" alt="Shortcut Preview" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/8ea83434-7ad7-40a1-9e0a-25aa7c33c226">
 
 ### Dark Mode Support
 
-<img width="485" alt="Screenshot 2023-06-06 at 22 31 17" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/57a12542-d732-4580-9c97-5f1c02a5e55c">
+<img width="485" alt="Shortcut Preview Dark Mode" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/57a12542-d732-4580-9c97-5f1c02a5e55c">
 
 ## Work in Progress
 
