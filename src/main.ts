@@ -32,6 +32,6 @@ export function previewShortcut(shortcut: string | object, selector: string = '#
             console.groupEnd();
             break;
         default:
-            console.error(`[preview-shortcut] Shortcut data is not of type URL string or object but ${shortcutDataType}!`);
+            throw new Error(`[preview-shortcut] Shortcut data is not of type URL string or object but ${shortcutDataType}!`);
     }
 }
