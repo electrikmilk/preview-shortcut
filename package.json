@@ -1,7 +1,7 @@
 {
   "name": "preview-shortcut",
   "description": "iOS Shortcuts cross-framework preview.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electrikmilk/preview-shortcut.git"
