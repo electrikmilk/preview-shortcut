@@ -52,7 +52,7 @@ function renderAction(action: Action): Node {
         console.groupEnd();
         return card;
     }
-    const header = actionData ? renderActionHeader(actionData) : renderHeader(null, identifier);
+    const header = actionData ? renderActionHeader(actionData) : renderHeader(renderActionIcon('gear', 'white', 'darkgray'), identifier);
     ul.appendChild(header);
 
     if (action.WFWorkflowActionParameters) {
@@ -92,7 +92,7 @@ export function renderActionIcon(icon: string = 'gear', color?: string, backgrou
 }
 
 export function renderActionHeader(actionData: ActionDefinition) {
-    const icon = renderActionIcon(actionData.icon ?? 'gear', actionData.color ?? undefined, actionData.background ?? undefined);
+    const icon = renderActionIcon(actionData.icon ?? 'gear', actionData.color ?? 'white', actionData.background ?? 'darkgray');
     const actionTitle = document.createElement('div');
     actionTitle.className = 'sp-action-title';
     actionTitle.innerHTML = actionData.title ?? '';
