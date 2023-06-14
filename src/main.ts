@@ -1,4 +1,8 @@
+import 'framework7/css/bundle';
+import 'framework7-icons';
+
 import './style.css';
+
 import {renderShortcut} from "~/render";
 
 export let preview: HTMLDivElement | null;
@@ -10,7 +14,8 @@ export function previewShortcut(shortcut: string | object, selector: string = '#
     if (!preview) {
         throw new Error(`[preview-shortcut] Selector '${selector}' selects nothing.`);
     }
-    preview.className = 'shortcut-preview-container';
+    preview.className = 'sp-container ios';
+    preview.innerHTML = '';
 
     const shortcutDataType = typeof shortcut;
     switch (shortcutDataType) {

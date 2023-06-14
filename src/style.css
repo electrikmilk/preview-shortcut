@@ -1,78 +1,46 @@
-/*
-The MIT License (MIT)
-
-Copyright (c) 2014 Vladimir Kharlampidi
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
-@import "../node_modules/framework7-icons/css/framework7-icons.css";
-
 @media (prefers-color-scheme: dark) {
-    .shortcut-preview-container {
+    .sp-container {
         background: #141414 !important;
     }
 
-    .sp-action {
+    .sp-container .card {
         background: #1d1d1d !important;
         border: 1px solid #303030;
     }
 
-    .sp-comment-action .sp-action-icon {
+    .sp-container .sp-comment-action {
+        background: #2a2416 !important;
+    }
+
+    .sp-container .sp-comment-action .sp-action-icon {
         color: #fed709 !important;
         background: #2a2416 !important;
     }
 
-    .sp-comment-action .sp-action-icon, .sp-comment-action .sp-action-title {
+    .sp-container .sp-comment-action .sp-action-icon,
+    .sp-container .sp-comment-action .sp-action-title {
         color: #fed709 !important;
     }
 
-    .sp-comment-action {
-        background: #2a2416 !important;
-    }
-
-    .sp-item-inner:after {
-        background-color: #333333 !important;
-    }
-
-    .sp-value {
+    .sp-container .sp-value {
         background: #1d232b !important;
         color: #007bff !important;
     }
 
-    .sp-variable-value {
+    .sp-container .sp-variable-value {
         background: #1d222b !important;
         color: #007aff !important;
     }
 
-    .sp-placeholder-value {
+    .sp-container .sp-placeholder-value {
         background: #1f242d !important;
         color: #1c69d5 !important;
     }
-
-    .sp-toggle-icon:before, .sp-toggle-icon {
-        background: #555 !important;
-    }
 }
 
-.shortcut-preview-container {
+.sp-container {
     background: #e1e1e1;
-    font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
+    font-family: "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     font-size: 18px;
     color-scheme: light dark;
@@ -81,64 +49,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
-.shortcut-preview-container .sp-action:not(:last-child) {
-    margin-bottom: 1.50rem;
-}
-
-.shortcut-preview-container .sp-action {
-    background: white;
-    position: relative;
+.sp-container .card {
     border-radius: 1rem;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
 }
 
-.shortcut-preview-container .sp-comment-action {
+.sp-container .sp-comment-action {
     background: #fbf5e8;
 }
 
-.shortcut-preview-container .sp-comment-action .sp-action-title {
+.sp-container .sp-comment-action .sp-action-title {
     color: #ffbf00;
 }
 
-
-.shortcut-preview-container .sp-action-content {
-    position: relative;
-}
-
-.shortcut-preview-container .sp-list {
-    position: relative;
-    z-index: 1;
-}
-
-.shortcut-preview-container .sp-list ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-.shortcut-preview-container .sp-list ul ul {
-    padding-left: 46px;
-}
-
-.shortcut-preview-container .sp-list li {
-    position: relative;
-    box-sizing: border-box;
-}
-
-.shortcut-preview-container .sp-list .sp-item-media {
-    display: flex;
-    flex-shrink: 0;
-    flex-wrap: nowrap;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 8px 0;
-}
-
-.shortcut-preview-container .sp-action-icon {
+.sp-container .sp-action-icon {
     display: flex;
     place-content: center;
     place-items: center;
@@ -151,91 +78,35 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     pointer-events: none;
 }
 
-.shortcut-preview-container .sp-action-icon i {
+.sp-container .sp-action-icon i {
     font-size: 24px;
     width: 24px;
     height: 24px;
 }
 
-.shortcut-preview-container .sp-action .sp-action-title {
+.sp-container .sp-action-title,
+.sp-container .sp-action-text {
     font-weight: bold;
 }
 
-.shortcut-preview-container .sp-list .sp-item-content {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    align-items: center;
-    padding-left: 16px;
-}
-
-.shortcut-preview-container .sp-list .sp-item-inner {
-    position: relative;
-    width: 100%;
-    min-width: 0;
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    align-items: center;
-    align-self: stretch;
-    padding: 8px 0;
-    margin-right: 16px;
-}
-
-.sp-list .sp-item-media + .sp-item-inner {
-    margin-left: 16px;
-}
-
-.shortcut-preview-container .sp-list .sp-item-title {
-    position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    min-width: 0;
-    flex-shrink: 1;
-}
-
-.shortcut-preview-container .sp-list .sp-item-after {
-    white-space: nowrap;
-    flex-shrink: 0;
-    display: flex;
-    margin-left: auto;
-}
-
-.sp-list li:not(:last-child) .sp-item-inner:after {
-    content: "";
-    position: absolute;
-    background-color: #e6e6e6;
-    display: block;
-    z-index: 15;
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    transform-origin: 50% 100%;
-    transform: scaleY(0.5);
-}
-
-.shortcut-preview-container .sp-placeholder-value,
-.shortcut-preview-container .sp-value {
+.sp-container .sp-placeholder-value,
+.sp-container .sp-value {
     padding: 0 0.50rem;
     border-radius: 0.25rem;
 }
 
-.shortcut-preview-container .sp-placeholder-value {
+.sp-container .sp-placeholder-value {
     background: #f3f7ff;
     color: #5594ff;
 }
 
-.shortcut-preview-container .sp-value {
+.sp-container .sp-value {
     background: #f4f7ff;
     color: #067aff;
     font-weight: bold;
 }
 
-.shortcut-preview-container .sp-variable-value {
+.sp-container .sp-variable-value {
     font-weight: bold;
     display: grid;
     grid-template-columns: 0fr 1fr;
@@ -243,105 +114,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     place-content: center;
 }
 
-.shortcut-preview-container .sp-variable-icon {
+.sp-container .sp-variable-icon {
     width: 18px;
     height: 18px;
-    background: #fc880f;
+    background: #fc880f !important;
     color: white;
     margin-right: 0.25rem;
 }
 
-.shortcut-preview-container .sp-variable-icon i {
+.sp-container .sp-variable-icon i {
     font-size: 18px;
     width: 18px;
     height: 18px;
 }
 
-.shortcut-preview-container .sp-action .sp-action-scrollable-content {
+.sp-container .sp-scrollable-action-content {
     height: 5rem;
     width: 100%;
     word-break: break-word;
     white-space: normal;
-}
-
-.sp-toggle {
-    pointer-events: none;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    box-sizing: border-box;
-    align-self: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
-
-.sp-toggle input[type=checkbox] {
-    display: none;
-}
-
-.sp-toggle, .sp-toggle-icon {
-    width: 52px;
-    height: 32px;
-    border-radius: 32px;
-}
-
-.sp-toggle-icon {
-    background: #e5e5e5;
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border: none;
-    position: relative;
-    transition: .3s;
-    box-sizing: border-box;
-    display: block;
-    cursor: pointer;
-}
-
-.sp-toggle-icon:after, .sp-toggle-icon:before {
-    content: "";
-}
-
-.sp-toggle-icon:after {
-    height: 36px;
-    width: 36px;
-    top: 2px;
-    left: 2px;
-    box-shadow: 0 2px 4px #0000004d;
-    border-radius: 36px;
-    background: #fff;
-    position: absolute;
-    z-index: 2;
-    transform: translate(0);
-    transition-duration: .3s;
-}
-
-.sp-toggle-icon:before {
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    width: 56px;
-    height: 5px;
-    border-radius: 32px;
-    box-sizing: border-box;
-    background: #fff;
-    z-index: 1;
-    transition-duration: .3s;
-    transform: scale(1);
-}
-
-.sp-toggle input[type=checkbox]:checked + .sp-toggle-icon {
-    background: #0a84ff;
-}
-
-.sp-toggle input[type=checkbox]:checked + .sp-toggle-icon:before {
-    transform: scale(0);
-}
-
-.sp-toggle input[type=checkbox]:checked + .sp-toggle-icon:after {
-    transform: translate(20px);
 }

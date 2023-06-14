@@ -16,7 +16,7 @@ export function renderValue(value?: any, placeholder?: string): string {
                 container.className = '';
 
                 const label = document.createElement('label');
-                label.className = 'sp-toggle';
+                label.className = 'toggle disabled';
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
@@ -26,7 +26,7 @@ export function renderValue(value?: any, placeholder?: string): string {
                 label.appendChild(checkbox);
 
                 const icon = document.createElement('span');
-                icon.className = 'sp-toggle-icon';
+                icon.className = 'toggle-icon';
                 label.appendChild(icon);
 
                 container.appendChild(label);

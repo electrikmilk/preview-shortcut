@@ -18,6 +18,7 @@ export default {
         action.style.gap = '0 10px';
 
         const header = document.createElement('div');
+        header.className = 'sp-action-title';
         header.innerText = 'Set variable';
         action.appendChild(header);
 
@@ -27,7 +28,7 @@ export default {
 
         const to = document.createElement('div');
         to.innerText = 'to';
-        to.className = 'shortcut-action-text';
+        to.className = 'action-text';
         action.appendChild(to);
 
         const varValue = document.createElement('div');

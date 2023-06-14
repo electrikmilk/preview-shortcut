@@ -1,10 +1,23 @@
 import {defineConfig} from "vite";
 import typescript from "@rollup/plugin-typescript";
 import {typescriptPaths} from "rollup-plugin-typescript-paths";
+
+const purgecss = require('@fullhuman/postcss-purgecss')
 import path from "path";
 
 export default defineConfig({
     plugins: [],
+    css: {
+        postcss: {
+            plugins: [
+                require('autoprefixer'),
+                purgecss({
+                    content: ['./src/**/*.ts'],
+                    css: ['./src/style.css']
+                })
+            ]
+        }
+    },
     resolve: {
         alias: [
             {

@@ -21,13 +21,13 @@ function renderAction(action: Action): Node {
     console.group(`Render ${action.WFWorkflowActionIdentifier}`);
 
     const card = document.createElement('div');
-    card.className = 'sp-action';
+    card.className = 'card';
 
     const content = document.createElement('div');
-    content.className = 'sp-action-content';
+    content.className = 'card-content';
 
     const list = document.createElement('div');
-    list.className = 'sp-list';
+    list.className = 'list';
 
     const ul = document.createElement('ul');
 
@@ -102,7 +102,7 @@ export function renderActionHeader(actionData: ActionDefinition) {
 
 export function renderHeader(media: string | null, title: string): HTMLElement {
     const actionTitle = document.createElement('div');
-    actionTitle.className = 'sp-font-bold';
+    actionTitle.className = 'sp-action-title';
     actionTitle.innerHTML = title;
 
     return renderListItem(media, actionTitle.outerHTML);
@@ -120,11 +120,11 @@ export function renderActionContent(content: HTMLElement | string): HTMLElement 
 export function renderListItem(image?: HTMLElement | string | null, title?: HTMLElement | string, after?: HTMLElement | string): HTMLElement {
     const item = document.createElement('li');
     const content = document.createElement('div');
-    content.className = 'sp-item-content';
+    content.className = 'item-content';
 
     if (image) {
         const media = document.createElement('div');
-        media.className = 'sp-item-media';
+        media.className = 'item-media';
         // @ts-ignore
         if (image.innerHTML) {
             // @ts-ignore
@@ -137,17 +137,17 @@ export function renderListItem(image?: HTMLElement | string | null, title?: HTML
 
     if (title || after) {
         const inner = document.createElement('div');
-        inner.className = 'sp-item-inner';
+        inner.className = 'item-inner';
         if (title) {
             const titleText = document.createElement('div');
-            titleText.className = 'sp-item-title';
+            titleText.className = 'item-title';
             // @ts-ignore
             titleText.innerHTML = title.innerHTML ?? title;
             inner.appendChild(titleText);
         }
         if (after) {
             const afterText = document.createElement('div');
-            afterText.className = 'sp-item-after';
+            afterText.className = 'item-after';
             // @ts-ignore
             afterText.innerHTML = after.innerHTML ?? after;
             inner.appendChild(afterText);

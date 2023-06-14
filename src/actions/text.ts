@@ -16,7 +16,7 @@ export default {
         const header = renderActionHeader(actions['gettext']);
         action.appendChild(header);
         const value = document.createElement('div');
-        value.className = 'sp-action-scrollable-content';
+        value.className = 'sp-scrollable-action-content';
         value.innerHTML = renderValue(params['WFTextActionText'], 'Text');
         action.appendChild(renderActionContent(value.outerHTML));
 
