@@ -43,6 +43,7 @@
     "autoprefixer": "^10.4.14",
     "framework7": "^8.1.0",
     "framework7-icons": "^5.0.5",
+    "plist": "^3.0.6",
     "postcss": "^8.4.24",
     "prettier": "2.6.2",
     "rollup": "^3.23.1",
