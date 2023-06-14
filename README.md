@@ -1,5 +1,6 @@
 # Preview iOS Shortcut
 
+[![Build with Vite](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml/badge.svg)](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml)
 [![License](https://img.shields.io/github/license/electrikmilk/preview-shortcut)](https://github.com/electrikmilk/preview-shortcut/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/preview-shortcut)](https://www.npmjs.com/package/preview-shortcut)
 
@@ -36,13 +37,15 @@ previewShortcut(data, '#custom-selector');
 
 ## Work in Progress
 
-- [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they look like in the Shortcuts app.
+- [x] ~~Framework7 needs to be bundled: instead of borrowing only what we need, we need to bundle and purge what we
+  don't use.~~
 - [ ] A lot of the code is a rough draft and needs refactoring.
 - [ ] Inline variables are not properly handled.
-- [ ] Framework7 needs to be bundled: instead of borrowing only what we need, we need to bundle and purge what we don't use.
+- [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they
+  look like in the Shortcuts app.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
 
-These are growing pains and are planneed to be resolved by version 1.0.
+These are growing pains and are planned to be resolved by version 1.0.
 
 ## Dependencies
 
@@ -52,8 +55,10 @@ Colors are either picked from the Shortcuts app on Mac or pulled from the offici
 
 ### Icons
 
-This package uses [Framework7 Icons](https://framework7.io/icons/) to achieve somewhat similar icons to what is available in iOS, as the official icons (SF Symbols) can only be used under license.
+This package uses [Framework7 Icons](https://framework7.io/icons/) to achieve somewhat similar icons to what is
+available in iOS, as the official icons (SF Symbols) can only be used under license.
 
 ### Styling
 
-This package includes CSS from [Framework7](https://github.com/framework7io/framework7) under license to make it look as close to iOS as possible with some custom styling added on top to make sure it looks as close to the Shortcuts app as possible. Framework7 is not bundled to keep the bundle size small. I plan to add some method of purging unused CSS so we can include the package and get any updates.
+This package includes CSS from [Framework7](https://github.com/framework7io/framework7) to make it look as close to iOS
+as possible with some custom styling added on top to make sure it also looks as close to the Shortcuts app as possible.
