@@ -1,4 +1,4 @@
-name: NodeJS with Vite
+name: Build with Vite
 
 on:
   push:
