@@ -167,6 +167,9 @@ interface ActionParameters {
 export function renderParameters(actionData: ActionDefinition | null, parameters: ActionParameters): HTMLElement[] {
     let params = [];
     for (let key in parameters) {
+        if (key === 'CustomOutputName' || key === 'UUID') {
+            continue;
+        }
         let value = parameters[key];
         if (actionData && actionData.params && actionData.params[key]) {
             // @ts-ignore
