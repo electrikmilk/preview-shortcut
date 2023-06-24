@@ -146,15 +146,28 @@
 }
 
 .sp-container .sp-scrollable-action-content {
+    display: block;
+    border: 2px solid #f1f1f1;
+    border-radius: 0.5rem;
     height: 5rem;
-    width: 100%;
+    text-align: left;
+    width: 98%;
     word-break: break-word;
     white-space: normal;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sp-container .sp-scrollable-action-content .sp-value {
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    font-weight: normal;
 }
 
 .sp-container .sp-action-list-content {
-    border: 1px solid #f0f0f0;
-    border-radius: 5px;
+    border: 2px solid #f1f1f1;
+    border-radius: 0.5rem;
     margin-right: 15px;
     margin-left: calc(var(--f7-list-item-padding-horizontal) + var(--f7-list-in-list-padding-left) + 10px);
 }
