@@ -36,6 +36,20 @@
         background: #1f242d !important;
         color: #1c69d5 !important;
     }
+
+    .sp-container .sp-action-list-content {
+        border-color: #252523 !important;
+    }
+
+    .sp-container .sp-action-list-content ul li:nth-child(even) {
+        background: #2a2a29 !important;
+    }
+
+    .sp-container .sp-action-list-footer {
+        border-color: #333231 !important;
+        background: #292927 !important;
+        color: #6e6e6d !important;
+    }
 }
 
 .sp-container {
