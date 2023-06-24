@@ -175,7 +175,7 @@ export function renderParameters(actionData: ActionDefinition | null, parameters
             // @ts-ignore
             key = actionData.params[key];
         }
-        params.push(renderListItem(null, key, renderValue(value)));
+        params.push(renderListItem(null, key, renderValue(value, key)));
     }
 
     return params;
