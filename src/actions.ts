@@ -2,6 +2,12 @@ import Text from "~/actions/text";
 import Comment from "~/actions/comment";
 import SetVariable from "~/actions/set-variable";
 import ShowAlert from "~/actions/show-alert";
+import AddToVariable from "~/actions/add-to-variable";
+import Number from "~/actions/number";
+import ShowResult from "~/actions/show-result";
+import List from "~/actions/list";
+import RepeatWithEach from "~/actions/repeat-with-each";
+import Repeat from "~/actions/repeat";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -24,5 +30,11 @@ export let actions: ActionDefinitions = {
     'gettext': Text,
     'comment': Comment,
     'setvariable': SetVariable,
-    'alert': ShowAlert
+    'appendvariable': AddToVariable,
+    'number': Number,
+    'alert': ShowAlert,
+    'showresult': ShowResult,
+    'list': List,
+    'repeat.count': Repeat,
+    'repeat.each': RepeatWithEach
 };
