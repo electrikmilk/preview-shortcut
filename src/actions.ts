@@ -8,6 +8,11 @@ import ShowResult from "~/actions/show-result";
 import List from "~/actions/list";
 import RepeatWithEach from "~/actions/repeat-with-each";
 import Repeat from "~/actions/repeat";
+import IfElse from "~/actions/if-else";
+import Nothing from "~/actions/nothing";
+import Url from "~/actions/url";
+import Date from "~/actions/date";
+import Count from "~/actions/count";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -35,6 +40,11 @@ export let actions: ActionDefinitions = {
     'alert': ShowAlert,
     'showresult': ShowResult,
     'list': List,
+    'nothing': Nothing,
+    'url': Url,
+    'date': Date,
+    'count': Count,
+    'conditional': IfElse,
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach
 };

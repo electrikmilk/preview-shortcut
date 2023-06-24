@@ -1,0 +1,27 @@
+import {renderValue} from "~/value";
+import {renderActionIcon, renderListItem} from "~/render";
+
+interface DateParameters {
+    WFDateActionMode: string
+    WFDateActionDate: string | object
+}
+
+export default {
+    render: (container: HTMLElement, params: DateParameters) => {
+        const action = document.createElement('div');
+        action.style.display = 'flex';
+        action.style.justifyItems = 'inline-flex';
+        action.style.gap = '0 10px';
+
+        const varName = document.createElement('div');
+        if (params['WFDateActionMode'] == 'Specified Date') {
+            varName.innerHTML = renderValue(params['WFDateActionDate'], 'Date');
+        } else {
+            const varName = document.createElement('div');
+            varName.innerHTML = renderValue('Current Date', 'Date');
+        }
+        action.appendChild(varName);
+
+        return renderListItem(renderActionIcon('calendar', '#fb3a30', '#feeced'), action.outerHTML);
+    }
+}
