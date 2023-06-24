@@ -11,7 +11,12 @@ import {parse} from 'plist/dist/plist-parse.js';
 export let preview: HTMLDivElement | null;
 
 export function previewShortcutURL(url: string, selector: string = '#shortcut-preview') {
-    fetch(url).then(response => response.text()).then((response) => {
+    fetch(url).then(response => {
+        if (response.status !== 200) {
+            throw new Error(`Unable to load shortcut (${response.status}): ${url}`);
+        }
+        return response.text();
+    }).then(response => {
         let json;
         try {
             json = JSON.parse(response);
@@ -20,7 +25,7 @@ export function previewShortcutURL(url: string, selector: string = '#shortcut-pr
         }
         previewShortcut(json, selector);
     }).catch(error => {
-        console.error(`[preview-shortcut] Error loading shortcut: ${error}`);
+        console.error(`[preview-shortcut] ${error}`);
     });
 }
 
