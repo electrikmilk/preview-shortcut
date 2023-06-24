@@ -7,10 +7,6 @@ interface SetVariableParameters {
 }
 
 export default {
-    title: 'Set Variable',
-    params: {
-        'WFTextActionText': 'Text'
-    },
     render: (container: HTMLElement, params: SetVariableParameters) => {
         const action = document.createElement('div');
         action.style.display = 'flex';
@@ -28,7 +24,7 @@ export default {
 
         const to = document.createElement('div');
         to.innerText = 'to';
-        to.className = 'action-text';
+        to.className = 'sp-action-text';
         action.appendChild(to);
 
         const varValue = document.createElement('div');
