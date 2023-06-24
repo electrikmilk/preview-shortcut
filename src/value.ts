@@ -53,6 +53,9 @@ export function renderValue(value?: any, placeholder?: string): string {
                 } else if (value && value.Value && value.Value.OutputName) {
                     const inlineVar = renderInlineVariable(value.Value.OutputName);
                     container.appendChild(inlineVar);
+                } else if (value && value.Variable) {
+                    const inlineVar = renderInlineVariable(value.Variable.Value.VariableName);
+                    container.appendChild(inlineVar);
                 } else {
                     container.innerText = '[Object]';
                 }
