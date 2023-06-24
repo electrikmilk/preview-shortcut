@@ -104,7 +104,8 @@
 }
 
 .sp-container .sp-placeholder-value,
-.sp-container .sp-value {
+.sp-container .sp-value,
+.sp-container .sp-variable-value {
     padding: 0 0.50rem;
     border-radius: 0.25rem;
 }
@@ -121,8 +122,10 @@
 }
 
 .sp-container .sp-variable-value {
+    background: #e2f0ff;
+    padding: 0 5px;
     font-weight: bold;
-    display: grid;
+    display: inline-grid;
     grid-template-columns: 0fr 1fr;
     place-items: center;
     place-content: center;
