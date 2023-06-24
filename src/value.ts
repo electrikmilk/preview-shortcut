@@ -38,24 +38,21 @@ export function renderValue(value?: any, placeholder?: string): string {
                 if (Array.isArray(value)) {
                     container.innerText = '[Array]';
                 } else if (value && value.Value && value.Value.attachmentsByRange) {
-                    container.innerText = String(value.Value.string);
+                    let str = String(value.Value.string);
+                    for (let v in value.Value.attachmentsByRange) {
+                        let variable = value.Value.attachmentsByRange[v];
+                        if (variable.Type === 'Variable') {
+                            const inlineVar = renderInlineVariable(variable.VariableName);
+                            str = str.replace('\uFFFC', inlineVar.outerHTML);
+                        } else {
+                            const inlineVar = renderInlineVariable(variable.VariableName, 'globe');
+                            str = str.replace('\uFFFC', inlineVar.outerHTML);
+                        }
+                    }
+                    container.innerHTML = str;
                 } else if (value && value.Value && value.Value.OutputName) {
-                    const variable = document.createElement('div');
-                    variable.className = 'sp-variable-value';
-
-                    const icon = document.createElement('div');
-                    icon.className = 'sp-action-icon sp-variable-icon';
-                    const i = document.createElement('i');
-                    i.className = 'icon f7-icons';
-                    i.innerText = 'f_cursive';
-                    icon.appendChild(i);
-                    variable.appendChild(icon);
-
-                    const name = document.createElement('div');
-                    name.innerText = value.Value.OutputName;
-                    variable.appendChild(name);
-
-                    container.appendChild(variable);
+                    const inlineVar = renderInlineVariable(value.Value.OutputName);
+                    container.appendChild(inlineVar);
                 } else {
                     container.innerText = '[Object]';
                 }
@@ -68,4 +65,23 @@ export function renderValue(value?: any, placeholder?: string): string {
         container.innerHTML = placeholder;
     }
     return container.outerHTML;
+}
+
+function renderInlineVariable(v: string, char?: string) {
+    const variable = document.createElement('div');
+    variable.className = 'sp-variable-value';
+
+    const icon = document.createElement('div');
+    icon.className = 'sp-action-icon sp-variable-icon';
+    const i = document.createElement('i');
+    i.className = 'icon f7-icons';
+    i.innerText = char ?? 'f_cursive';
+    icon.appendChild(i);
+
+    variable.appendChild(icon);
+    const name = document.createElement('div');
+    name.innerText = v;
+    variable.appendChild(name);
+
+    return variable;
 }
