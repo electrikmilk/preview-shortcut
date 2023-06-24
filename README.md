@@ -54,7 +54,7 @@ previewShortcutURL('https://example.com/unsigned.plist');
 
 ### Result
 
-<img width="490" alt="Shortcut Preview" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/8ea83434-7ad7-40a1-9e0a-25aa7c33c226">
+![Screenshot 2023-06-24 at 18 45 06](https://github.com/electrikmilk/preview-shortcut/assets/4368524/1e25efc8-7914-4891-b8af-44a271586989)
 
 ### Dark Mode Support
 
