@@ -4,6 +4,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    .sp-header {
+        background: #383837 !important;
+        color: #b1b1b0 !important;
+        border-color: black !important;
+    }
+
     .sp-container {
         background: #141414 !important;
     }
@@ -54,6 +60,10 @@
         border-color: #333231 !important;
         background: #292927 !important;
         color: #6e6e6d !important;
+    }
+
+    .sp-container .sp-scrollable-action-content {
+        border-color: #2d2d2c !important;
     }
 }
 
