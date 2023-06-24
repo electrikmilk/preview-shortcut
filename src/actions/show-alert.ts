@@ -33,7 +33,7 @@ export default {
         const ul = document.createElement('ul');
         renderParameters(actions['alert'], {
             'Title': params['WFAlertActionTitle'],
-            'Show Cancel Button': params['WFAlertActionCancelButtonShown']
+            'Show Cancel Button': params['WFAlertActionCancelButtonShown'] ?? true
         }).forEach(param => ul.appendChild(param));
         li.appendChild(ul);
         list.appendChild(li);
