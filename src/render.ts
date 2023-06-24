@@ -7,6 +7,10 @@ interface Action {
     WFWorkflowActionParameters: object
 }
 
+interface ActionParameters {
+    [key: string]: any
+}
+
 export function renderShortcut(actions: Array<Action>) {
     console.group('Render Shortcut');
     actions.forEach((action: Action) => {
@@ -158,10 +162,6 @@ export function renderListItem(image?: HTMLElement | string | null, title?: HTML
     item.appendChild(content);
 
     return item;
-}
-
-interface ActionParameters {
-    [key: string]: any
 }
 
 export function renderParameters(actionData: ActionDefinition | null, parameters: ActionParameters): HTMLElement[] {
