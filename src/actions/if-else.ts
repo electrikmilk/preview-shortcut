@@ -4,6 +4,7 @@ import {renderActionIcon, renderListItem} from "~/render";
 interface IfElseParameters {
     WFInput: string | object,
     WFConditionalActionString: string | object
+    WFNumberValue: number | string | object
     WFControlFlowMode: number,
     WFCondition: number,
 }
@@ -87,6 +88,13 @@ export default {
                 const value = document.createElement('div');
                 value.style.display = 'inline-block';
                 value.innerHTML = renderValue(params['WFConditionalActionString'] ?? null, 'Text');
+                action.appendChild(value);
+            }
+
+            if (params['WFNumberValue']) {
+                const value = document.createElement('div');
+                value.style.display = 'inline-block';
+                value.innerHTML = renderValue(params['WFNumberValue'] ?? null, 'Number');
                 action.appendChild(value);
             }
         }
