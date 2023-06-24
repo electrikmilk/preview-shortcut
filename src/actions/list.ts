@@ -1,6 +1,6 @@
-import {renderValue} from "~/value";
-import {renderActionContent, renderActionHeader, renderActionIcon, renderListItem, renderParameters} from "~/render";
+import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
+import {renderValue} from "~/value";
 
 interface ListParameters {
     WFItems: Array<string>
@@ -21,21 +21,24 @@ export default {
         if (params['WFItems'].length !== 0) {
             for (let item in params['WFItems']) {
                 const li = document.createElement('li');
-                li.innerText = params['WFItems'][item];
+                li.innerHTML = renderValue(params['WFItems'][item], 'List Item');
                 ul.appendChild(li);
             }
         }
-        list.appendChild(ul);
-        action.appendChild(list);
         const footer = document.createElement('div');
         footer.className = 'sp-action-list-footer';
         footer.innerText = params["WFItems"].length + ' item';
         if (params["WFItems"].length !== 1) {
             footer.innerText += 's';
         }
+
+        list.appendChild(ul);
         list.appendChild(footer);
+        action.appendChild(list);
+
         const br = document.createElement('br');
         action.appendChild(br);
+
         return action;
     }
 }
