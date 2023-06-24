@@ -13,6 +13,7 @@ import Nothing from "~/actions/nothing";
 import Url from "~/actions/url";
 import Date from "~/actions/date";
 import Count from "~/actions/count";
+import ChooseFromMenu from "~/actions/choose-from-menu";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -44,6 +45,7 @@ export let actions: ActionDefinitions = {
     'url': Url,
     'date': Date,
     'count': Count,
+    'choosefrommenu': ChooseFromMenu,
     'conditional': IfElse,
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach
