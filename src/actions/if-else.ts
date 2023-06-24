@@ -30,17 +30,11 @@ export default {
             header.innerText = 'If';
             action.appendChild(header);
 
-            // const condition = document.createElement('div');
-            // condition.style.display = 'inline-block';
-            // condition.innerHTML = renderValue(params['WFInput'] ?? null, 'Items');
-            // action.appendChild(condition);
-
             const input = document.createElement('div');
             input.style.display = 'inline-block';
             input.innerHTML = renderValue(params['WFInput'] ?? null, 'Items');
             action.appendChild(input);
 
-            //WFCondition
             let conditionType;
             switch (params['WFCondition']) {
                 case 4:
