@@ -7,6 +7,7 @@ import {renderShortcut} from "~/render";
 
 // @ts-ignore
 import {parse} from 'plist/dist/plist-parse.js';
+import Framework7 from "framework7";
 
 export let preview: HTMLDivElement | null;
 
@@ -34,6 +35,10 @@ export function previewShortcut(shortcut: string | object, selector: string = '#
     if (!preview) {
         throw new Error(`[preview-shortcut] Selector '${selector}' selects nothing.`);
     }
+    new Framework7({
+        el: selector,
+        name: 'Preview Shortcut'
+    });
     if (!preview.className.includes('sp-container')) {
         let previewClasses = preview.className.split(' ');
         previewClasses.push('sp-container', 'ios');
