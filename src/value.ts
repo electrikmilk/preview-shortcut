@@ -6,17 +6,21 @@ interface AttachmentValue {
 
 export function renderValue(value?: any, placeholder?: string): string {
     const container = document.createElement('div');
-    if (value || typeof value === 'boolean') {
+    console.log(typeof value, value);
+    if (value || typeof value === 'boolean' || value === 0) {
         container.className = 'sp-value';
         switch (typeof value) {
             case 'string':
                 container.innerHTML = value;
                 break;
+            case 'number':
+                container.innerHTML = `${value}`;
+                break;
             case 'boolean':
                 container.className = '';
 
                 const label = document.createElement('label');
-                label.className = 'toggle disabled';
+                label.className = 'toggle';
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
@@ -32,9 +36,11 @@ export function renderValue(value?: any, placeholder?: string): string {
                 container.appendChild(label);
                 break
             case 'object':
-                if (value && value.Value && value.Value.attachmentsByRange) {
+                if (Array.isArray(value)) {
+                    container.innerText = '[Array]';
+                } else if (value && value.Value && value.Value.attachmentsByRange) {
                     container.innerText = String(value.Value.string);
-                } else if (value && value.Value.OutputName) {
+                } else if (value && value.Value && value.Value.OutputName) {
                     const variable = document.createElement('div');
                     variable.className = 'sp-variable-value';
 
@@ -51,6 +57,8 @@ export function renderValue(value?: any, placeholder?: string): string {
                     variable.appendChild(name);
 
                     container.appendChild(variable);
+                } else {
+                    container.innerText = '[Object]';
                 }
                 break;
             default:
