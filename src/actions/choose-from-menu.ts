@@ -34,7 +34,7 @@ export default {
             action.appendChild(item);
 
             const list = document.createElement('div');
-            list.className = 'sp-action-list-content';
+            list.className = 'sp-action-list-content sp-unstyled-value';
             const ul = document.createElement('ul');
             if (params['WFMenuItems'].length !== 0) {
                 for (let item in params['WFMenuItems']) {
@@ -60,17 +60,15 @@ export default {
 
             return action;
         } else {
+            const header = document.createElement('div');
+            header.className = 'sp-action-title';
             if (params['WFControlFlowMode'] == 2) {
-                const header = document.createElement('div');
-                header.className = 'sp-action-title';
                 header.innerText = 'End Menu';
-                action.appendChild(header);
             } else if (params['WFControlFlowMode'] == 1) {
-                const header = document.createElement('div');
-                header.className = 'sp-action-title';
+                header.className += ' sp-unstyled-value';
                 header.innerHTML = renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item');
-                action.appendChild(header);
             }
+            action.appendChild(header);
             return renderListItem(renderActionIcon('square_list', 'white', '#55bef0'), action.outerHTML);
         }
     }
