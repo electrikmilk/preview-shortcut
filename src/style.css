@@ -24,11 +24,15 @@
 
     .sp-container {
         background: #141414 !important;
+        padding: 1rem;
     }
 
     .sp-container .card {
         background: #1d1d1d !important;
         border: 1px solid #303030;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .sp-container .sp-comment-action {
@@ -132,6 +136,12 @@
     width: 50px;
     height: 50px;
     border-radius: 0.75rem;
+}
+
+.sp-actions-empty {
+    padding: 10rem 0;
+    text-align: center;
+    color: #888;
 }
 
 .sp-container .card {

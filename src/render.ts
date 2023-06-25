@@ -1,27 +1,22 @@
-import {preview} from "~/main";
+import {ActionData, container} from "~/main";
 import {ActionDefinition, actions} from "~/actions";
 import {renderValue} from "~/value";
-
-interface Action {
-    WFWorkflowActionIdentifier: string
-    WFWorkflowActionParameters: object
-}
 
 interface ActionParameters {
     [key: string]: any
 }
 
-export function renderShortcut(actions: Array<Action>) {
+export function renderShortcut(actions: Array<ActionData>) {
     console.group('Render Shortcut');
-    actions.forEach((action: Action) => {
-        preview?.appendChild(
+    actions.forEach((action: ActionData) => {
+        container?.appendChild(
             renderAction(action)
         );
     });
     console.groupEnd();
 }
 
-function renderAction(action: Action): Node {
+function renderAction(action: ActionData): Node {
     console.group(`Render ${action.WFWorkflowActionIdentifier}`);
 
     const card = document.createElement('div');

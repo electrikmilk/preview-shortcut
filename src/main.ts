@@ -8,7 +8,8 @@ import {renderShortcut} from "~/render";
 // @ts-ignore
 import {parse} from 'plist/dist/plist-parse.js';
 
-export let preview: HTMLDivElement | null;
+let preview: HTMLDivElement | null;
+export let container: HTMLDivElement;
 
 const colors = {
     "4282601983": "#f36269",
@@ -28,70 +29,130 @@ const colors = {
     "255": "#86929a",
 }
 
-export function previewShortcutURL(url: string, selector: string = '#shortcut-preview', name?: string) {
-    fetch(url).then(response => {
-        if (response.status !== 200) {
-            throw new Error(`Unable to load shortcut (${response.status}): ${url}`);
-        }
-        return response.text();
-    }).then(response => {
-        let json;
-        try {
-            json = JSON.parse(response);
-        } catch (e) {
-            json = parse(response);
-        }
-        previewShortcut(json, selector, name);
-    }).catch(error => {
-        console.error(`[preview-shortcut] ${error}`);
-    });
+interface PreviewOptions {
+    selector: string
+    name: string
+    url: string
+    data: object
+    header: boolean
+    meta: boolean
 }
 
-export function previewShortcut(shortcut: string | object, selector: string = '#shortcut-preview', name?: string) {
-    preview = document.querySelector<HTMLDivElement>(selector);
-    if (!preview) {
-        throw new Error(`[preview-shortcut] Selector '${selector}' selects nothing.`);
-    }
-    if (!preview.className.includes('sp-container')) {
-        let previewClasses = preview.className.split(' ');
-        previewClasses.push('sp-container', 'ios');
-        preview.className += previewClasses.join(' ');
-    }
-    preview.innerHTML = '';
+export interface ActionData {
+    WFWorkflowActionIdentifier: string
+    WFWorkflowActionParameters: object
+}
 
-    let data;
-    if (typeof shortcut === 'string') {
-        try {
-            data = JSON.parse(shortcut);
-        } catch (e) {
-            data = parse(shortcut);
+interface ShortcutData {
+    WFWorkflowName?: string
+    WFWorkflowIcon?: ShortcutIcon
+    WFWorkflowActions?: Array<ActionData>
+}
+
+interface ShortcutIcon {
+    WFWorkflowIconStartColor: number
+}
+
+export class ShortcutPreview {
+    selector: string
+    name: string
+    url: string
+    data: ShortcutData
+    header: boolean
+    meta: boolean
+
+    constructor(options: PreviewOptions) {
+        this.selector = options.selector ?? '#shortcut-preview';
+        this.name = options.name ?? null;
+        this.url = options.url ?? null;
+        this.data = options.data ?? null;
+        this.header = options.header ?? true;
+        this.meta = options.meta ?? true;
+        if (this.data) {
+            this.preview();
+            return;
         }
-    } else {
-        data = shortcut;
+        if (this.url) {
+            this.loadURL();
+            return;
+        }
+        throw new Error('[preview-shortcut] Missing `data` or `url` option.');
     }
 
-    const header = document.createElement('div');
-    header.className = 'sp-header';
-
-    const iconContainer = document.createElement('div');
-    iconContainer.className = 'sp-info';
-
-    const icon = document.createElement('div');
-    icon.className = 'sp-icon';
-    if (data.WFWorkflowIcon) {
-        // @ts-ignore
-        icon.style.backgroundColor = colors[data.WFWorkflowIcon.WFWorkflowIconStartColor];
+    load(data: string | ShortcutData) {
+        if (typeof data === 'object') {
+            this.data = data;
+            this.preview();
+            return;
+        }
+        try {
+            this.data = JSON.parse(String(data));
+        } catch (e) {
+            this.data = parse(data);
+        }
+        this.preview();
     }
-    iconContainer.appendChild(icon);
 
-    const title = document.createElement('div');
-    title.className = 'sp-header-title';
-    title.innerText = name ?? data.WFWorkflowName ?? 'Shortcut';
-    iconContainer.appendChild(title);
+    loadURL(url?: string) {
+        if (url) {
+            this.url = url;
+        }
+        fetch(this.url).then(response => {
+            if (response.status !== 200) {
+                throw new Error(`Unable to load shortcut (${response.status}): ${this.url}`);
+            }
+            return response.text();
+        }).then(response => {
+            this.load(response);
+            this.preview();
+        }).catch(error => {
+            console.error(`[preview-shortcut] ${error}`);
+        });
+    }
 
-    header.appendChild(iconContainer);
+    preview() {
+        preview = document.querySelector<HTMLDivElement>(this.selector);
+        if (!preview) {
+            throw new Error(`[preview-shortcut] Selector '${this.selector}' selects nothing.`);
+        }
+        preview.innerHTML = '';
 
-    preview.appendChild(header);
+        if (this.header) {
+            const header = document.createElement('div');
+            header.className = 'sp-header';
 
-    renderShortcut(data.WFWorkflowActions);
+            const iconContainer = document.createElement('div');
+            iconContainer.className = 'sp-info';
+
+            const icon = document.createElement('div');
+            icon.className = 'sp-icon';
+            if (this.data.WFWorkflowIcon) {
+                const iconColor: number = this.data.WFWorkflowIcon.WFWorkflowIconStartColor;
+                // @ts-ignore
+                icon.style.backgroundColor = colors[iconColor];
+            }
+            iconContainer.appendChild(icon);
+
+            const title = document.createElement('div');
+            title.className = 'sp-header-title';
+            title.innerText = this.name ?? this.data.WFWorkflowName ?? 'Shortcut';
+            iconContainer.appendChild(title);
+
+            header.appendChild(iconContainer);
+
+            preview.appendChild(header);
+        }
+
+        if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
+            container = document.createElement('div');
+            container.className = 'sp-container ios';
+            renderShortcut(this.data.WFWorkflowActions);
+            preview.appendChild(container);
+        } else {
+            const empty = document.createElement('div');
+            empty.className = 'sp-actions-empty';
+            empty.innerText = 'This Shortcut contains 0 actions.';
+            preview.appendChild(empty);
+        }
+    }
 }
