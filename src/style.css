@@ -24,15 +24,11 @@
 
     .sp-container {
         background: #141414 !important;
-        padding: 1rem;
     }
 
     .sp-container .card {
         background: #1d1d1d !important;
         border: 1px solid #303030;
-        margin-top: 0;
-        margin-left: 0;
-        margin-right: 0;
     }
 
     .sp-container .sp-comment-action {
@@ -103,7 +99,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    padding-bottom: 0.5rem;
+    padding: 1.5rem;
 }
 
 .sp-header {
@@ -143,6 +139,9 @@
 }
 
 .sp-container .card {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
     border-radius: 1rem;
     box-shadow: var(--shadow);
 }
@@ -233,6 +232,7 @@
     white-space: normal;
     overflow-x: hidden;
     overflow-y: auto;
+    padding: .3rem;
 }
 
 .sp-container .sp-unstyled-value .sp-value {
