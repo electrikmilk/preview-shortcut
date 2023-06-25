@@ -6,10 +6,10 @@
 
 iOS Siri Shortcut cross-framework preview for the web.
 
- - Accepts JSON or Property List (.plist) data.
- - Agnostic to any framework, written in vanilla TypeScript.
- - Displays Shortcut metadata like the icon and name.
- - Dark mode support.
+- Accepts JSON or Property List (.plist) data.
+- Agnostic to any framework, written in vanilla TypeScript.
+- Displays Shortcut metadata like the icon and name.
+- Dark mode support.
 
 ## Usage
 
@@ -27,32 +27,27 @@ Yarn:
 yarn add preview-shortcut
 ```
 
-#### HTML
+### HTML
 
 ```html
 
 <div id="shortcut-preview"></div>
 ```
 
-#### Load a Shortcut
+### Load a Shortcut
 
 ```typescript
-previewShortcut(shortcut: string, selector: string = '#shortcut-preview');
-previewShortcutURL(url: string, selector: string = '#shortcut-preview');
-```
-
-```javascript
 import 'preview-shortcut/css';
-import {previewShortcut, previewShortcutURL} from 'preview-shortcut';
+import {ShortcutPreview} from 'preview-shortcut';
 
-// Load by providing a JSON or unsigned Property List string, or an object.
-previewShortcut('<?xml><plist>...</plist>');
-previewShortcut('{...}');
-previewShortcut({...});
-
-// ...or load from a JSON or unsigned Property List file URL.
-previewShortcutURL('https://example.com/data.json');
-previewShortcutURL('https://example.com/unsigned.plist');
+const preview = new ShortcutPreview({
+    selector? : string // default: #shortcut-preview
+    name? : string
+    url? : string
+    data? : object
+    header? : boolean // default: true
+    meta? : boolean // default: true
+});
 ```
 
 ### Result
