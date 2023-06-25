@@ -6,6 +6,11 @@
 
 iOS Siri Shortcut cross-framework preview for the web.
 
+ - Accepts JSON or Property List (.plist) data.
+ - Agnostic to any framework, written in vanilla TypeScript.
+ - Displays Shortcut metadata like the icon and name.
+ - Dark mode support.
+
 ## Usage
 
 ### Install
@@ -68,6 +73,7 @@ previewShortcutURL('https://example.com/unsigned.plist');
 - [ ] A lot of the code is a rough draft and needs refactoring.
 - [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they
   look like in the Shortcuts app.
+- [ ] Plans to display metadata about the Shortcut, like what inputs it accepts, etc.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
 
 These are growing pains and are planned to be resolved by version 1.0.
