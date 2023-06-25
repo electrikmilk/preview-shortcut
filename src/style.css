@@ -49,6 +49,11 @@
         color: white !important;
     }
 
+    .sp-container .sp-scrollable-action-content .sp-value {
+        background: transparent !important;
+        color: #fff !important;
+    }
+
     .sp-container .sp-value {
         background: #1d232b !important;
         color: #007bff !important;
@@ -210,11 +215,11 @@
 
 .sp-container .sp-scrollable-action-content {
     display: block;
-    border: 2px solid #f1f1f1;
+    border: 1px solid #f1f1f1;
     border-radius: 0.5rem;
     height: 5rem;
     text-align: left;
-    width: 98%;
+    min-width: 355px;
     word-break: break-word;
     white-space: normal;
     overflow-x: hidden;
@@ -234,7 +239,7 @@
 }
 
 .sp-container .sp-action-list-content {
-    border: 2px solid #f1f1f1;
+    border: 1px solid #f1f1f1;
     border-radius: 0.5rem;
     margin-right: 15px;
     margin-left: calc(var(--f7-list-item-padding-horizontal) + var(--f7-list-in-list-padding-left) + 10px);
