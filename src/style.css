@@ -49,6 +49,16 @@
         color: white !important;
     }
 
+    .sp-container .sp-date-action .sp-action-icon {
+        color: #ff453a !important;
+        background: #3d2622 !important;
+    }
+
+    .sp-container .sp-url-action .sp-action-icon {
+        color: #0b84ff !important;
+        background: #202d3b !important;
+    }
+
     .sp-container .sp-unstyled-value .sp-value {
         background: transparent !important;
         color: #fff !important;

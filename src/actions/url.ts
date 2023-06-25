@@ -7,6 +7,8 @@ interface URLParameters {
 
 export default {
     render: (container: HTMLElement, params: URLParameters) => {
+        container.className += ' sp-url-action';
+
         const action = document.createElement('div');
         action.style.display = 'flex';
         action.style.justifyItems = 'inline-flex';

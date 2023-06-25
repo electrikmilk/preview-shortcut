@@ -8,6 +8,8 @@ interface DateParameters {
 
 export default {
     render: (container: HTMLElement, params: DateParameters) => {
+        container.className += ' sp-date-action';
+
         const action = document.createElement('div');
         action.style.display = 'flex';
         action.style.justifyItems = 'inline-flex';
