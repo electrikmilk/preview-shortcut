@@ -143,16 +143,16 @@ export class ShortcutPreview {
             preview.appendChild(header);
         }
 
+        container = document.createElement('div');
+        container.className = 'sp-container ios';
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
-            container = document.createElement('div');
-            container.className = 'sp-container ios';
             renderShortcut(this.data.WFWorkflowActions);
-            preview.appendChild(container);
         } else {
             const empty = document.createElement('div');
             empty.className = 'sp-actions-empty';
             empty.innerText = 'This Shortcut contains 0 actions.';
-            preview.appendChild(empty);
+            container.appendChild(empty);
         }
+        preview.appendChild(container);
     }
 }
