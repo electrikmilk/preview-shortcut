@@ -27,18 +27,16 @@ Yarn:
 yarn add preview-shortcut
 ```
 
-[//]: # (Preview Shortcut JSON data using the `previewShortcut&#40;data&#41;` function.)
+#### HTML
 
 ```html
 
 <div id="shortcut-preview"></div>
 ```
 
-### Load the Shortcut
+#### Load a Shortcut
 
-Syntax:
-
-```
+```typescript
 previewShortcut(shortcut: string, selector: string = '#shortcut-preview');
 previewShortcutURL(url: string, selector: string = '#shortcut-preview');
 ```
