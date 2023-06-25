@@ -45,6 +45,10 @@
         color: #fed709 !important;
     }
 
+    .sp-container .sp-nothing-action .sp-action-icon {
+        color: white !important;
+    }
+
     .sp-container .sp-value {
         background: #1d232b !important;
         color: #007bff !important;
