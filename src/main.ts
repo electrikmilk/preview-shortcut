@@ -121,9 +121,6 @@ export class ShortcutPreview {
             const header = document.createElement('div');
             header.className = 'sp-header';
 
-            const iconContainer = document.createElement('div');
-            iconContainer.className = 'sp-info';
-
             const icon = document.createElement('div');
             icon.className = 'sp-icon';
             if (this.data.WFWorkflowIcon) {
@@ -131,14 +128,17 @@ export class ShortcutPreview {
                 // @ts-ignore
                 icon.style.backgroundColor = colors[iconColor];
             }
-            iconContainer.appendChild(icon);
+            header.appendChild(icon);
 
             const title = document.createElement('div');
             title.className = 'sp-header-title';
             title.innerText = this.name ?? this.data.WFWorkflowName ?? 'Shortcut';
-            iconContainer.appendChild(title);
+            header.appendChild(title);
 
-            header.appendChild(iconContainer);
+            const count = document.createElement('div');
+            count.className = 'sp-header-action-count';
+            count.innerText = this.data.WFWorkflowActions?.length + ' actions';
+            header.appendChild(count);
 
             preview.appendChild(header);
         }

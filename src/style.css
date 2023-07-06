@@ -99,7 +99,7 @@
 }
 
 .sp-container {
-    background: #e2e2e1;
+    background: #ebebeb;
     font-family: "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     font-size: 18px;
@@ -113,33 +113,33 @@
 }
 
 .sp-header {
-    padding: 0.25rem 0;
+    padding: 1rem 0;
     color: #474746;
-    background-color: #eeedec;
-    border-bottom: 1px solid #bdbdbc;
+    background-color: #fff;
+    border-bottom: 1px solid #e6e6e6;
     text-align: center;
 }
 
-.sp-header .sp-info {
-    padding-top: 0.5rem;
-    display: inline-grid;
-    grid-template-columns: 0fr 1fr;
-    grid-gap: 0 10px;
-}
-
-.sp-header .sp-info .sp-header-title {
-    font-weight: bold;
+.sp-header .sp-header-title {
+    font-size: 1.3rem;
+    font-weight: 500;
     display: flex;
     place-content: center;
     place-items: center;
     text-shadow: var(--shadow);
 }
 
-.sp-header .sp-info .sp-icon {
-    background: #86929a url(shortcut.svg) center / 30px no-repeat;
-    width: 50px;
-    height: 50px;
-    border-radius: 0.75rem;
+.sp-header .sp-header-action-count {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.sp-header .sp-icon {
+    background: #939f94 url(shortcut.svg) center / 37px no-repeat;
+    width: 65px;
+    height: 65px;
+    border-radius: 1rem;
+    display: inline-block;
 }
 
 .sp-actions-empty {
