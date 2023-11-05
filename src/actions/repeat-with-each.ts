@@ -25,7 +25,7 @@ export default {
 
             const varValue = document.createElement('div');
             varValue.style.display = 'inline-block';
-            varValue.innerHTML = renderValue(params['WFInput'] ?? null, 'Items');
+            varValue.appendChild(renderValue(params['WFInput'] ?? null, 'Items'));
             action.appendChild(varValue);
         }
 

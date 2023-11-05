@@ -18,7 +18,7 @@ export default {
         }
         params['WFURLActionURL'].forEach(url => {
             const URLValue = document.createElement('div');
-            URLValue.innerHTML = renderValue(url, 'URL');
+            URLValue.appendChild(renderValue(url, 'URL'));
             action.appendChild(URLValue);
         });
 

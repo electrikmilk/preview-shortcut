@@ -90,13 +90,29 @@ export function renderActionIcon(icon: string = 'gear', color?: string, backgrou
     return actionIcon.outerHTML;
 }
 
-export function renderActionHeader(actionData: ActionDefinition) {
+export function renderActionHeader(actionData: ActionDefinition, content?: HTMLElement) {
     const icon = renderActionIcon(actionData.icon ?? 'gear', actionData.color ?? 'white', actionData.background ?? 'darkgray');
+
+    const container = document.createElement('div');
+
     const actionTitle = document.createElement('div');
     actionTitle.className = 'sp-action-title';
     actionTitle.innerHTML = actionData.title ?? '';
 
-    return renderListItem(icon, actionTitle.outerHTML);
+    if (content) {
+        const flexbox = document.createElement('div');
+        flexbox.style.display = 'flex';
+        flexbox.style.gap = '0px 10px';
+
+        flexbox.appendChild(actionTitle);
+        flexbox.appendChild(content);
+
+        container.appendChild(flexbox);
+    } else {
+        container.appendChild(actionTitle);
+    }
+
+    return renderListItem(icon, container.innerHTML);
 }
 
 export function renderHeader(media: string | null, title: string): HTMLElement {
@@ -148,7 +164,7 @@ export function renderListItem(image?: HTMLElement | string | null, title?: HTML
             const afterText = document.createElement('div');
             afterText.className = 'item-after';
             // @ts-ignore
-            afterText.innerHTML = after.innerHTML ?? after;
+            afterText.appendChild(after);
             inner.appendChild(afterText);
         }
         content.appendChild(inner);

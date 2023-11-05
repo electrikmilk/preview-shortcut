@@ -13,7 +13,7 @@ export default {
         action.style.gap = '0 10px';
 
         const varName = document.createElement('div');
-        varName.innerHTML = renderValue(params['WFNumberActionNumber'], 'Number');
+        varName.appendChild(renderValue(params['WFNumberActionNumber'], 'Number'));
         action.appendChild(varName);
 
         return renderListItem(renderActionIcon('number', 'white', 'gray'), action.outerHTML);

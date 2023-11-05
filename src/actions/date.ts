@@ -17,10 +17,10 @@ export default {
 
         const varName = document.createElement('div');
         if (params['WFDateActionMode'] == 'Specified Date') {
-            varName.innerHTML = renderValue(params['WFDateActionDate'], 'Date');
+            varName.appendChild(renderValue(params['WFDateActionDate'], 'Date'));
         } else {
             const varName = document.createElement('div');
-            varName.innerHTML = renderValue('Current Date', 'Date');
+            varName.appendChild(renderValue('Current Date', 'Date'));
         }
         action.appendChild(varName);
 

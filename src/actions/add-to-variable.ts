@@ -20,7 +20,7 @@ export default {
 
         const varValue = document.createElement('div');
         varValue.style.display = 'inline-block';
-        varValue.innerHTML = renderValue(params['WFInput'] ?? null, 'Input');
+        varValue.appendChild(renderValue(params['WFInput'] ?? null, 'Input'));
         action.appendChild(varValue);
 
         const to = document.createElement('div');
@@ -29,7 +29,7 @@ export default {
         action.appendChild(to);
 
         const varName = document.createElement('div');
-        varName.innerHTML = renderValue(params['WFVariableName'], 'Variable Name');
+        varName.appendChild(renderValue(params['WFVariableName'], 'Variable Name'));
         action.appendChild(varName);
 
         return renderListItem(renderActionIcon('f_cursive', 'white', '#fc880f'), action.outerHTML);

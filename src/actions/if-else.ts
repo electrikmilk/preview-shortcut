@@ -33,7 +33,7 @@ export default {
 
             const input = document.createElement('div');
             input.style.display = 'inline-block';
-            input.innerHTML = renderValue(params['WFInput'] ?? null, 'Items');
+            input.appendChild(renderValue(params['WFInput'] ?? null, 'Items'));
             action.appendChild(input);
 
             let conditionType;
@@ -87,14 +87,14 @@ export default {
             if (params['WFConditionalActionString']) {
                 const value = document.createElement('div');
                 value.style.display = 'inline-block';
-                value.innerHTML = renderValue(params['WFConditionalActionString'] ?? null, 'Text');
+                value.appendChild(renderValue(params['WFConditionalActionString'] ?? null, 'Text'));
                 action.appendChild(value);
             }
 
             if (params['WFNumberValue']) {
                 const value = document.createElement('div');
                 value.style.display = 'inline-block';
-                value.innerHTML = renderValue(params['WFNumberValue'] ?? null, 'Number');
+                value.appendChild(renderValue(params['WFNumberValue'] ?? null, 'Number'));
                 action.appendChild(value);
             }
         }

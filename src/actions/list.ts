@@ -21,7 +21,7 @@ export default {
         if (params['WFItems'].length !== 0) {
             for (let item in params['WFItems']) {
                 const li = document.createElement('li');
-                li.innerHTML = renderValue(params['WFItems'][item], 'List Item');
+                li.appendChild(renderValue(params['WFItems'][item], 'List Item'));
                 ul.appendChild(li);
             }
         }

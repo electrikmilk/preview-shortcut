@@ -4,7 +4,7 @@ interface AttachmentValue {
     attachmentsByRange: object
 }
 
-export function renderValue(value?: any, placeholder?: string): string {
+export function renderValue(value?: any, placeholder?: string): HTMLElement {
     const container = document.createElement('div');
     if (value || typeof value === 'boolean' || value === 0) {
         container.className = 'sp-value';
@@ -67,7 +67,7 @@ export function renderValue(value?: any, placeholder?: string): string {
         container.className = 'sp-placeholder-value';
         container.innerHTML = placeholder;
     }
-    return container.outerHTML;
+    return container;
 }
 
 function renderInlineVariable(v: string, char?: string) {

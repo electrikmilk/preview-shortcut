@@ -19,7 +19,7 @@ export default {
 
         const varValue = document.createElement('div');
         varValue.style.display = 'inline-block';
-        varValue.innerHTML = renderValue(params['Text'] ?? null, 'Result');
+        varValue.appendChild(renderValue(params['Text'] ?? null, 'Result'));
         action.appendChild(varValue);
 
         return renderListItem(renderActionIcon('text_bubble', 'white', '#ffc200'), action.outerHTML);

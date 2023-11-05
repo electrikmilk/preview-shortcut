@@ -17,7 +17,7 @@ export default {
         action.appendChild(header);
         const value = document.createElement('div');
         value.className = 'sp-scrollable-action-content sp-unstyled-value';
-        value.innerHTML = renderValue(params['WFTextActionText'], 'Text');
+        value.appendChild(renderValue(params['WFTextActionText'], 'Text'));
         action.appendChild(renderActionContent(value.outerHTML));
 
         return action;

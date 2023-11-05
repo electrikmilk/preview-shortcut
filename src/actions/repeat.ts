@@ -26,7 +26,7 @@ export default {
 
             const varValue = document.createElement('div');
             varValue.style.display = 'inline-block';
-            varValue.innerHTML = renderValue(params['WFRepeatCount'] ?? null, 'Times');
+            varValue.appendChild(renderValue(params['WFRepeatCount'] ?? null, 'Times'));
             action.appendChild(varValue);
 
             const to = document.createElement('div');

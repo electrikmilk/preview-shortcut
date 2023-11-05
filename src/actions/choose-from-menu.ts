@@ -27,7 +27,7 @@ export default {
 
             const input = document.createElement('div');
             input.style.display = 'inline-block';
-            input.innerHTML = renderValue(params['WFMenuPrompt'] ?? null, 'Prompt');
+            input.appendChild(renderValue(params['WFMenuPrompt'] ?? null, 'Prompt'));
             header.appendChild(input);
 
             const item = renderListItem(renderActionIcon('square_list', 'white', '#55bef0'), header.outerHTML);
@@ -40,7 +40,7 @@ export default {
                 for (let item in params['WFMenuItems']) {
                     const li = document.createElement('li');
                     // @ts-ignore
-                    li.innerHTML = renderValue(params['WFMenuItems'][item].WFValue, 'Menu Item');
+                    li.appendChild(renderValue(params['WFMenuItems'][item].WFValue, 'Menu Item'));
                     ul.appendChild(li);
                 }
             }
@@ -66,7 +66,7 @@ export default {
                 header.innerText = 'End Menu';
             } else if (params['WFControlFlowMode'] == 1) {
                 header.className += ' sp-unstyled-value';
-                header.innerHTML = renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item');
+                header.appendChild(renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item'));
             }
             action.appendChild(header);
             return renderListItem(renderActionIcon('square_list', 'white', '#55bef0'), action.outerHTML);
