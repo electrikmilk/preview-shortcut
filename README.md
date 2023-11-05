@@ -52,11 +52,11 @@ const preview = new ShortcutPreview({
 
 ### Result
 
-![Screenshot 2023-06-24 at 18 45 06](https://github.com/electrikmilk/preview-shortcut/assets/4368524/1e25efc8-7914-4891-b8af-44a271586989)
+![Screenshot 2023-11-05 at 02 55 10](https://github.com/electrikmilk/preview-shortcut/assets/4368524/38f1795d-624f-4cfb-9878-5c8c6620f808)
 
 ### Dark Mode Support
 
-![Screenshot 2023-06-24 at 19 08 58](https://github.com/electrikmilk/preview-shortcut/assets/4368524/940b069d-2b9f-4dc4-9785-0b6e407c30c6)
+![Screenshot 2023-11-05 at 02 54 54](https://github.com/electrikmilk/preview-shortcut/assets/4368524/5d4d3c4c-fc81-4eff-b82c-e9b8c7fa58b7)
 
 ## Work in Progress
 
@@ -66,7 +66,7 @@ const preview = new ShortcutPreview({
 - [ ] A lot of the code is a rough draft and needs refactoring.
 - [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they
   look like in the Shortcuts app.
-- [ ] Plans to display metadata about the Shortcut, like what inputs it accepts, etc.
+- [ ] Plans to display more metadata about the Shortcut, like what inputs it accepts, etc.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
 
 These are growing pains and are planned to be resolved by version 1.0.
