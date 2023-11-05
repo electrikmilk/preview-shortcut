@@ -1,3 +1,5 @@
+@import "glyphs.css";
+
 :root {
     --shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
     --f7-theme-color: #007aff;
@@ -134,12 +136,8 @@
     font-weight: 500;
 }
 
-.sp-header .sp-icon {
-    background: #939f94 url(shortcut.svg) center / 37px no-repeat;
-    width: 65px;
-    height: 65px;
-    border-radius: 1rem;
-    display: inline-block;
+.sp-header .shortcut-icon:after {
+    margin-left: -22px;
 }
 
 .sp-actions-empty {

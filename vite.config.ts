@@ -13,7 +13,8 @@ export default defineConfig({
                 require('autoprefixer'),
                 purgecss({
                     content: ['./src/**/*.ts'],
-                    css: ['./src/style.css']
+                    css: ['./src/style.css'],
+                    safelist: [/^c-?\d+/, /^g\d+/]
                 })
             ]
         }

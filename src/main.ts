@@ -11,24 +11,6 @@ import {parse} from 'plist/dist/plist-parse.js';
 let preview: HTMLDivElement | null;
 export let container: HTMLDivElement;
 
-const colors = {
-    "4282601983": "#f36269",
-    "4251333119": "#fc8567",
-    "4271458815": "#f7a752",
-    "4274264319": "#edc400",
-    "4292093695": "#42c95f",
-    "431817727": "#2dcdad",
-    "1440408063": "#2fcbde",
-    "463140863": "#2cb4f7",
-    "946986751": "#4969c7",
-    "2071128575": "#8757c3",
-    "3679049983": "#bb7ae5",
-    "3980825855": "#f68bd4",
-    "3031607807": "#9e908d",
-    "2846468607": "#939f96",
-    "255": "#86929a",
-}
-
 interface PreviewOptions {
     selector: string
     name: string
@@ -51,6 +33,7 @@ interface ShortcutData {
 
 interface ShortcutIcon {
     WFWorkflowIconStartColor: number
+    WFWorkflowIconGlyphNumber: number
 }
 
 export class ShortcutPreview {
@@ -122,12 +105,14 @@ export class ShortcutPreview {
             header.className = 'sp-header';
 
             const icon = document.createElement('div');
-            icon.className = 'sp-icon';
+            icon.className = 'shortcut-icon s64';
             if (this.data.WFWorkflowIcon) {
                 const iconColor: number = this.data.WFWorkflowIcon.WFWorkflowIconStartColor;
-                // @ts-ignore
-                icon.style.backgroundColor = colors[iconColor];
+                const iconGlyph: number = this.data.WFWorkflowIcon.WFWorkflowIconGlyphNumber;
+                icon.classList.add('c' + iconColor)
+                icon.classList.add('g' + iconGlyph)
             }
+
             header.appendChild(icon);
 
             const title = document.createElement('div');
