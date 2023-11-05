@@ -1,9 +1,9 @@
 import {defineConfig} from "vite";
 import typescript from "@rollup/plugin-typescript";
 import {typescriptPaths} from "rollup-plugin-typescript-paths";
+import path from "path";
 
 const purgecss = require('@fullhuman/postcss-purgecss')
-import path from "path";
 
 export default defineConfig({
     plugins: [],
