@@ -4,6 +4,11 @@ interface AttachmentValue {
     attachmentsByRange: object
 }
 
+interface Aggrandizements {
+    Type: string
+    PropertyName: string
+}
+
 export function renderValue(value?: any, placeholder?: string): HTMLElement {
     const container = document.createElement('div');
     if (value || typeof value === 'boolean' || value === 0) {
@@ -35,39 +40,65 @@ export function renderValue(value?: any, placeholder?: string): HTMLElement {
                 container.appendChild(label);
                 break
             case 'object':
-                if (Array.isArray(value)) {
-                    container.innerText = '[Array]';
-                } else if (value && value.Value && value.Value.attachmentsByRange) {
-                    let str = String(value.Value.string);
-                    for (let v in value.Value.attachmentsByRange) {
-                        let variable = value.Value.attachmentsByRange[v];
-                        if (variable.Type === 'Variable') {
-                            const inlineVar = renderInlineVariable(variable.VariableName);
-                            str = str.replace('\uFFFC', inlineVar.outerHTML);
-                        } else {
-                            const inlineVar = renderInlineVariable(variable.VariableName, 'globe');
-                            str = str.replace('\uFFFC', inlineVar.outerHTML);
-                        }
-                    }
-                    container.innerHTML = str;
-                } else if (value && value.Value && value.Value.OutputName) {
-                    const inlineVar = renderInlineVariable(value.Value.OutputName);
-                    container.appendChild(inlineVar);
-                } else if (value && value.Variable) {
-                    const inlineVar = renderInlineVariable(value.Variable.Value.VariableName);
-                    container.appendChild(inlineVar);
-                } else {
-                    container.innerText = '[Object]';
-                }
+                renderObjectValue(container, value);
                 break;
             default:
-                container.innerText = '[Object]';
+                container.innerText = '[Unsupported Value]';
         }
     } else if (placeholder) {
         container.className = 'sp-placeholder-value';
         container.innerHTML = placeholder;
     }
     return container;
+}
+
+function renderObjectValue(container: HTMLElement, value?: any) {
+    if (Array.isArray(value)) {
+        container.innerText = '[Array]';
+    } else if (value && value.Value && value.Value.attachmentsByRange) {
+        let str = String(value.Value.string);
+        for (let v in value.Value.attachmentsByRange) {
+            let variable = value.Value.attachmentsByRange[v];
+            if (variable.Type === 'Variable') {
+                const inlineVar = renderInlineVariable(variable.VariableName);
+                str = str.replace('\uFFFC', inlineVar.outerHTML);
+            } else {
+                let globalName = variable.VariableName;
+                let globalIcon = 'globe';
+                if (variable.Aggrandizements) {
+                    globalName = variable.Aggrandizements[0].PropertyName;
+                }
+                switch (variable.Type) {
+                    case 'DeviceDetails':
+                        globalIcon = 'desktopcomputer';
+                }
+                const inlineVar = renderInlineVariable(globalName, globalIcon);
+                str = str.replace('\uFFFC', inlineVar.outerHTML);
+            }
+        }
+        container.innerHTML = str;
+    } else if (value && value.Value) {
+        if (value.Value.OutputName) {
+            const inlineVar = renderInlineVariable(value.Value.OutputName);
+            container.appendChild(inlineVar);
+        } else {
+            let char;
+            if (value.Value.Type !== 'Variable') {
+                char = 'globe';
+            }
+            switch (value.Value.Type) {
+                case 'DeviceDetails':
+                    char = 'desktopcomputer';
+            }
+            const inlineVar = renderInlineVariable(value.Value.VariableName, char);
+            container.appendChild(inlineVar);
+        }
+    } else if (value && value.Variable) {
+        const inlineVar = renderInlineVariable(value.Variable.Value.VariableName);
+        container.appendChild(inlineVar);
+    } else {
+        container.innerText = '[Unsupported Object]';
+    }
 }
 
 function renderInlineVariable(v: string, char?: string) {
