@@ -11,6 +11,10 @@ iOS Siri Shortcut cross-framework preview for the web.
 - Displays Shortcut metadata like the icon and name.
 - Dark mode support.
 
+Sites that use it:
+- [cherrilang.org](https://cherrilang.org)
+- [playground.cherrilang.org](https://playground.cherrilang.org)
+
 ## Usage
 
 ### Install
