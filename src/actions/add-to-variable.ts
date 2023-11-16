@@ -1,37 +1,16 @@
 import {renderValue} from "~/value";
-import {renderActionIcon, renderListItem} from "~/render";
-
-interface SetVariableParameters {
-    WFVariableName: string | object
-    WFInput: string | object
-}
+import {renderActionHeader} from "~/render";
+import {SetVariableParameters} from "~/actions/set-variable";
+import {actions, actionText} from "~/actions";
 
 export default {
+    title: "Add",
+    icon: "f_cursive",
+    background: "#fc880f",
     render: (container: HTMLElement, params: SetVariableParameters) => {
-        const action = document.createElement('div');
-        action.style.display = 'flex';
-        action.style.justifyItems = 'inline-flex';
-        action.style.gap = '0 10px';
-
-        const header = document.createElement('div');
-        header.className = 'sp-action-title';
-        header.innerText = 'Add';
-        action.appendChild(header);
-
-        const varValue = document.createElement('div');
-        varValue.style.display = 'inline-block';
-        varValue.appendChild(renderValue(params['WFInput'] ?? null, 'Input'));
-        action.appendChild(varValue);
-
-        const to = document.createElement('div');
-        to.innerText = 'to';
-        to.className = 'sp-action-text';
-        action.appendChild(to);
-
-        const varName = document.createElement('div');
-        varName.appendChild(renderValue(params['WFVariableName'], 'Variable Name'));
-        action.appendChild(varName);
-
-        return renderListItem(renderActionIcon('f_cursive', 'white', '#fc880f'), action.outerHTML);
+        return renderActionHeader(actions['appendvariable'],
+            renderValue(params['WFInput'], 'Input'),
+            actionText('to'),
+            renderValue(params['WFVariableName'], 'Variable Name'));
     }
 }

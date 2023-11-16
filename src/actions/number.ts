@@ -1,21 +1,15 @@
 import {renderValue} from "~/value";
-import {renderActionIcon, renderListItem} from "~/render";
+import {renderActionHeader} from "~/render";
+import {actions} from "~/actions";
 
 interface NumberParameters {
     WFNumberActionNumber: string | object
 }
 
 export default {
+    icon: 'number',
+    background: '#8e8e93',
     render: (container: HTMLElement, params: NumberParameters) => {
-        const action = document.createElement('div');
-        action.style.display = 'flex';
-        action.style.justifyItems = 'inline-flex';
-        action.style.gap = '0 10px';
-
-        const varName = document.createElement('div');
-        varName.appendChild(renderValue(params['WFNumberActionNumber'], 'Number'));
-        action.appendChild(varName);
-
-        return renderListItem(renderActionIcon('number', 'white', 'gray'), action.outerHTML);
+        return renderActionHeader(actions['number'], renderValue(params['WFNumberActionNumber'], 'Number'));
     }
 }

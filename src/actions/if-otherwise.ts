@@ -1,5 +1,6 @@
 import {renderValue} from "~/value";
-import {renderActionIcon, renderListItem} from "~/render";
+import {renderActionHeader} from "~/render";
+import {ActionDefinition} from "~/actions";
 
 interface IfElseParameters {
     WFInput: string | object,
@@ -11,30 +12,20 @@ interface IfElseParameters {
 
 export default {
     render: (container: HTMLElement, params: IfElseParameters) => {
-        const action = document.createElement('div');
-        action.style.display = 'flex';
-        action.style.justifyItems = 'inline-flex';
-        action.style.gap = '0 10px';
-        if (params['WFControlFlowMode'] == 2) {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
-            header.innerText = 'End If';
-            action.appendChild(header);
-        } else if (params['WFControlFlowMode'] == 1) {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
-            header.innerText = 'Otherwise';
-            action.appendChild(header);
-        } else {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
-            header.innerText = 'If';
-            action.appendChild(header);
+        let actionData: ActionDefinition = {
+            icon: 'arrow_branch',
+            background: '#8e8e93',
+        };
+        let header: HTMLElement[] = [];
 
-            const input = document.createElement('div');
-            input.style.display = 'inline-block';
-            input.appendChild(renderValue(params['WFInput'] ?? null, 'Items'));
-            action.appendChild(input);
+        if (params['WFControlFlowMode'] == 2) {
+            actionData.title = 'End If';
+        } else if (params['WFControlFlowMode'] == 1) {
+            actionData.title = 'Otherwise';
+        } else {
+            actionData.title = 'If';
+
+            header.push(renderValue(params['WFInput'] ?? null, 'Input'));
 
             let conditionType;
             switch (params['WFCondition']) {
@@ -78,27 +69,16 @@ export default {
                     conditionType = 'between';
                     break;
             }
-            const condition = document.createElement('div');
-            condition.style.display = 'inline-block';
-            condition.className = 'sp-value';
-            condition.innerText = String(conditionType);
-            action.appendChild(condition);
+            header.push(renderValue(conditionType, 'Condition'));
 
             if (params['WFConditionalActionString']) {
-                const value = document.createElement('div');
-                value.style.display = 'inline-block';
-                value.appendChild(renderValue(params['WFConditionalActionString'] ?? null, 'Text'));
-                action.appendChild(value);
+                header.push(renderValue(params['WFConditionalActionString'] ?? null, 'Text'));
             }
-
             if (params['WFNumberValue']) {
-                const value = document.createElement('div');
-                value.style.display = 'inline-block';
-                value.appendChild(renderValue(params['WFNumberValue'] ?? null, 'Number'));
-                action.appendChild(value);
+                header.push(renderValue(params['WFNumberValue'] ?? null, 'Number'));
             }
         }
 
-        return renderListItem(renderActionIcon('arrow_branch', 'white', '#8e8e93'), action.outerHTML);
+        return renderActionHeader(actionData, ...header);
     }
 }

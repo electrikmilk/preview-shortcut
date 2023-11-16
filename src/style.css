@@ -20,8 +20,12 @@
 
     .sp-header {
         background: #383837 !important;
-        color: #b1b1b0 !important;
+        color: #fafafa !important;
         border-color: black !important;
+    }
+
+    .sp-header-action-count {
+        color: #b1b1b0 !important;
     }
 
     .sp-container {
@@ -123,6 +127,7 @@
 }
 
 .sp-header .sp-header-title {
+    color: var(--f7-list-item-title-text-color);
     font-size: 1.3rem;
     font-weight: 500;
     display: flex;
@@ -152,6 +157,7 @@
     margin-right: 0;
     border-radius: 1rem;
     box-shadow: var(--shadow);
+    font-size: 1rem;
 }
 
 .sp-container .sp-comment-action {
@@ -169,16 +175,19 @@
     position: relative;
     border-radius: 0.25rem;
     box-sizing: border-box;
-    padding: 0.25rem;
+    padding: 0.30rem;
     background: #c7c7c7;
     user-select: none;
     pointer-events: none;
+    line-height: 0;
 }
 
 .sp-container .sp-action-icon i {
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
+    font-size: 1.2rem;
+}
+
+.sp-container .item-title {
+    font-size: 0.9rem;
 }
 
 .sp-container .sp-action-title,
@@ -203,6 +212,7 @@
     background: #f4f7ff;
     color: #067aff;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .sp-container .sp-variable-value {

@@ -55,12 +55,7 @@ function renderAction(action: ActionData): Node {
     ul.appendChild(header);
 
     if (action.WFWorkflowActionParameters) {
-        const paramsli = document.createElement('li');
-        const paramsul = document.createElement('ul');
-        const params = renderParameters(actionData, action.WFWorkflowActionParameters);
-        params.forEach(p => paramsul.appendChild(p));
-        paramsli.appendChild(paramsul);
-        ul.appendChild(paramsli);
+        ul.appendChild(renderParameters(actionData, action.WFWorkflowActionParameters));
     }
     list.appendChild(ul);
     content.appendChild(list);
@@ -90,25 +85,29 @@ export function renderActionIcon(icon: string = 'gear', color?: string, backgrou
     return actionIcon.outerHTML;
 }
 
-export function renderActionHeader(actionData: ActionDefinition, content?: HTMLElement) {
+export function renderActionHeader(actionData: ActionDefinition, ...content: HTMLElement[]) {
     const icon = renderActionIcon(actionData.icon ?? 'gear', actionData.color ?? 'white', actionData.background ?? 'darkgray');
 
     const container = document.createElement('div');
 
     const actionTitle = document.createElement('div');
-    actionTitle.className = 'sp-action-title';
-    actionTitle.innerHTML = actionData.title ?? '';
+    if (actionData.title) {
+        actionTitle.className = 'sp-action-title';
+        actionTitle.innerHTML = actionData.title ?? '';
+    }
 
     if (content) {
         const flexbox = document.createElement('div');
         flexbox.style.display = 'flex';
-        flexbox.style.gap = '0px 10px';
+        flexbox.style.gap = '10px';
 
-        flexbox.appendChild(actionTitle);
-        flexbox.appendChild(content);
+        if (actionData.title) {
+            flexbox.appendChild(actionTitle);
+        }
+        flexbox.append(...content);
 
         container.appendChild(flexbox);
-    } else {
+    } else if (actionData.title) {
         container.appendChild(actionTitle);
     }
 
@@ -120,7 +119,7 @@ export function renderHeader(media: string | null, title: string): HTMLElement {
     actionTitle.className = 'sp-action-title';
     actionTitle.innerHTML = title;
 
-    return renderListItem(media, actionTitle.outerHTML);
+    return renderListItem(media, title ? actionTitle.outerHTML : '');
 }
 
 export function renderActionContent(content: HTMLElement | string): HTMLElement {
@@ -175,8 +174,9 @@ export function renderListItem(image?: HTMLElement | string | null, title?: HTML
     return item;
 }
 
-export function renderParameters(actionData: ActionDefinition | null, parameters: ActionParameters): HTMLElement[] {
-    let params = [];
+export function renderParameters(actionData: ActionDefinition | null, parameters: ActionParameters): HTMLElement {
+    const li = document.createElement('li');
+    const ul = document.createElement('ul');
     for (let key in parameters) {
         if (key === 'CustomOutputName' || key === 'UUID') {
             continue;
@@ -186,8 +186,9 @@ export function renderParameters(actionData: ActionDefinition | null, parameters
             // @ts-ignore
             key = actionData.params[key];
         }
-        params.push(renderListItem(null, key, renderValue(value, key)));
+        ul.appendChild(renderListItem(null, key, renderValue(value, key)));
     }
+    li.appendChild(ul);
 
-    return params;
+    return li;
 }

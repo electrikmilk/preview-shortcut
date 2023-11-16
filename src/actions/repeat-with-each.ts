@@ -1,5 +1,6 @@
 import {renderValue} from "~/value";
-import {renderActionIcon, renderListItem} from "~/render";
+import {renderActionHeader} from "~/render";
+import {ActionDefinition} from "~/actions";
 
 interface RepeatWithEachParameters {
     WFInput: string | object,
@@ -8,27 +9,19 @@ interface RepeatWithEachParameters {
 
 export default {
     render: (container: HTMLElement, params: RepeatWithEachParameters) => {
-        const action = document.createElement('div');
-        action.style.display = 'flex';
-        action.style.justifyItems = 'inline-flex';
-        action.style.gap = '0 10px';
-        if (params['WFControlFlowMode'] !== 0) {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
-            header.innerText = 'End Repeat';
-            action.appendChild(header);
-        } else {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
-            header.innerText = 'Repeat with each item in';
-            action.appendChild(header);
+        let actionData: ActionDefinition = {
+            icon: 'arrow_2_circlepath_circle_fill',
+            background: '#8e8e93',
+        };
+        let header: HTMLElement[] = [];
 
-            const varValue = document.createElement('div');
-            varValue.style.display = 'inline-block';
-            varValue.appendChild(renderValue(params['WFInput'] ?? null, 'Items'));
-            action.appendChild(varValue);
+        if (params['WFControlFlowMode'] === 0) {
+            actionData.title = 'Repeat with each item in';
+            header.push(renderValue(params['WFInput'] ?? null, 'Items'));
+        } else {
+            actionData.title = 'End Repeat';
         }
 
-        return renderListItem(renderActionIcon('arrow_2_circlepath_circle_fill', 'white', '#8e8e93'), action.outerHTML);
+        return renderActionHeader(actionData, ...header);
     }
 }

@@ -8,7 +8,7 @@ import ShowResult from "~/actions/show-result";
 import List from "~/actions/list";
 import RepeatWithEach from "~/actions/repeat-with-each";
 import Repeat from "~/actions/repeat";
-import IfElse from "~/actions/if-else";
+import IfElse from "~/actions/if-otherwise";
 import Nothing from "~/actions/nothing";
 import Url from "~/actions/url";
 import Date from "~/actions/date";
@@ -48,5 +48,13 @@ export let actions: ActionDefinitions = {
     'choosefrommenu': ChooseFromMenu,
     'conditional': IfElse,
     'repeat.count': Repeat,
-    'repeat.each': RepeatWithEach
+    'repeat.each': RepeatWithEach,
 };
+
+export function actionText(text: string): HTMLElement {
+    const to = document.createElement('div');
+    to.innerText = text;
+    to.className = 'sp-action-text';
+
+    return to;
+}

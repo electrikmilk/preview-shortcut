@@ -13,16 +13,12 @@ export default {
     icon: "macwindow",
     background: "#fec303",
     render: (container: HTMLElement, params: ShowAlertParameters) => {
-        const list = renderActionHeader(actions['alert'], renderValue(params['WFAlertActionMessage'], 'Informational message'));
-        const li = document.createElement('li');
-        const ul = document.createElement('ul');
-        renderParameters(actions['alert'], {
+        const action = renderActionHeader(actions['alert'], renderValue(params['WFAlertActionMessage'], 'Informational message'));
+        action.appendChild(renderParameters(actions['alert'], {
             'Title': params['WFAlertActionTitle'],
             'Show Cancel Button': params['WFAlertActionCancelButtonShown'] ?? true
-        }).forEach(param => ul.appendChild(param));
-        li.appendChild(ul);
-        list.appendChild(li);
+        }));
 
-        return list;
+        return action;
     }
 }
