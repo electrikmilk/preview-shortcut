@@ -120,7 +120,6 @@
 
 .sp-header {
     padding: 1rem 0;
-    color: #474746;
     background-color: #fff;
     border-bottom: 1px solid #e6e6e6;
     text-align: center;
@@ -137,6 +136,7 @@
 }
 
 .sp-header .sp-header-action-count {
+    color: #474746;
     font-size: 1rem;
     font-weight: 500;
 }
