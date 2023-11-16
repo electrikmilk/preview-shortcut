@@ -228,7 +228,7 @@
 .sp-container .sp-variable-icon {
     width: 18px;
     height: 18px;
-    background: #fc880f !important;
+    background: #fc880f;
     color: white;
     margin-right: 0.25rem;
 }

@@ -79,7 +79,12 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         container.innerHTML = str;
     } else if (value && value.Value) {
         if (value.Value.OutputName) {
-            const inlineVar = renderInlineVariable(value.Value.OutputName);
+            let char;
+            switch (value.Value.Type) {
+                case 'ActionOutput':
+                    char = 'wand_stars';
+            }
+            const inlineVar = renderInlineVariable(value.Value.OutputName, char);
             container.appendChild(inlineVar);
         } else {
             let char;
@@ -111,6 +116,10 @@ function renderInlineVariable(v: string, char?: string) {
     i.className = 'icon f7-icons';
     i.innerText = char ?? 'f_cursive';
     icon.appendChild(i);
+
+    if (char && char === 'wand_stars') {
+        icon.style.backgroundColor = '#8e8e93';
+    }
 
     variable.appendChild(icon);
     const name = document.createElement('div');
