@@ -14,6 +14,7 @@ import Url from "~/actions/url";
 import Date from "~/actions/date";
 import Count from "~/actions/count";
 import ChooseFromMenu from "~/actions/choose-from-menu";
+import Math from "~/actions/math";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -49,6 +50,7 @@ export let actions: ActionDefinitions = {
     'conditional': IfElse,
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach,
+    'math': Math,
 };
 
 export function actionText(text: string): HTMLElement {
