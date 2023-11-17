@@ -100,6 +100,7 @@ export function renderActionHeader(actionData: ActionDefinition, ...content: HTM
         const flexbox = document.createElement('div');
         flexbox.style.display = 'flex';
         flexbox.style.gap = '10px';
+        flexbox.style.alignItems = 'center';
 
         if (actionData.title) {
             flexbox.appendChild(actionTitle);
