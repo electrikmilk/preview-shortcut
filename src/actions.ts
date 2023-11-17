@@ -23,8 +23,8 @@ interface ActionDefinitions {
 export interface ActionDefinition {
     title?: string
     icon?: string
-    color?: string,
-    background?: string,
+    color?: string
+    background?: string
     params?: ActionParameterMap
     render?: (container: HTMLElement, params: any) => HTMLElement
 }
