@@ -1,5 +1,6 @@
 import {renderValue} from "~/value";
-import {renderActionIcon, renderListItem} from "~/render";
+import {renderActionHeader} from "~/render";
+import {actions, actionText} from "~/actions";
 
 interface ChooseFromMenuParameters {
     WFMenuPrompt: string | object,
@@ -15,23 +16,15 @@ interface ChooseFromMenuItem {
 }
 
 export default {
+    icon: 'square_list',
+    background: '#55bef0',
     render: (container: HTMLElement, params: ChooseFromMenuParameters) => {
-        const action = document.createElement('div');
+        let action;
         if (params['WFControlFlowMode'] == 0) {
-            const header = document.createElement('div');
-            header.style.display = 'flex';
-            header.style.justifyItems = 'inline-flex';
-            header.style.gap = '0 10px';
-            header.className = 'sp-action-title';
-            header.innerText = 'Choose from menu with ';
-
-            const input = document.createElement('div');
-            input.style.display = 'inline-block';
-            input.appendChild(renderValue(params['WFMenuPrompt'] ?? null, 'Prompt'));
-            header.appendChild(input);
-
-            const item = renderListItem(renderActionIcon('square_list', 'white', '#55bef0'), header.outerHTML);
-            action.appendChild(item);
+            action = renderActionHeader(actions['choosefrommenu'],
+                actionText('Choose from menu with'),
+                renderValue(params['WFMenuPrompt'] ?? null, 'Prompt')
+            );
 
             const list = document.createElement('div');
             list.className = 'sp-action-list-content sp-unstyled-value';
@@ -55,21 +48,21 @@ export default {
             list.appendChild(footer);
             action.appendChild(list);
 
-            const br = document.createElement('br');
-            action.appendChild(br);
-
-            return action;
+            action.appendChild(document.createElement('br'));
         } else {
-            const header = document.createElement('div');
-            header.className = 'sp-action-title';
+            const header: HTMLElement[] = [];
+
             if (params['WFControlFlowMode'] == 2) {
-                header.innerText = 'End Menu';
+                header.push(actionText('End Menu'));
             } else if (params['WFControlFlowMode'] == 1) {
-                header.className += ' sp-unstyled-value';
-                header.appendChild(renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item'));
+                const value = renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item');
+                value.classList.add('sp-unstyled-value');
+                header.push(value);
             }
-            action.appendChild(header);
-            return renderListItem(renderActionIcon('square_list', 'white', '#55bef0'), action.outerHTML);
+
+            action = renderActionHeader(actions['choosefrommenu'], ...header);
         }
+
+        return action;
     }
 }
