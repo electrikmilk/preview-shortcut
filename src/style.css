@@ -226,15 +226,15 @@
 }
 
 .sp-container .sp-variable-icon {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     background: #fc880f;
     color: white;
     margin-right: 0.25rem;
 }
 
 .sp-container .sp-variable-icon i {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 .sp-container .sp-scrollable-action-content {
