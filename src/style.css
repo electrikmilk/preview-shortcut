@@ -155,7 +155,7 @@
     margin-top: 0;
     margin-left: 0;
     margin-right: 0;
-    border-radius: 1rem;
+    border-radius: 0.8rem;
     box-shadow: var(--shadow);
     font-size: 1rem;
 }
