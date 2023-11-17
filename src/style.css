@@ -186,6 +186,16 @@
     font-size: 1.2rem;
 }
 
+.sp-container .sp-date-action .sp-action-icon {
+    color: #ff3b2f !important;
+    background: #ffeeee !important;
+}
+
+.sp-container .sp-url-action .sp-action-icon {
+    color: #007aff !important;
+    background: #eaf1ff !important;
+}
+
 .sp-container .item-title {
     font-size: 0.9rem;
 }
