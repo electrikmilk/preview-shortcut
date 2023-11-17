@@ -15,6 +15,8 @@ import Date from "~/actions/date";
 import Count from "~/actions/count";
 import ChooseFromMenu from "~/actions/choose-from-menu";
 import Math from "~/actions/math";
+import Stop from "~/actions/stop";
+import Wait from "~/actions/wait";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -51,6 +53,8 @@ export let actions: ActionDefinitions = {
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach,
     'math': Math,
+    'delay': Wait,
+    'exit': Stop,
 };
 
 export function actionText(text: string): HTMLElement {
