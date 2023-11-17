@@ -9,7 +9,26 @@ import {renderShortcut} from "~/render";
 import {parse} from 'plist/dist/plist-parse.js';
 
 let preview: HTMLDivElement | null;
-export let container: HTMLDivElement;
+export let container: HTMLElement;
+
+let containers: HTMLElement[] = [];
+let containerIndex: number = 0;
+
+export function newContainer() {
+    const renderContainer = document.createElement('div');
+    renderContainer.className = 'sp-sub-container';
+    container.appendChild(renderContainer);
+
+    containers.push(renderContainer);
+    containerIndex++;
+
+    container = renderContainer;
+}
+
+export function prevContainer() {
+    containerIndex--;
+    container = containers[containerIndex];
+}
 
 interface PreviewOptions {
     selector: string
@@ -130,6 +149,11 @@ export class ShortcutPreview {
 
         container = document.createElement('div');
         container.className = 'sp-container ios';
+        preview.appendChild(container);
+
+        containers = [];
+        containers.push(container);
+
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
             renderShortcut(this.data.WFWorkflowActions);
         } else {
@@ -138,6 +162,6 @@ export class ShortcutPreview {
             empty.innerText = 'This Shortcut contains 0 actions.';
             container.appendChild(empty);
         }
-        preview.appendChild(container);
+
     }
 }

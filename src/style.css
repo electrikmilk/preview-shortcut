@@ -65,7 +65,7 @@
         background: #202d3b !important;
     }
 
-    .sp-container .sp-unstyled-value .sp-value {
+    .sp-container .sp-value.sp-unstyled-value {
         background: transparent !important;
         color: #fff !important;
     }
@@ -116,6 +116,10 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
     padding: 1.5rem;
+}
+
+.sp-sub-container {
+    padding-left: 2rem;
 }
 
 .sp-header {
@@ -261,11 +265,10 @@
     padding: .3rem;
 }
 
-.sp-container .sp-unstyled-value .sp-value {
+.sp-container .sp-value.sp-unstyled-value {
     border-radius: 0;
     background: none;
     color: inherit;
-    font-weight: normal;
     padding: 0;
 }
 

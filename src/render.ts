@@ -1,4 +1,4 @@
-import {ActionData, container} from "~/main";
+import {ActionData, container, newContainer, prevContainer} from "~/main";
 import {ActionDefinition, actions} from "~/actions";
 import {renderValue} from "~/value";
 
@@ -6,17 +6,34 @@ interface ActionParameters {
     [key: string]: any
 }
 
-export function renderShortcut(actions: Array<ActionData>) {
+export const controlFlowStart = 0;
+export const controlFlowItem = 1;
+export const controlFlowEnd = 2;
+
+export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.group('Render Shortcut');
-    actions.forEach((action: ActionData) => {
-        container?.appendChild(
-            renderAction(action)
+    shortcutActions.forEach((action: ActionData) => {
+        let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
+        let params = action.WFWorkflowActionParameters;
+
+        // @ts-ignore
+        if (params['WFControlFlowMode'] === controlFlowEnd || params['WFControlFlowMode'] === controlFlowItem) {
+            prevContainer();
+        }
+
+        container.appendChild(
+            renderAction(identifier, action)
         );
+
+        // @ts-ignore
+        if (params['WFControlFlowMode'] === controlFlowStart || params['WFControlFlowMode'] === controlFlowItem) {
+            newContainer();
+        }
     });
     console.groupEnd();
 }
 
-function renderAction(action: ActionData): Node {
+function renderAction(identifier: string, action: ActionData): Node {
     console.group(`Render ${action.WFWorkflowActionIdentifier}`);
 
     const card = document.createElement('div');
@@ -29,8 +46,6 @@ function renderAction(action: ActionData): Node {
     list.className = 'list';
 
     const ul = document.createElement('ul');
-
-    let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
 
     let actionData = null;
     if (actions[identifier]) {
