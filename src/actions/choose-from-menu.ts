@@ -57,6 +57,7 @@ export default {
             } else if (params['WFControlFlowMode'] == 1) {
                 const value = renderValue(params['WFMenuItemTitle'] ?? params['WFMenuItemAttributedTitle'] ?? null, 'Item');
                 value.classList.add('sp-unstyled-value');
+                value.setAttribute('style', 'font-weight: bold');
                 header.push(value);
             }
 
