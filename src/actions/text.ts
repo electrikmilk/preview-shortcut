@@ -15,10 +15,12 @@ export default {
         const action = document.createElement('div');
         const header = renderActionHeader(actions['gettext']);
         action.appendChild(header);
-        const value = document.createElement('div');
-        value.className = 'sp-scrollable-action-content sp-unstyled-value';
-        value.appendChild(renderValue(params['WFTextActionText'], 'Text'));
-        action.appendChild(renderActionContent(value.outerHTML));
+        const text = document.createElement('div');
+        text.className = 'sp-scrollable-action-content';
+        const value = renderValue(params['WFTextActionText'], 'Text');
+        value.className = 'sp-value sp-unstyled-value';
+        text.appendChild(value);
+        action.appendChild(renderActionContent(text.outerHTML));
 
         return action;
     }
