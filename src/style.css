@@ -262,13 +262,14 @@
     white-space: normal;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: .3rem;
+    padding: .3rem .5rem;
 }
 
 .sp-container .sp-value.sp-unstyled-value {
     border-radius: 0;
     background: none;
     color: inherit;
+    font-weight: normal;
     padding: 0;
 }
 
