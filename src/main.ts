@@ -26,6 +26,9 @@ export function newContainer() {
 }
 
 export function prevContainer() {
+    if (containers.length === 1) {
+        return;
+    }
     containerIndex--;
     container = containers[containerIndex];
 }
