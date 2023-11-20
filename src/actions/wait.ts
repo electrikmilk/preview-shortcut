@@ -1,5 +1,5 @@
 import {renderActionHeader} from "~/render";
-import {actions, actionText} from "~/actions";
+import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
 interface WaitParameters {
@@ -7,11 +7,11 @@ interface WaitParameters {
 }
 
 export default {
+    title: 'Wait',
     icon: 'clock_fill',
     background: '#8e8e93',
     render: (container: HTMLElement, params: WaitParameters) => {
         return renderActionHeader(actions['delay'],
-            actionText('Wait'),
             renderValue(params['WFDelayTime'] + ' second' + (params['WFDelayTime'] !== 1 ? 's' : ''), '1 second'),
         );
     }
