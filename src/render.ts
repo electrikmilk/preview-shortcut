@@ -47,6 +47,8 @@ function renderAction(identifier: string, action: ActionData): Node {
 
     const ul = document.createElement('ul');
 
+    renderActionConnection(card, action);
+
     let actionData = null;
     if (actions[identifier]) {
         console.log('Found definition.');
@@ -80,6 +82,42 @@ function renderAction(identifier: string, action: ActionData): Node {
     console.groupEnd();
 
     return card;
+}
+
+let lastAction: ActionData;
+
+function renderActionConnection(card: HTMLElement, action: ActionData) {
+    if (lastAction && lastAction.WFWorkflowActionParameters) {
+        let outputUUID = null;
+        for (let i in action.WFWorkflowActionParameters) {
+            // @ts-ignore
+            const paramValue = action.WFWorkflowActionParameters[i];
+            if (!paramValue.hasOwnProperty("Value")) {
+                continue;
+            }
+            if (!paramValue.Value.hasOwnProperty("OutputUUID")) {
+                continue;
+            }
+            outputUUID = paramValue.Value.OutputUUID;
+        }
+        if (outputUUID !== null) {
+            // @ts-ignore
+            for (let j in lastAction.WFWorkflowActionParameters) {
+                if (j !== "UUID") {
+                    continue;
+                }
+                // @ts-ignore
+                const UUID = lastAction.WFWorkflowActionParameters[j];
+                if (outputUUID !== UUID) {
+                    continue;
+                }
+
+                console.log('link actions', [action, lastAction]);
+                card.classList.add('sp-linked-action');
+            }
+        }
+    }
+    lastAction = action;
 }
 
 export function renderActionIcon(icon: string = 'gear', color?: string, background?: string): string {

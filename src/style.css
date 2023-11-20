@@ -172,6 +172,15 @@
     color: #ffbf00;
 }
 
+.sp-container .card.sp-linked-action:before {
+    content: " ";
+    background: #6f7178;
+    width: 0.2rem;
+    height: 0.9rem;
+    top: -1rem;
+    position: absolute;
+}
+
 .sp-container .sp-action-icon {
     display: flex;
     place-content: center;
