@@ -12,7 +12,7 @@ export const controlFlowEnd = 2;
 
 export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.group('Render Shortcut');
-    shortcutActions.forEach((action: ActionData) => {
+    for (const action of shortcutActions) {
         let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
         let params = action.WFWorkflowActionParameters;
 
@@ -29,7 +29,7 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
         if (params['WFControlFlowMode'] === controlFlowStart || params['WFControlFlowMode'] === controlFlowItem) {
             newContainer();
         }
-    });
+    }
     console.groupEnd();
 }
 
