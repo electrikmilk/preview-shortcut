@@ -17,6 +17,11 @@ import ChooseFromMenu from "~/actions/choose-from-menu";
 import Math from "~/actions/math";
 import Stop from "~/actions/stop";
 import Wait from "~/actions/wait";
+import ChooseFromList from "~/actions/choose-from-list";
+import CombineText from "~/actions/combine-text";
+import AskForInput from "~/actions/ask-for-input";
+import SplitText from "~/actions/split-text";
+import GetFromList from "~/actions/get-from-list";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -37,6 +42,10 @@ interface ActionParameterMap {
 
 export let actions: ActionDefinitions = {
     'gettext': Text,
+    'ask': AskForInput,
+    'text.combine': CombineText,
+    'text.split': SplitText,
+    'getitemfromlist': GetFromList,
     'comment': Comment,
     'setvariable': SetVariable,
     'appendvariable': AddToVariable,
@@ -49,6 +58,7 @@ export let actions: ActionDefinitions = {
     'date': Date,
     'count': Count,
     'choosefrommenu': ChooseFromMenu,
+    'choosefromlist': ChooseFromList,
     'conditional': IfElse,
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach,
