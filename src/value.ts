@@ -63,28 +63,31 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                 const inlineVar = renderInlineVariable(variable.VariableName);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             } else {
-                let globalName = variable.VariableName;
-                let globalIcon = 'globe';
+                let varTypeName = variable.OutputName;
+                let icon = 'globe';
                 if (variable.Aggrandizements) {
-                    globalName = variable.Aggrandizements[0].PropertyName;
+                    varTypeName = variable.Aggrandizements[0].PropertyName;
                 }
                 switch (variable.Type) {
                     case 'DeviceDetails':
-                        globalIcon = 'desktopcomputer';
+                        icon = 'desktopcomputer';
+                        break;
+                    case 'ActionOutput':
+                        icon = 'wand_stars';
                 }
-                const inlineVar = renderInlineVariable(globalName, globalIcon);
+                const inlineVar = renderInlineVariable(varTypeName, icon);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
         }
         container.innerHTML = str;
     } else if (value && value.Value) {
         if (value.Value.OutputName) {
-            let char;
+            let icon;
             switch (value.Value.Type) {
                 case 'ActionOutput':
-                    char = 'wand_stars';
+                    icon = 'wand_stars';
             }
-            const inlineVar = renderInlineVariable(value.Value.OutputName, char);
+            const inlineVar = renderInlineVariable(value.Value.OutputName, icon);
             container.appendChild(inlineVar);
         } else {
             let char;
