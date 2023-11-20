@@ -265,6 +265,10 @@
     padding: .3rem .5rem;
 }
 
+.sp-container .sp-scrollable-action-content .sp-placeholder-value {
+    opacity: .3;
+}
+
 .sp-container .sp-value.sp-unstyled-value {
     border-radius: 0;
     background: none;
