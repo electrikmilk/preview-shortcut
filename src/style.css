@@ -1,20 +1,20 @@
 @import "glyphs.css";
 
 :root {
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
+    --sp-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
     --f7-theme-color: #007aff;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    .sp-container :root {
         --f7-theme-color: #007bff !important;
     }
 
-    input[type=checkbox]:not(:checked) + .toggle-icon {
+    .sp-container input[type=checkbox]:not(:checked) + .toggle-icon {
         background: #39393e !important;
     }
 
-    input[type=checkbox]:not(:checked) + .toggle-icon:before {
+    .sp-container input[type=checkbox]:not(:checked) + .toggle-icon:before {
         background: #39393e !important;
     }
 
@@ -140,7 +140,7 @@
     display: flex;
     place-content: center;
     place-items: center;
-    text-shadow: var(--shadow);
+    text-shadow: var(--sp-shadow);
 }
 
 .sp-header .sp-header-action-count {
@@ -164,7 +164,7 @@
     margin-left: 0;
     margin-right: 0;
     border-radius: 0.8rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--sp-shadow);
     font-size: 1rem;
 }
 
