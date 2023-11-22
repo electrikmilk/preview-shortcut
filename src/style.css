@@ -102,6 +102,10 @@
     .sp-container .sp-scrollable-action-content {
         border-color: #2d2d2c !important;
     }
+
+    .sp-container .card.sp-linked-action:before {
+        background: #6f7178 !important;
+    }
 }
 
 .sp-container {
@@ -174,10 +178,10 @@
 
 .sp-container .card.sp-linked-action:before {
     content: " ";
-    background: #6f7178;
+    background: #9a9ca4;
     width: 0.2rem;
     height: 0.9rem;
-    top: -1rem;
+    top: -0.9rem;
     position: absolute;
 }
 
