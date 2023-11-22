@@ -67,7 +67,7 @@
 
     .sp-container .sp-value.sp-unstyled-value {
         background: transparent !important;
-        color: #fff !important;
+        color: #ffffff !important;
     }
 
     .sp-container .sp-value {
@@ -128,7 +128,7 @@
 
 .sp-header {
     padding: 1rem 0;
-    background-color: #fff;
+    background-color: #ffffff;
     border-bottom: 1px solid #e6e6e6;
     text-align: center;
 }
@@ -156,7 +156,7 @@
 .sp-actions-empty {
     padding: 10rem 0;
     text-align: center;
-    color: #888;
+    color: #888888;
 }
 
 .sp-container .card {
