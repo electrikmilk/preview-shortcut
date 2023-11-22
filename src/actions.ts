@@ -69,10 +69,10 @@ export let actions: ActionDefinitions = {
     'setitemname': SetName,
 };
 
-export function actionText(text: string): HTMLElement {
-    const to = document.createElement('div');
-    to.innerText = text;
-    to.className = 'sp-action-text';
+export function actionText(value: string): HTMLElement {
+    const text = document.createElement('div');
+    text.innerText = value;
+    text.className = 'sp-action-text';
 
-    return to;
+    return text;
 }
