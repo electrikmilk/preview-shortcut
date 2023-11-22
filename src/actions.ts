@@ -22,6 +22,7 @@ import CombineText from "~/actions/combine-text";
 import AskForInput from "~/actions/ask-for-input";
 import SplitText from "~/actions/split-text";
 import GetFromList from "~/actions/get-from-list";
+import SetName from "~/actions/set-name";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -65,6 +66,7 @@ export let actions: ActionDefinitions = {
     'math': Math,
     'delay': Wait,
     'exit': Stop,
+    'setitemname': SetName,
 };
 
 export function actionText(text: string): HTMLElement {
