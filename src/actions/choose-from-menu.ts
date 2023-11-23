@@ -33,7 +33,9 @@ export default {
                 for (let item in params['WFMenuItems']) {
                     const li = document.createElement('li');
                     // @ts-ignore
-                    li.appendChild(renderValue(params['WFMenuItems'][item].WFValue, 'Menu Item'));
+                    const value = renderValue(params['WFMenuItems'][item].WFValue, 'Menu Item');
+                    value.classList.add('sp-unstyled-value');
+                    li.appendChild(value);
                     ul.appendChild(li);
                 }
             }

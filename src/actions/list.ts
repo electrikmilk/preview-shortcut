@@ -21,7 +21,9 @@ export default {
         if (params['WFItems'].length !== 0) {
             for (let item in params['WFItems']) {
                 const li = document.createElement('li');
-                li.appendChild(renderValue(params['WFItems'][item], 'List Item'));
+                const value = renderValue(params['WFItems'][item], 'List Item');
+                value.classList.add('sp-unstyled-value');
+                li.appendChild(value);
                 ul.appendChild(li);
             }
         }
