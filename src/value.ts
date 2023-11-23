@@ -42,59 +42,61 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
 }
 
 function renderObjectValue(container: HTMLElement, value?: any) {
-    if (Array.isArray(value)) {
-        container.innerText = '[Array]';
-    } else if (value && value.Value && value.Value.attachmentsByRange) {
+    if (!value || !value.Value) {
+        container.innerText = '[Empty Value]';
+        return;
+    }
+
+    let varName;
+    let varType;
+    if (value.Value.attachmentsByRange) {
         let str = String(value.Value.string);
         for (let v in value.Value.attachmentsByRange) {
             let variable = value.Value.attachmentsByRange[v];
-            if (variable.Type === 'Variable') {
-                const inlineVar = renderInlineVariable(variable.VariableName);
-                str = str.replace('\uFFFC', inlineVar.outerHTML);
-            } else {
-                let varTypeName = variable.OutputName;
-                let icon = 'globe';
-                if (variable.Aggrandizements) {
-                    varTypeName = variable.Aggrandizements[0].PropertyName;
-                }
-                switch (variable.Type) {
-                    case 'DeviceDetails':
-                        icon = 'desktopcomputer';
+            let varTypeName = variable.OutputName ?? variable.VariableName ?? variable.PropertyName;
+            if (variable.Aggrandizements) {
+                const aggrandizements = variable.Aggrandizements[0];
+                switch (aggrandizements.Type) {
+                    case 'WFCoercionVariableAggrandizement':
+                        varTypeName += `as ${aggrandizements.CoercionItemClass}`;
                         break;
-                    case 'ActionOutput':
-                        icon = 'wand_stars';
                 }
-                const inlineVar = renderInlineVariable(varTypeName, icon);
-                str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
+            const inlineVar = renderInlineVariable(varTypeName, variable.Type);
+            str = str.replace('\uFFFC', inlineVar.outerHTML);
         }
         container.innerHTML = str;
-    } else if (value && value.Value) {
-        if (value.Value.OutputName) {
-            let icon;
-            switch (value.Value.Type) {
-                case 'ActionOutput':
-                    icon = 'wand_stars';
-            }
-            const inlineVar = renderInlineVariable(value.Value.OutputName, icon);
-            container.appendChild(inlineVar);
-        } else {
-            let char;
-            if (value.Value.Type !== 'Variable') {
-                char = 'globe';
-            }
-            switch (value.Value.Type) {
-                case 'DeviceDetails':
-                    char = 'desktopcomputer';
-            }
-            const inlineVar = renderInlineVariable(value.Value.VariableName, char);
-            container.appendChild(inlineVar);
-        }
-    } else if (value && value.Variable) {
-        const inlineVar = renderInlineVariable(value.Variable.Value.VariableName);
-        container.appendChild(inlineVar);
+        return;
+    } else if (value.Value) {
+        varName = value.Value.VariableName ?? value.Value.OutputName;
+        varType = value.Value.Type;
+    } else if (value.Variable) {
+        varName = value.Variable.Value.VariableName;
+        varType = value.Variable.Value.Type;
     } else {
         container.innerText = '[Unsupported Object]';
+        return;
+    }
+
+    container.appendChild(
+        renderInlineVariable(varName, varType),
+    );
+}
+
+function variableIcon(valueType: string) {
+    let icon = 'f_cursive';
+    if (valueType !== 'Variable') {
+        icon = 'globe';
+    }
+    switch (valueType) {
+        case 'DeviceDetails':
+            return 'desktopcomputer';
+        case 'ActionOutput':
+            return 'wand_stars';
+        case'ExtensionInput':
+            return 'layers_fill';
+        default:
+            return icon;
     }
 }
 
@@ -102,6 +104,9 @@ function renderInlineVariable(v: string, char?: string) {
     const variable = document.createElement('div');
     variable.className = 'sp-variable-value';
 
+    if (char) {
+        char = variableIcon(char);
+    }
     const icon = document.createElement('div');
     icon.className = 'sp-action-icon sp-variable-icon';
     const i = document.createElement('i');
