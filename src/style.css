@@ -178,22 +178,6 @@
     margin-top: 1.8rem;
 }
 
-.sp-container .sp-comment-action {
-    background: #fbf5e8;
-}
-
-.sp-container .sp-comment-action .sp-action-title {
-    color: #ffbf00;
-}
-
-.sp-container .sp-output-action .sp-output-surface-behavior {
-    text-align: left;
-    font-weight: bold;
-    color: #808080;
-    margin: 4px 16px;
-    font-size: 0.9rem;
-}
-
 .sp-container .card.sp-linked-action:before {
     content: " ";
     background: #9a9ca4;
@@ -229,6 +213,22 @@
 .sp-container .sp-url-action .sp-action-icon {
     color: #007aff !important;
     background: #eaf1ff !important;
+}
+
+.sp-container .sp-comment-action {
+    background: #fbf5e8;
+}
+
+.sp-container .sp-comment-action .sp-action-title {
+    color: #ffbf00;
+}
+
+.sp-container .sp-output-action .sp-output-surface-behavior {
+    text-align: left;
+    font-weight: bold;
+    color: #808080;
+    margin: 4px 16px;
+    font-size: 0.9rem;
 }
 
 .sp-container .sp-output-action .sp-action-icon i {
