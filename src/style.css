@@ -183,7 +183,7 @@
 .sp-container .card.sp-linked-action:before {
     content: " ";
     background: #9a9ca4;
-    width: 0.2rem;
+    width: 0.13rem;
     height: 0.9rem;
     top: -0.9rem;
     position: absolute;
