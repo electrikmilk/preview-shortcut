@@ -117,6 +117,7 @@ export class ShortcutPreview {
 
     preview() {
         preview = document.querySelector<HTMLDivElement>(this.selector);
+        preview?.classList.add('sp-preview');
         if (!preview) {
             throw new Error(`[preview-shortcut] Selector '${this.selector}' selects nothing.`);
         }
