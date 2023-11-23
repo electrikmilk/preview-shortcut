@@ -23,6 +23,7 @@ import AskForInput from "~/actions/ask-for-input";
 import SplitText from "~/actions/split-text";
 import GetFromList from "~/actions/get-from-list";
 import SetName from "~/actions/set-name";
+import Output from "~/actions/output";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -67,6 +68,7 @@ export let actions: ActionDefinitions = {
     'delay': Wait,
     'exit': Stop,
     'setitemname': SetName,
+    'output': Output,
 };
 
 export function actionText(value: string): HTMLElement {
