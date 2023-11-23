@@ -88,19 +88,18 @@ let lastAction: ActionData;
 
 function renderActionConnection(card: HTMLElement, action: ActionData) {
     if (lastAction && lastAction.WFWorkflowActionParameters) {
-        let outputUUID = null;
-        for (let i in action.WFWorkflowActionParameters) {
+        let outputUUIDs = [];
+        for (const i in action.WFWorkflowActionParameters) {
+            if (i !== "WFInput") {
+                continue;
+            }
             // @ts-ignore
             const paramValue = action.WFWorkflowActionParameters[i];
-            if (!paramValue.hasOwnProperty("Value")) {
-                continue;
+            if (paramValue.Value && paramValue.Value.OutputUUID) {
+                outputUUIDs.push(paramValue.Value.OutputUUID);
             }
-            if (!paramValue.Value.hasOwnProperty("OutputUUID")) {
-                continue;
-            }
-            outputUUID = paramValue.Value.OutputUUID;
         }
-        if (outputUUID !== null) {
+        if (outputUUIDs.length !== 0) {
             // @ts-ignore
             for (let j in lastAction.WFWorkflowActionParameters) {
                 if (j !== "UUID") {
@@ -108,11 +107,9 @@ function renderActionConnection(card: HTMLElement, action: ActionData) {
                 }
                 // @ts-ignore
                 const UUID = lastAction.WFWorkflowActionParameters[j];
-                if (outputUUID !== UUID) {
+                if (!outputUUIDs.includes(UUID)) {
                     continue;
                 }
-
-                console.log('link actions', [action, lastAction]);
                 card.classList.add('sp-linked-action');
             }
         }
