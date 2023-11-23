@@ -1,14 +1,3 @@
-interface AttachmentValue {
-    string: string
-    OutputName: string
-    attachmentsByRange: object
-}
-
-interface Aggrandizements {
-    Type: string
-    PropertyName: string
-}
-
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
     if (value || typeof value === 'boolean' || value === 0) {
