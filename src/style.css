@@ -1,8 +1,8 @@
 @import "glyphs.css";
 
 @media (prefers-color-scheme: dark) {
-    .ios .toggle input[type=checkbox]:checked + .toggle-icon:before {
-        background: #007bff !important;
+    :root {
+        --f7-theme-color: #007bff;
     }
 
     .sp-preview input[type=checkbox]:not(:checked) + .toggle-icon {
@@ -108,8 +108,8 @@
     }
 }
 
-.ios .toggle input[type=checkbox]:checked + .toggle-icon:before {
-    background: #007aff !important;
+:root {
+    --f7-theme-color: #007aff;
 }
 
 .sp-preview {
