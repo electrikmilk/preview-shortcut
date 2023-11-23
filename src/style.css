@@ -241,6 +241,7 @@
 .sp-container .sp-placeholder-value {
     background: #f2f7ff;
     color: #4694ff;
+    user-select: none;
 }
 
 .sp-container .sp-value,
