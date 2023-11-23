@@ -90,9 +90,6 @@ function renderActionConnection(card: HTMLElement, action: ActionData) {
     if (lastAction && lastAction.WFWorkflowActionParameters) {
         let outputUUIDs = [];
         for (const i in action.WFWorkflowActionParameters) {
-            if (i !== "WFInput") {
-                continue;
-            }
             // @ts-ignore
             const paramValue = action.WFWorkflowActionParameters[i];
             if (paramValue.Value && paramValue.Value.OutputUUID) {
