@@ -110,6 +110,7 @@
 }
 
 .sp-preview {
+    all: initial;
     font-family: "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     font-size: 18px;
