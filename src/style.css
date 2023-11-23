@@ -66,6 +66,10 @@
         background: #202d3b !important;
     }
 
+    .sp-container .sp-output-action .sp-output-surface-behavior {
+        color: #9f9f9d !important;
+    }
+
     .sp-container .sp-value.sp-unstyled-value {
         background: transparent !important;
         color: #ffffff !important;
