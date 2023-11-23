@@ -172,6 +172,10 @@
     font-size: 1rem;
 }
 
+.sp-container .card:not(.sp-linked-action) {
+    margin-top: 1.8rem;
+}
+
 .sp-container .sp-comment-action {
     background: #fbf5e8;
 }
