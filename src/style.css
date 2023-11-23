@@ -1,13 +1,8 @@
 @import "glyphs.css";
 
-.sp-preview :root {
-    --sp-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
-    --f7-theme-color: #007aff;
-}
-
 @media (prefers-color-scheme: dark) {
-    .sp-preview :root {
-        --f7-theme-color: #007bff !important;
+    .ios .toggle input[type=checkbox]:checked + .toggle-icon:before {
+        background: #007bff !important;
     }
 
     .sp-preview input[type=checkbox]:not(:checked) + .toggle-icon {
@@ -113,6 +108,10 @@
     }
 }
 
+.ios .toggle input[type=checkbox]:checked + .toggle-icon:before {
+    background: #007aff !important;
+}
+
 .sp-preview {
     all: initial;
     font-family: "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
@@ -150,7 +149,7 @@
     display: flex;
     place-content: center;
     place-items: center;
-    text-shadow: var(--sp-shadow);
+    text-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
 }
 
 .sp-preview .sp-header .sp-header-action-count {
@@ -174,7 +173,6 @@
     margin-left: 0;
     margin-right: 0;
     border-radius: 0.8rem;
-    box-shadow: var(--sp-shadow);
     font-size: 1rem;
 }
 
@@ -231,7 +229,7 @@
     text-align: left;
     font-weight: bold;
     color: #808080;
-    margin: 4px 16px;
+    margin: 0 16px;
     font-size: 0.9rem;
 }
 
