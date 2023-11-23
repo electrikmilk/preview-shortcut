@@ -239,9 +239,13 @@
     color: #4694ff;
 }
 
+.sp-container .sp-value,
+.sp-container .sp-variable-value {
+    color: #067aff;
+}
+
 .sp-container .sp-value {
     background: #f4f7ff;
-    color: #067aff;
     font-weight: bold;
     font-size: 0.9rem;
 }
