@@ -10,6 +10,8 @@ export const controlFlowStart = 0;
 export const controlFlowItem = 1;
 export const controlFlowEnd = 2;
 
+let insideGroup = false;
+
 export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.group('Render Shortcut');
     for (const action of shortcutActions) {
@@ -18,7 +20,13 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
 
         // @ts-ignore
         if (params['WFControlFlowMode'] === controlFlowEnd || params['WFControlFlowMode'] === controlFlowItem) {
-            prevContainer();
+            // @ts-ignore
+            if (params['WFControlFlowMode'] === controlFlowEnd) {
+                insideGroup = false;
+            }
+            if (!insideGroup) {
+                prevContainer();
+            }
         }
 
         container.appendChild(
@@ -27,6 +35,14 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
 
         // @ts-ignore
         if (params['WFControlFlowMode'] === controlFlowStart || params['WFControlFlowMode'] === controlFlowItem) {
+            // @ts-ignore
+            if (params['WFControlFlowMode'] === controlFlowStart && identifier === 'choosefrommenu') {
+                continue;
+            }
+            // @ts-ignore
+            if (params['WFControlFlowMode'] === controlFlowStart) {
+                insideGroup = true;
+            }
             newContainer();
         }
     }
