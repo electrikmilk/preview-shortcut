@@ -47,10 +47,15 @@ export interface ActionData {
     WFWorkflowActionParameters: object
 }
 
-interface ShortcutData {
+export interface ShortcutData {
     WFWorkflowName?: string
     WFWorkflowIcon?: ShortcutIcon
     WFWorkflowActions?: Array<ActionData>
+    WFWorkflowHasShortcutInputVariables?: boolean,
+    WFWorkflowInputContentItemClasses?: Array<String>
+    WFWorkflowOutputContentItemClasses?: Array<String>
+    WFQuickActionSurfaces?: Array<String>
+    WFWorkflowTypes?: Array<String>
 }
 
 interface ShortcutIcon {
@@ -62,7 +67,7 @@ export class ShortcutPreview {
     selector: string
     name: string
     url: string
-    data: ShortcutData
+    data: ShortcutData = {};
     header: boolean
     meta: boolean
 
