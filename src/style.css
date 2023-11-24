@@ -176,7 +176,7 @@
     font-size: 1rem;
 }
 
-.sp-container .card:not(.sp-linked-action) {
+.sp-container .card:not(:first-child):not(.sp-linked-action) {
     margin-top: 1.6rem;
 }
 
