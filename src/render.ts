@@ -1,5 +1,5 @@
-import {ActionData, container, newContainer, prevContainer} from "~/main";
-import {ActionDefinition, actions} from "~/actions";
+import {ActionData, container, newContainer, prevContainer, ShortcutData} from "~/main";
+import {ActionDefinition, actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
 interface ActionParameters {
@@ -242,4 +242,75 @@ export function renderParameters(actionData: ActionDefinition | null, parameters
     li.appendChild(ul);
 
     return li;
+}
+
+const contentItemTypes = {
+    "WFAppStoreAppContentItem": "App store apps",
+    "WFArticleContentItem": "Articles",
+    "WFContactContentItem": "Contacts",
+    "WFDateContentItem": "Dates",
+    "WFEmailAddressContentItem": "Email addresses",
+    "WFFolderContentItem": "Folder",
+    "WFGenericFileContentItem": "Files",
+    "WFImageContentItem": "Images",
+    "WFiTunesProductContentItem": "iTunes Products",
+    "WFLocationContentItem": "Locations",
+    "WFDCMapsLinkContentItem": "Map links",
+    "WFAVAssetContentItem": "Media",
+    "WFPDFContentItem": "PDFs",
+    "WFPhoneNumberContentItem": "Phone numbers",
+    "WFRichTextContentItem": "Rich Text",
+    "WFSafariWebPageContentItem": "Safari web pages",
+    "WFStringContentItem": "Text",
+    "WFNumberContentItem": "Number",
+    "WFURLContentItem": "URLs",
+};
+
+const workflowTypes = {
+    "MenuBar": "Menubar",
+    "QuickActions": "Quick Actions",
+    "ActionExtension": "Share Sheet",
+    "NCWidget": "Notifications Center",
+    "Sleep": "Sleep Mode",
+    "Watch": "Apple Watch",
+    "ReceivesOnScreenContent": "What's On Screen",
+}
+
+export function renderInputs(shortcut: ShortcutData) {
+    if (!shortcut.WFWorkflowHasShortcutInputVariables) {
+        return;
+    }
+    const card = document.createElement('div');
+    card.className = 'card sp-linked-action';
+
+    let inputs = [];
+    if (shortcut.WFWorkflowInputContentItemClasses) {
+        for (const input of shortcut.WFWorkflowInputContentItemClasses) {
+            // @ts-ignore
+            inputs.push(contentItemTypes[input]);
+        }
+    }
+
+    let workflows = [];
+    if (shortcut.WFWorkflowTypes) {
+        for (const workflow of shortcut.WFWorkflowTypes) {
+            // @ts-ignore
+            workflows.push(workflowTypes[workflow]);
+        }
+    }
+
+    const render = renderActionHeader({
+            title: 'Receives',
+            icon: 'layers_fill',
+            color: '#007aff',
+            background: 'transparent',
+        },
+        renderValue(inputs.length !== 0 ? inputs.join(', ') : null, 'No'),
+        actionText('input from'),
+        renderValue(workflows.length !== 0 ? workflows.join(', ') : null, 'Nowhere')
+    );
+
+    card.innerHTML = renderCardContent(render).outerHTML;
+
+    container.appendChild(card);
 }

@@ -3,7 +3,7 @@ import 'framework7-icons';
 
 import './style.css';
 
-import {renderShortcut} from "~/render";
+import {renderInputs, renderShortcut} from "~/render";
 
 // @ts-ignore
 import {parse} from 'plist/dist/plist-parse.js';
@@ -162,6 +162,8 @@ export class ShortcutPreview {
 
         containers = [];
         containers.push(container);
+
+        renderInputs(this.data);
 
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
             renderShortcut(this.data.WFWorkflowActions);
