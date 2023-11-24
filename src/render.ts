@@ -33,12 +33,7 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.groupEnd();
 }
 
-function renderAction(identifier: string, action: ActionData): Node {
-    console.group(`Render ${action.WFWorkflowActionIdentifier}`);
-
-    const card = document.createElement('div');
-    card.className = 'card';
-
+function renderCardContent(element: HTMLElement) {
     const content = document.createElement('div');
     content.className = 'card-content';
 
@@ -46,6 +41,19 @@ function renderAction(identifier: string, action: ActionData): Node {
     list.className = 'list';
 
     const ul = document.createElement('ul');
+    ul.innerHTML = element.outerHTML;
+
+    list.appendChild(ul);
+    content.appendChild(list);
+
+    return content;
+}
+
+function renderAction(identifier: string, action: ActionData): Node {
+    console.group(`Render ${action.WFWorkflowActionIdentifier}`);
+
+    const card = document.createElement('div');
+    card.className = 'card';
 
     renderActionConnection(card, action);
 
@@ -58,25 +66,20 @@ function renderAction(identifier: string, action: ActionData): Node {
         }
     }
     if (actionData && actionData.render) {
-        const items = actionData.render(card, action.WFWorkflowActionParameters ?? []);
-        ul.innerHTML = items.innerHTML;
-        list.appendChild(ul);
-        content.appendChild(list);
-        card.appendChild(content);
+        card.innerHTML = renderCardContent(actionData.render(card, action.WFWorkflowActionParameters ?? [])).outerHTML;
 
         console.log('Rendered by definition function.');
         console.groupEnd();
+
         return card;
     }
+    const auto = document.createElement('div');
     const header = actionData ? renderActionHeader(actionData) : renderHeader(renderActionIcon('gear', 'white', 'darkgray'), identifier);
-    ul.appendChild(header);
-
+    auto.appendChild(header);
     if (action.WFWorkflowActionParameters) {
-        ul.appendChild(renderParameters(actionData, action.WFWorkflowActionParameters));
+        auto.appendChild(renderParameters(actionData, action.WFWorkflowActionParameters));
     }
-    list.appendChild(ul);
-    content.appendChild(list);
-    card.appendChild(content);
+    card.appendChild(renderCardContent(auto));
 
     console.log('Automatically rendered.');
     console.groupEnd();
