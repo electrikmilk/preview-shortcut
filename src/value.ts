@@ -42,32 +42,34 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
 }
 
 function renderObjectValue(container: HTMLElement, value?: any) {
-    if (!value || !value.Value) {
+    if (!value) {
         container.innerText = '[Empty Value]';
         return;
     }
 
     let varName;
     let varType;
-    if (value.Value.attachmentsByRange) {
-        let str = String(value.Value.string);
-        for (let v in value.Value.attachmentsByRange) {
-            let variable = value.Value.attachmentsByRange[v];
-            let varTypeName = variable.OutputName ?? variable.VariableName ?? variable.PropertyName;
-            if (variable.Aggrandizements) {
-                const aggrandizements = variable.Aggrandizements[0];
-                switch (aggrandizements.Type) {
-                    case 'WFCoercionVariableAggrandizement':
-                        varTypeName += `as ${aggrandizements.CoercionItemClass}`;
-                        break;
+    if (value.Value) {
+        if (value.Value.attachmentsByRange) {
+            let str = String(value.Value.string);
+            for (let v in value.Value.attachmentsByRange) {
+                let variable = value.Value.attachmentsByRange[v];
+                let varTypeName = variable.OutputName ?? variable.VariableName ?? variable.PropertyName;
+                if (variable.Aggrandizements) {
+                    const aggrandizements = variable.Aggrandizements[0];
+                    switch (aggrandizements.Type) {
+                        case 'WFCoercionVariableAggrandizement':
+                            varTypeName += `as ${aggrandizements.CoercionItemClass}`;
+                            break;
+                    }
                 }
+                const inlineVar = renderInlineVariable(varTypeName, variable.Type);
+                str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
-            const inlineVar = renderInlineVariable(varTypeName, variable.Type);
-            str = str.replace('\uFFFC', inlineVar.outerHTML);
+            container.innerHTML = str;
+            return;
         }
-        container.innerHTML = str;
-        return;
-    } else if (value.Value) {
+
         varName = value.Value.VariableName ?? value.Value.OutputName;
         varType = value.Value.Type;
     } else if (value.Variable) {
@@ -100,7 +102,12 @@ function variableIcon(valueType: string) {
     }
 }
 
-function renderInlineVariable(v: string, char?: string) {
+function renderInlineVariable(varName: string, char?: string) {
+    switch (varName) {
+        case 'ShortcutInput':
+            varName = 'Shortcut Input';
+    }
+
     const variable = document.createElement('div');
     variable.className = 'sp-variable-value';
 
@@ -114,13 +121,13 @@ function renderInlineVariable(v: string, char?: string) {
     i.innerText = char ?? 'f_cursive';
     icon.appendChild(i);
 
-    if (char && char === 'wand_stars') {
-        icon.style.backgroundColor = '#8e8e93';
+    if (char) {
+        icon.classList.add(char);
     }
 
     variable.appendChild(icon);
     const name = document.createElement('div');
-    name.innerText = v;
+    name.innerText = varName;
     variable.appendChild(name);
 
     return variable;

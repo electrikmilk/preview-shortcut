@@ -75,7 +75,8 @@
         color: #007bff !important;
     }
 
-    .sp-container .sp-variable-value {
+    .sp-container .sp-variable-value,
+    .sp-container .sp-variable-icon.layers_fill {
         background: #1d222b !important;
         color: #007aff !important;
     }
@@ -265,12 +266,6 @@
     color: #067aff;
 }
 
-.sp-container .sp-value {
-    background: #f4f7ff;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
 .sp-container .sp-variable-value {
     background: #e2f0ff;
     padding: 0 5px;
@@ -279,6 +274,12 @@
     grid-template-columns: 0fr 1fr;
     place-items: center;
     place-content: center;
+}
+
+.sp-container .sp-value {
+    background: #f4f7ff;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 .sp-container .sp-variable-icon {
@@ -291,6 +292,15 @@
 
 .sp-container .sp-variable-icon i {
     font-size: 0.7rem;
+}
+
+.sp-container .sp-variable-icon.wand_stars {
+    background: #8e8e93
+}
+
+.sp-container .sp-variable-icon.layers_fill {
+    background: #e2f0ff;
+    color: #067aff;
 }
 
 .sp-container .sp-scrollable-action-content {
