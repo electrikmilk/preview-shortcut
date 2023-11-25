@@ -301,9 +301,15 @@ export function renderInputs(shortcut: ShortcutData) {
 
     let inputs = [];
     if (shortcut.WFWorkflowInputContentItemClasses) {
-        for (const input of shortcut.WFWorkflowInputContentItemClasses) {
-            // @ts-ignore
-            inputs.push(contentItemTypes[input]);
+        if (shortcut.WFWorkflowInputContentItemClasses.length === Object.keys(contentItemTypes).length) {
+            inputs = ['Any'];
+        } else {
+            if (shortcut.WFWorkflowInputContentItemClasses) {
+                for (const input of shortcut.WFWorkflowInputContentItemClasses) {
+                    // @ts-ignore
+                    inputs.push(contentItemTypes[input]);
+                }
+            }
         }
     }
 
