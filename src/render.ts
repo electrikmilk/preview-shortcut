@@ -1,4 +1,12 @@
-import {ActionData, container, newContainer, prevContainer, ShortcutData} from "~/main";
+import {
+    ActionData,
+    container,
+    containerIndex,
+    newContainer,
+    prevContainer,
+    resetContainers,
+    ShortcutData
+} from "~/main";
 import {ActionDefinition, actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
@@ -10,38 +18,27 @@ export const controlFlowStart = 0;
 export const controlFlowItem = 1;
 export const controlFlowEnd = 2;
 
-let insideGroup = false;
-
 export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.group('Render Shortcut');
     for (const action of shortcutActions) {
         let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
         let params = action.WFWorkflowActionParameters;
-
         // @ts-ignore
-        if (params['WFControlFlowMode'] === controlFlowEnd || params['WFControlFlowMode'] === controlFlowItem) {
-            // @ts-ignore
-            if (params['WFControlFlowMode'] === controlFlowEnd) {
-                insideGroup = false;
-            }
-            if (!insideGroup) {
-                prevContainer();
-            }
+        const controlFlowMode = params['WFControlFlowMode'];
+        if (controlFlowMode === controlFlowEnd || controlFlowMode == controlFlowItem) {
+            prevContainer();
+        }
+        if (containerIndex === 0) {
+            resetContainers();
         }
 
         container.appendChild(
             renderAction(identifier, action)
         );
 
-        // @ts-ignore
-        if (params['WFControlFlowMode'] === controlFlowStart || params['WFControlFlowMode'] === controlFlowItem) {
-            // @ts-ignore
-            if (params['WFControlFlowMode'] === controlFlowStart && identifier === 'choosefrommenu') {
+        if (controlFlowMode === controlFlowStart || controlFlowMode === controlFlowItem) {
+            if (controlFlowMode === controlFlowStart && identifier === 'choosefrommenu') {
                 continue;
-            }
-            // @ts-ignore
-            if (params['WFControlFlowMode'] === controlFlowStart) {
-                insideGroup = true;
             }
             newContainer();
         }

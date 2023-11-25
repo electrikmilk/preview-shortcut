@@ -11,8 +11,13 @@ import {parse} from 'plist/dist/plist-parse.js';
 let preview: HTMLDivElement | null;
 export let container: HTMLElement;
 
-let containers: HTMLElement[] = [];
-let containerIndex: number = 0;
+export let containers: HTMLElement[] = [];
+export let containerIndex: number = 0;
+
+export function resetContainers() {
+    containers = [];
+    containers.push(container);
+}
 
 export function newContainer() {
     const renderContainer = document.createElement('div');
