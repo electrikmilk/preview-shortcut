@@ -119,7 +119,6 @@ export class ShortcutPreview {
             return response.text();
         }).then(response => {
             this.load(response);
-            this.preview();
         }).catch(error => {
             console.error(`[preview-shortcut] ${error}`);
         });
