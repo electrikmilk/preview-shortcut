@@ -24,6 +24,7 @@ import SplitText from "~/actions/split-text";
 import GetFromList from "~/actions/get-from-list";
 import SetName from "~/actions/set-name";
 import Output from "~/actions/output";
+import CopyToClipboard from "~/actions/copy-to-clipboard";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -69,6 +70,7 @@ export let actions: ActionDefinitions = {
     'exit': Stop,
     'setitemname': SetName,
     'output': Output,
+    'setclipboard': CopyToClipboard,
 };
 
 export function actionText(value: string): HTMLElement {

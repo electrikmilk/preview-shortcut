@@ -9,7 +9,7 @@ interface URLParameters {
 export default {
     icon: 'link',
     render: (container: HTMLElement, params: URLParameters) => {
-        container.className += ' sp-url-action';
+        container.className += ' sp-blue-action';
 
         let links: HTMLElement[] = [];
         if (params['WFURLActionURL']) {

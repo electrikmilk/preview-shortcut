@@ -51,12 +51,12 @@
         color: white !important;
     }
 
-    .sp-container .sp-date-action .sp-action-icon {
+    .sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
         color: #ff453a !important;
         background: #3d2622 !important;
     }
 
-    .sp-container .sp-url-action .sp-action-icon {
+    .sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
         color: #0b84ff !important;
         background: #202d3b !important;
     }
@@ -208,12 +208,12 @@
     font-size: 1.2rem;
 }
 
-.sp-container .sp-date-action .sp-action-icon {
+.sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
     color: #ff3b2f !important;
     background: #ffeeee !important;
 }
 
-.sp-container .sp-url-action .sp-action-icon {
+.sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
     color: #007aff !important;
     background: #eaf1ff !important;
 }
