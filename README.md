@@ -54,23 +54,23 @@ const preview = new ShortcutPreview({
 });
 ```
 
-### Result
+### Screenshots
 
-![Screenshot 2023-11-05 at 02 55 10](https://github.com/electrikmilk/preview-shortcut/assets/4368524/38f1795d-624f-4cfb-9878-5c8c6620f808)
+![Screenshot 2023-11-25 at 19 50 52](https://github.com/electrikmilk/preview-shortcut/assets/4368524/60d18d9e-5124-4792-8dd5-3c8d09ae4296)
 
-### Dark Mode Support
 
-![Screenshot 2023-11-05 at 02 54 54](https://github.com/electrikmilk/preview-shortcut/assets/4368524/5d4d3c4c-fc81-4eff-b82c-e9b8c7fa58b7)
+#### Dark Mode Support
+
+![Screenshot 2023-11-25 at 19 51 04](https://github.com/electrikmilk/preview-shortcut/assets/4368524/9cac0dc7-945c-4ada-804e-5c3e447f0fc3)
 
 ## Work in Progress
 
 - [x] ~~Framework7 needs to be bundled: instead of borrowing only what we need, we need to bundle and purge what we
   don't use.~~
 - [x] ~~Inline variables are not properly handled.~~
-- [ ] A lot of the code is a rough draft and needs refactoring.
+- [ ] Plans to display more metadata about the Shortcut, like what inputs it accepts, etc.
 - [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they
   look like in the Shortcuts app.
-- [ ] Plans to display more metadata about the Shortcut, like what inputs it accepts, etc.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
 
 These are growing pains and are planned to be resolved by version 1.0.
@@ -79,7 +79,7 @@ These are growing pains and are planned to be resolved by version 1.0.
 
 ### Colors
 
-Colors are either picked from the Shortcuts app on Mac or pulled from the official Apple color palette.
+Colors are either picked from the Shortcuts app on Mac, pulled from the official Apple color palette, or from [Framework7](https://github.com/framework7io/framework7).
 
 ### Icons
 
