@@ -162,7 +162,6 @@ export class ShortcutPreview {
 
         container = document.createElement('div');
         container.className = 'sp-container ios';
-        preview.appendChild(container);
 
         containers = [];
         containers.push(container);
@@ -178,5 +177,6 @@ export class ShortcutPreview {
             container.appendChild(empty);
         }
 
+        preview.appendChild(container);
     }
 }
