@@ -1,3 +1,5 @@
+import {contentItemTypes} from "~/render";
+
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
     if (value || typeof value === 'boolean' || value === 0) {
@@ -59,7 +61,8 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                     const aggrandizements = variable.Aggrandizements[0];
                     switch (aggrandizements.Type) {
                         case 'WFCoercionVariableAggrandizement':
-                            varTypeName += `as ${aggrandizements.CoercionItemClass}`;
+                            // @ts-ignore
+                            varTypeName += ` (${contentItemTypes[aggrandizements.CoercionItemClass]})`;
                             break;
                     }
                 }

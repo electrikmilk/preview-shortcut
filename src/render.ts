@@ -257,26 +257,26 @@ export function renderParameters(actionData: ActionDefinition | null, parameters
     return li;
 }
 
-const contentItemTypes = {
-    "WFAppStoreAppContentItem": "App store apps",
-    "WFArticleContentItem": "Articles",
-    "WFContactContentItem": "Contacts",
-    "WFDateContentItem": "Dates",
-    "WFEmailAddressContentItem": "Email addresses",
+export const contentItemTypes = {
+    "WFAppStoreAppContentItem": "App store app",
+    "WFArticleContentItem": "Article",
+    "WFContactContentItem": "Contact",
+    "WFDateContentItem": "Date",
+    "WFEmailAddressContentItem": "Email address",
     "WFFolderContentItem": "Folder",
-    "WFGenericFileContentItem": "Files",
-    "WFImageContentItem": "Images",
-    "WFiTunesProductContentItem": "iTunes Products",
-    "WFLocationContentItem": "Locations",
-    "WFDCMapsLinkContentItem": "Map links",
+    "WFGenericFileContentItem": "File",
+    "WFImageContentItem": "Image",
+    "WFiTunesProductContentItem": "iTunes Product",
+    "WFLocationContentItem": "Location",
+    "WFDCMapsLinkContentItem": "Map link",
     "WFAVAssetContentItem": "Media",
-    "WFPDFContentItem": "PDFs",
-    "WFPhoneNumberContentItem": "Phone numbers",
+    "WFPDFContentItem": "PDF",
+    "WFPhoneNumberContentItem": "Phone number",
     "WFRichTextContentItem": "Rich Text",
-    "WFSafariWebPageContentItem": "Safari web pages",
+    "WFSafariWebPageContentItem": "Safari web page",
     "WFStringContentItem": "Text",
     "WFNumberContentItem": "Number",
-    "WFURLContentItem": "URLs",
+    "WFURLContentItem": "URL",
 };
 
 const workflowTypes = {
