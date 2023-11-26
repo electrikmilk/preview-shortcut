@@ -134,7 +134,7 @@ export function renderActionIcon(icon: string = 'gear', color?: string, backgrou
     const actionIcon = document.createElement('div');
     actionIcon.className = 'sp-action-icon';
     if (background) {
-        actionIcon.style.background = background;
+        actionIcon.style.backgroundColor = background;
     }
     if (color) {
         actionIcon.style.color = color;

@@ -75,6 +75,9 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     } else if (value.Variable) {
         varName = value.Variable.Value.VariableName;
         varType = value.Variable.Value.Type;
+    } else if (value.workflowName) {
+        container.innerText = value.workflowName;
+        return;
     } else {
         container.innerText = '[Unsupported Object]';
         return;

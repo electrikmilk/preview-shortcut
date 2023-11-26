@@ -1,4 +1,5 @@
 @import "glyphs.css";
+@import "action-icons.css";
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -31,34 +32,6 @@
         color: white;
         background: #1d1d1d !important;
         border: 1px solid #303030;
-    }
-
-    .sp-container .sp-comment-action {
-        background: #2a2416 !important;
-    }
-
-    .sp-container .sp-comment-action .sp-action-icon {
-        color: #fed709 !important;
-        background: #2a2416 !important;
-    }
-
-    .sp-container .sp-comment-action .sp-action-icon,
-    .sp-container .sp-comment-action .sp-action-title {
-        color: #fed709 !important;
-    }
-
-    .sp-container .sp-nothing-action .sp-action-icon {
-        color: white !important;
-    }
-
-    .sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
-        color: #ff453a !important;
-        background: #3d2622 !important;
-    }
-
-    .sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
-        color: #0b84ff !important;
-        background: #202d3b !important;
     }
 
     .sp-container .sp-output-action .sp-output-surface-behavior {
@@ -198,32 +171,15 @@
     border-radius: 0.25rem;
     box-sizing: border-box;
     padding: 0.30rem;
-    background: #c7c7c7;
+    background-color: #c7c7c7;
     user-select: none;
     pointer-events: none;
     line-height: 0;
+    background-size: contain;
 }
 
 .sp-container .sp-action-icon i {
     font-size: 1.2rem;
-}
-
-.sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
-    color: #ff3b2f !important;
-    background: #ffeeee !important;
-}
-
-.sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
-    color: #007aff !important;
-    background: #eaf1ff !important;
-}
-
-.sp-container .sp-comment-action {
-    background: #fbf5e8;
-}
-
-.sp-container .sp-comment-action .sp-action-title {
-    color: #ffbf00;
 }
 
 .sp-container .sp-output-action .sp-output-surface-behavior {

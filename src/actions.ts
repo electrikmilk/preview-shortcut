@@ -25,6 +25,7 @@ import GetFromList from "~/actions/get-from-list";
 import SetName from "~/actions/set-name";
 import Output from "~/actions/output";
 import CopyToClipboard from "~/actions/copy-to-clipboard";
+import RunShortcut from "~/actions/run-shortcut";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -71,6 +72,7 @@ export let actions: ActionDefinitions = {
     'setitemname': SetName,
     'output': Output,
     'setclipboard': CopyToClipboard,
+    'runworkflow': RunShortcut,
 };
 
 export function actionText(value: string): HTMLElement {
