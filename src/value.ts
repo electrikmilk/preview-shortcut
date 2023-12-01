@@ -65,6 +65,9 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                             varTypeName += ` (${contentItemTypes[aggrandizements.CoercionItemClass]})`;
                             break;
                     }
+                    if (aggrandizements.PropertyName) {
+                        varTypeName = aggrandizements.PropertyName;
+                    }
                 }
                 const inlineVar = renderInlineVariable(varTypeName, variable.Type);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
@@ -73,7 +76,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
             return;
         }
 
-        varName = value.Value.VariableName ?? value.Value.OutputName;
+        varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
     } else if (value.Variable) {
         varName = value.Variable.Value.VariableName;
