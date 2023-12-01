@@ -166,7 +166,9 @@ export class ShortcutPreview {
         containers = [];
         containers.push(container);
 
-        renderInputs(this.data);
+        if (this.meta) {
+            renderInputs(this.data);
+        }
 
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
             renderShortcut(this.data.WFWorkflowActions);
