@@ -11,8 +11,6 @@ export default {
     icon: 'f_cursive_circle',
     background: '#8e8e93',
     render: (container: HTMLElement, params: CalculateExpressionParameters) => {
-        container.className += ' sp-date-action';
-
         return renderActionHeader(actions['calculateexpression'],
             renderValue(params['Input'], '7 + 7'),
         );
