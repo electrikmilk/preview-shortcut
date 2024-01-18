@@ -26,6 +26,7 @@ import SetName from "~/actions/set-name";
 import Output from "~/actions/output";
 import CopyToClipboard from "~/actions/copy-to-clipboard";
 import RunShortcut from "~/actions/run-shortcut";
+import CalculateExpression from "~/actions/calculate-expression";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -73,6 +74,7 @@ export let actions: ActionDefinitions = {
     'output': Output,
     'setclipboard': CopyToClipboard,
     'runworkflow': RunShortcut,
+    'calculateexpression': CalculateExpression,
 };
 
 export function actionText(value: string): HTMLElement {
