@@ -68,7 +68,7 @@ const preview = new ShortcutPreview({
 - [x] ~~Framework7 needs to be bundled: instead of borrowing only what we need, we need to bundle and purge what we
   don't use.~~
 - [x] ~~Inline variables are not properly handled.~~
-- [ ] Plans to display more metadata about the Shortcut, like what inputs it accepts, etc.
+- [x] ~~Plans to display more metadata about the Shortcut, like what inputs it accepts, etc.~~
 - [ ] Most actions are not defined, meaning raw action data shows up instead, or they do not look exactly like what they
   look like in the Shortcuts app.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
