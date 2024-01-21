@@ -49,7 +49,10 @@
     }
 
     .sp-container .sp-variable-value,
-    .sp-container .sp-variable-icon.layers_fill {
+    .sp-container .sp-variable-icon.layers_fill,
+    .sp-container .sp-variable-icon.desktopcomputer,
+    .sp-container .sp-variable-icon.calendar,
+    .sp-container .sp-variable-icon.doc_on_clipboard {
         background: #1d222b !important;
         color: #007aff !important;
     }
@@ -254,7 +257,10 @@
     background: #8e8e93
 }
 
-.sp-container .sp-variable-icon.layers_fill {
+.sp-container .sp-variable-icon.layers_fill,
+.sp-container .sp-variable-icon.desktopcomputer,
+.sp-container .sp-variable-icon.calendar,
+.sp-container .sp-variable-icon.doc_on_clipboard {
     background: #e2f0ff;
     color: #067aff;
 }

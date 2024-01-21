@@ -106,6 +106,10 @@ function variableIcon(valueType: string) {
             return 'wand_stars';
         case'ExtensionInput':
             return 'layers_fill';
+        case 'Clipboard':
+            return 'doc_on_clipboard';
+        case 'CurrentDate':
+            return 'calendar';
         default:
             return icon;
     }
@@ -115,6 +119,13 @@ function renderInlineVariable(varName: string, char?: string) {
     switch (varName) {
         case 'ShortcutInput':
             varName = 'Shortcut Input';
+            break;
+        case 'DeviceDetails':
+            varName = 'Device Details';
+            break;
+        case 'CurrentDate':
+            varName = 'Current Date';
+            break;
     }
 
     const variable = document.createElement('div');
