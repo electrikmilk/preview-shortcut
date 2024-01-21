@@ -84,7 +84,7 @@ Colors are either picked from the Shortcuts app on Mac, pulled from the official
 ### Icons
 
 This package uses [Framework7 Icons](https://framework7.io/icons/) to achieve somewhat similar icons to what is
-available in iOS, as the official icons (SF Symbols) can only be used under license.
+available on Apple Platforms, as the official icons (SF Symbols) can only be used under license. The glyphs for Shortcut icons are provided by [atnbueno/shortcut-icons](https://github.com/atnbueno/shortcut-icons) under the MIT license.
 
 ### Styling
 
