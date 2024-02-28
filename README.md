@@ -1,10 +1,10 @@
-# Preview iOS Shortcut
+# Preview Siri Shortcut
 
 [![Build with Vite](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml/badge.svg)](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml)
 [![License](https://img.shields.io/github/license/electrikmilk/preview-shortcut)](https://github.com/electrikmilk/preview-shortcut/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/preview-shortcut)](https://www.npmjs.com/package/preview-shortcut)
 
-iOS Siri Shortcut cross-framework preview for the web.
+Siri Shortcut cross-framework preview for the web.
 
 - Accepts JSON or Property List (.plist) data.
 - Agnostic to any framework, written in vanilla TypeScript.
