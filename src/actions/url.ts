@@ -12,11 +12,17 @@ export default {
         container.className += ' sp-blue-action';
 
         let links: HTMLElement[] = [];
-        if (params['WFURLActionURL'].length !== 0) {
-            params['WFURLActionURL'].forEach(url => {
-                links.push(renderValue(url, 'URL'));
-            });
+        if (Array.isArray(params.WFURLActionURL)) {
+            if (params.WFURLActionURL && params.WFURLActionURL.length !== 0) {
+                params.WFURLActionURL.forEach(url => {
+                    links.push(renderValue(url, 'URL'));
+                });
+            }
         } else {
+            links.push(renderValue(params.WFURLActionURL.Value))
+        }
+
+        if (!links.length) {
             links.push(renderValue(null, 'URL'));
         }
 
