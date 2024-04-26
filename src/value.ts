@@ -76,6 +76,12 @@ function renderObjectValue(container: HTMLElement, value?: any) {
             return;
         }
 
+        if (value.Value["string"]) {
+            console.log(value.Value["string"])
+            container.innerHTML = value.Value["string"];
+            return;
+        }
+
         varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
     } else if (value.Variable) {
