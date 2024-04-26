@@ -23,7 +23,7 @@ export default {
                 });
             }
         } else {
-            links.push(renderValue(params.WFURLActionURL.Value))
+            links.push(renderValue(params.WFURLActionURL))
         }
 
         if (!links.length) {
