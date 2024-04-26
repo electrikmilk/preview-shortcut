@@ -31,6 +31,7 @@ import Dictionary from "~/actions/dictionary";
 import GetDictionary from "~/actions/get-dictionary";
 import GetDictionaryValue from "~/actions/get-dictionary-value";
 import setDictionaryValue from "~/actions/set-dictionary-value";
+import GetIpAddress from "~/actions/get-ip-address";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -83,6 +84,7 @@ export let actions: ActionDefinitions = {
     'detect.dictionary': GetDictionary,
     'getvalueforkey': GetDictionaryValue,
     'setvalueforkey': setDictionaryValue,
+    'getipaddress': GetIpAddress,
 };
 
 export function actionText(value: string): HTMLElement {
