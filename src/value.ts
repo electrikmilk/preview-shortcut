@@ -57,7 +57,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
             for (let v in value.Value.attachmentsByRange) {
                 let variable = value.Value.attachmentsByRange[v];
                 let varTypeName = variable.OutputName ?? variable.VariableName ?? variable.PropertyName;
-                if (variable.Aggrandizements) {
+                if (variable.Aggrandizements && variable.Aggrandizements.length) {
                     const aggrandizements = variable.Aggrandizements[0];
                     switch (aggrandizements.Type) {
                         case 'WFCoercionVariableAggrandizement':
