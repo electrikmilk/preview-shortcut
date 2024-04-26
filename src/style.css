@@ -30,8 +30,8 @@
 
     .sp-container .card {
         color: white;
-        background: #1d1d1d !important;
-        border: 1px solid #303030;
+        background: #28282b;
+        border: 1px solid #3a3a3d;
     }
 
     .sp-container .sp-output-action .sp-output-surface-behavior {
@@ -83,6 +83,22 @@
     .sp-container .card.sp-linked-action:before {
         background: #6f7178 !important;
     }
+
+    .sp-container thead tr {
+        background: #232227 !important;
+    }
+
+    .sp-container table, .sp-container table thead {
+        border-color: #333335 !important;
+    }
+
+    .sp-container table {
+        background: #222225 !important;
+    }
+
+    .sp-container table tbody tr:nth-child(even) {
+        background: #2c2c2f !important;
+    }
 }
 
 :root {
@@ -93,7 +109,6 @@
     all: initial;
     font-family: "SF Pro Text", system-ui, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    font-size: 18px;
     color-scheme: light dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -150,7 +165,6 @@
     margin-left: 0;
     margin-right: 0;
     border-radius: 0.8rem;
-    font-size: 1rem;
 }
 
 .sp-container .card:not(:first-child):not(.sp-linked-action) {
@@ -162,7 +176,7 @@
     background: #9a9ca4;
     width: 0.13rem;
     height: 0.9rem;
-    top: -0.9rem;
+    top: -1rem;
     position: absolute;
 }
 
@@ -319,7 +333,6 @@
 }
 
 .sp-container .sp-action-list-footer {
-    display: block;
     border-top: 1px solid #dcdcdb;
     border-radius: 0 0 5px 5px;
     padding: 3px 15px;
@@ -327,4 +340,43 @@
     text-align: left;
     background: #e6e6e5;
     color: #878787;
+}
+
+.sp-container .table-container {
+    border: 1px solid #f2f2f2;
+    border-radius: 0.5rem;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    width: 90%;
+}
+
+.sp-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sp-container table th, .sp-container table td {
+    text-align: left;
+    padding: 0.3rem 1rem;
+}
+
+.sp-container table th {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.sp-container table th:not(:first-child) {
+    border-left: 1px solid #e5e5e6;
+}
+
+.sp-container table thead {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.sp-container table thead tr {
+    background: #ffffff;
+}
+
+.sp-container table tbody tr:nth-child(even) {
+    background: #f4f5f5;
 }
