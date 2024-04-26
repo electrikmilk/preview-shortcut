@@ -17,16 +17,16 @@ export default {
         const header = renderActionHeader(actions['comment']);
         action.appendChild(header);
 
-        const comment = document.createElement('div');
-        comment.className = 'sp-comment-action-content';
+        const content = document.createElement('div');
+        content.className = 'sp-action-content';
 
         const value = document.createElement('div');
-        comment.appendChild(value);
+        content.appendChild(value);
 
         value.className = 'sp-scrollable-action-content';
         value.innerText = params['WFCommentActionText'] ?? null;
 
-        action.appendChild(comment);
+        action.appendChild(content);
 
         action.appendChild(document.createElement('br'));
 

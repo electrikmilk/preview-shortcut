@@ -1,6 +1,6 @@
-import {renderActionContent, renderActionHeader} from "~/render";
-import {renderValue} from "~/value";
+import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
+import {renderValue} from "~/value";
 
 interface TextActionParameters {
     WFTextActionText: any
@@ -15,12 +15,20 @@ export default {
         const action = document.createElement('div');
         const header = renderActionHeader(actions['gettext']);
         action.appendChild(header);
+
+        const content = document.createElement('div');
+        content.className = 'sp-action-content';
+
         const text = document.createElement('div');
         text.className = 'sp-scrollable-action-content';
+
         const value = renderValue(params['WFTextActionText'], 'Text');
         value.classList.add('sp-value', 'sp-unstyled-value');
         text.appendChild(value);
-        action.appendChild(renderActionContent(text.outerHTML));
+
+        content.appendChild(text);
+        action.appendChild(content);
+        action.appendChild(document.createElement('br'));
 
         return action;
     }
