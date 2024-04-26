@@ -32,6 +32,7 @@ import GetDictionary from "~/actions/get-dictionary";
 import GetDictionaryValue from "~/actions/get-dictionary-value";
 import setDictionaryValue from "~/actions/set-dictionary-value";
 import GetIpAddress from "~/actions/get-ip-address";
+import GetFileFromFolder from "~/actions/get-file-from-folder";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -85,6 +86,7 @@ export let actions: ActionDefinitions = {
     'getvalueforkey': GetDictionaryValue,
     'setvalueforkey': setDictionaryValue,
     'getipaddress': GetIpAddress,
+    'documentpicker.open': GetFileFromFolder,
 };
 
 export function actionText(value: string): HTMLElement {
