@@ -325,15 +325,21 @@ export function renderInputs(shortcut: ShortcutData) {
         }
     }
 
+    const inputsValue = renderValue(inputs.length !== 0 ? inputs.join(', ') : null, 'No');
+    const outputsValue = renderValue(workflows.length !== 0 ? workflows.join(', ') : null, 'Nowhere');
+
+    inputsValue.classList.add('no-wrap');
+    outputsValue.classList.add('no-wrap');
+
     const render = renderActionHeader({
             title: 'Receives',
             icon: 'layers_fill',
             color: '#007aff',
             background: 'transparent',
         },
-        renderValue(inputs.length !== 0 ? inputs.join(', ') : null, 'No'),
+        inputsValue,
         actionText('input from'),
-        renderValue(workflows.length !== 0 ? workflows.join(', ') : null, 'Nowhere')
+        outputsValue
     );
 
     card.innerHTML = renderCardContent(render).outerHTML;

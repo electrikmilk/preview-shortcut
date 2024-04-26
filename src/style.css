@@ -247,6 +247,11 @@
     color: #067aff;
 }
 
+.sp-container .sp-value.no-wrap {
+    white-space: pre-wrap !important;
+    text-align: left !important;
+}
+
 .sp-container .sp-variable-value {
     background: #e2f0ff;
     padding: 0 5px;
