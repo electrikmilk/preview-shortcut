@@ -14,7 +14,7 @@ export default {
     render: (container: HTMLElement, params: RunShortcutParameters) => {
         container.classList.add('sp-shortcut-action');
 
-        const action = renderActionHeader(actions['runworkflow'], renderValue(params['WFInput'], 'Output'));
+        const action = renderActionHeader(actions['runworkflow'], renderValue(params['WFInput'], 'Shortcut'));
         action.appendChild(renderParameters(actions['alert'], {
             'Input': params['WFInput'],
         }));
