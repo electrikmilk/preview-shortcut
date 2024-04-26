@@ -269,6 +269,7 @@ export const contentItemTypes = {
     "WFContactContentItem": "Contact",
     "WFDateContentItem": "Date",
     "WFEmailAddressContentItem": "Email address",
+    "WFDictionaryContentItem": "Dictionary",
     "WFFolderContentItem": "Folder",
     "WFGenericFileContentItem": "File",
     "WFImageContentItem": "Image",
@@ -377,8 +378,7 @@ export function renderTable(data: Array<Object>, callback: Function) {
     footer.className = 'sp-action-list-footer';
     const itemsSize = data.length;
     const s = itemsSize ? 's' : null;
-    footer.innerHTML = `<td>${itemsSize} item${s}</td>`;
-    footer.innerHTML += '<td></td>'.repeat(itemsSize - 1)
+    footer.innerHTML = `<td>${itemsSize} item${s}</td><td></td><td></td>`;
     tbody.appendChild(footer);
 
     table.appendChild(tbody);
