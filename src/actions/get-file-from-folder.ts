@@ -17,7 +17,7 @@ export default {
         container.className += ' sp-blue-action';
 
         const action = renderActionHeader(actions['documentpicker.open'],
-            renderValue(params.WFFile, 'Shortcuts'),
+            renderValue(params.WFFile ?? 'Shortcuts'),
             actionText('at path'),
             renderValue(params.WFGetFilePath, 'example.txt'),
         );
