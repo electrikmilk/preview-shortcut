@@ -167,6 +167,14 @@
     border-radius: 0.8rem;
 }
 
+.sp-comment-action-content {
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
+    width: 90%;
+}
+
 .sp-container .card:not(:first-child):not(.sp-linked-action) {
     margin-top: 1.6rem;
 }
@@ -287,6 +295,7 @@
     height: 5rem;
     text-align: left;
     min-width: 355px;
+    width: 100%;
     white-space-collapse: break-spaces;
     overflow-x: hidden;
     overflow-y: auto;
