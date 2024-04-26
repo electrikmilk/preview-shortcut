@@ -3,7 +3,11 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 
 interface URLParameters {
-    WFURLActionURL: Array<object | string>
+    WFURLActionURL: WFURLActionURL
+}
+
+interface WFURLActionURL {
+    Value: object
 }
 
 export default {
