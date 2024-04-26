@@ -18,9 +18,15 @@ export const controlFlowStart = 0;
 export const controlFlowItem = 1;
 export const controlFlowEnd = 2;
 
+let actionIndex = 0;
+let actionTotal = 0;
+
 export function renderShortcut(shortcutActions: Array<ActionData>) {
     console.group('Render Shortcut');
+    actionTotal = shortcutActions.length;
     for (const action of shortcutActions) {
+        actionIndex++;
+
         let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
         let params = action.WFWorkflowActionParameters;
         // @ts-ignore
@@ -63,7 +69,7 @@ function renderCardContent(element: HTMLElement) {
 }
 
 function renderAction(identifier: string, action: ActionData): Node {
-    console.group(`Render ${action.WFWorkflowActionIdentifier}`);
+    console.group(`(${actionIndex}/${actionTotal}) Render ${action.WFWorkflowActionIdentifier}`);
 
     const card = document.createElement('div');
     card.className = 'card';
