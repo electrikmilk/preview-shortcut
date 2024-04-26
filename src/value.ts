@@ -106,6 +106,8 @@ function variableIcon(valueType: string) {
             return 'wand_stars';
         case'ExtensionInput':
             return 'layers_fill';
+        case 'Ask':
+            return 'text_bubble';
         case 'Clipboard':
             return 'doc_on_clipboard';
         case 'CurrentDate':
@@ -126,6 +128,8 @@ function renderInlineVariable(varName: string, char?: string) {
         case 'CurrentDate':
             varName = 'Current Date';
             break;
+        case 'Ask':
+            varName = 'Ask Each Time';
     }
 
     const variable = document.createElement('div');
