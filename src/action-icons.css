@@ -29,13 +29,13 @@
 }
 
 .sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
-    color: #ff3b2f;
-    background: #ffeeee;
+    color: #ff3b2f !important;
+    background: #ffeeee !important;
 }
 
 .sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
-    color: #007aff;
-    background: #eaf1ff;
+    color: #007aff !important;
+    background: #eaf1ff !important;
 }
 
 .sp-container .sp-comment-action {
