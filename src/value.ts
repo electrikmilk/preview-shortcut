@@ -45,7 +45,7 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
 
 function renderObjectValue(container: HTMLElement, value?: any) {
     if (!value) {
-        container.innerText = '[Empty Value]';
+        container.innerText = '';
         return;
     }
 
@@ -77,7 +77,6 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         }
 
         if (value.Value["string"]) {
-            console.log(value.Value["string"])
             container.innerHTML = value.Value["string"];
             return;
         }
@@ -85,14 +84,19 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
     } else if (value.Variable) {
-        varName = value.Variable.Value.VariableName;
-        varType = value.Variable.Value.Type;
+        const variableValue = value.Variable.Value;
+        varName = variableValue.VariableName ?? variableValue.OutputName ?? variableValue.PropertyName;
+        varType = variableValue.Type;
     } else if (value.workflowName) {
         container.innerText = value.workflowName;
         return;
     } else {
         container.innerText = '[Unsupported Object]';
         return;
+    }
+
+    if (!varName && varType === 'ExtensionInput') {
+        varName = "Shortcut Input"
     }
 
     container.appendChild(
