@@ -10,7 +10,7 @@ export default {
     title: "Get current IP address",
     color: 'white',
     background: '#007aff',
-    icon: 'house_fill',
+    icon: 'globe',
     render: (container: HTMLElement, params: GetIPAddress) => {
         const action = renderActionHeader(actions['getipaddress']);
         action.appendChild(renderParameters(actions['getipaddress'], {
