@@ -56,10 +56,14 @@ function renderObjectValue(container: HTMLElement, value?: any) {
             let str = String(value.Value.string);
             for (let v in value.Value.attachmentsByRange) {
                 let variable = value.Value.attachmentsByRange[v];
-                let varTypeName = variable.OutputName ?? variable.VariableName ?? variable.PropertyName;
+                let varTypeName = variable.OutputName ?? variable.Variable ?? variable.VariableName ?? variable.PropertyName;
                 if (variable.Aggrandizements && variable.Aggrandizements.length) {
                     const aggrandizements = variable.Aggrandizements[0];
                     switch (aggrandizements.Type) {
+                        case 'WFDictionaryValueVariableAggrandizement':
+                            // @ts-ignore
+                            varTypeName += ` (${aggrandizements.DictionaryKey})`;
+                            break;
                         case 'WFCoercionVariableAggrandizement':
                             // @ts-ignore
                             varTypeName += ` (${contentItemTypes[aggrandizements.CoercionItemClass]})`;
