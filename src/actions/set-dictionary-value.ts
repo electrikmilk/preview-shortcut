@@ -3,9 +3,9 @@ import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 
 interface SetDictionaryValueParameters {
-    WFInput: string | object
+    WFDictionary: string | object
     WFDictionaryKey: string | object
-    WFGetDictionaryValueType: string | object
+    WFDictionaryValue: string | object
 }
 
 export default {
@@ -15,11 +15,11 @@ export default {
     icon: 'book_fill',
     render: (container: HTMLElement, params: SetDictionaryValueParameters) => {
         return renderActionHeader(actions['setvalueforkey'],
-            renderValue(params['WFInput'], 'Key'),
+            renderValue(params['WFDictionaryKey'], 'Key'),
             actionText('to'),
-            renderValue(params['WFGetDictionaryValueType'], 'Value'),
+            renderValue(params['WFDictionaryValue'], 'Value'),
             actionText('in'),
-            renderValue(params['WFInput'], 'Dictionary'),
+            renderValue(params['WFDictionary'], 'Dictionary'),
         );
     }
 }
