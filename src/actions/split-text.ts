@@ -14,11 +14,17 @@ export default {
     background: '#ffc200',
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: SplitTextParameters) => {
-        return renderActionHeader(actions['text.split'],
+        let split: HTMLElement[] = [
             renderValue(params['text'], 'Text List'),
             actionText('by'),
-            renderValue(params['WFTextSeparator'] ?? null, 'Separator'),
-            renderValue(params['WFTextCustomSeparator'] ?? null, 'Custom Separator'),
-        );
+            renderValue(params['WFTextSeparator'] ?? 'New Lines', 'Separator')
+        ];
+
+        if (params['WFTextSeparator'] === 'Custom') {
+            split.push(renderValue(params['WFTextCustomSeparator'], 'Custom Separator'));
+        }
+
+
+        return renderActionHeader(actions['text.split'], ...split);
     }
 }
