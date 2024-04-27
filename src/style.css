@@ -101,6 +101,24 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .sp-container .sp-scrollable-action-content {
+        min-width: auto !important;
+    }
+
+    .sp-action-content {
+        margin-right: 0 !important;
+    }
+
+    .card .list ul {
+        padding-left: 0 !important;
+    }
+
+    .sp-action-content {
+        margin-left: 1rem !important;
+    }
+}
+
 :root {
     --f7-theme-color: #007aff;
 }
@@ -216,6 +234,11 @@
     margin-left: 0.5rem;
 }
 
+.sp-container .list .item-after {
+    white-space: pre-wrap !important;
+    text-align: left !important;
+}
+
 .sp-container .sp-output-action .sp-output-surface-behavior {
     text-align: left;
     font-weight: bold;
@@ -261,11 +284,6 @@
     color: #067aff;
 }
 
-.sp-container .sp-value.no-wrap {
-    white-space: pre-wrap !important;
-    text-align: left !important;
-}
-
 .sp-container .sp-variable-value {
     background: #e2f0ff;
     padding: 0 5px;
@@ -278,6 +296,8 @@
 .sp-container .sp-value {
     background: #f2f7ff;
     font-size: 0.9rem;
+    white-space: pre-wrap !important;
+    text-align: left !important;
 }
 
 .sp-container .sp-variable-icon {
@@ -303,18 +323,6 @@
 .sp-container .sp-variable-icon.doc_on_clipboard {
     background: #e2f0ff;
     color: #067aff;
-}
-
-@media screen and (max-width: 500px) {
-    .sp-container .sp-scrollable-action-content {
-        min-width: auto !important;
-        width: 70% !important;
-    }
-
-    .sp-action-content {
-        width: 80% !important;
-        margin-right: 0 !important;
-    }
 }
 
 .sp-container .sp-scrollable-action-content {
