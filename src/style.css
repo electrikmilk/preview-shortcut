@@ -256,6 +256,7 @@
 .sp-container .sp-output-action .sp-output-surface-behavior,
 .sp-container .item-title,
 .sp-container .sp-value,
+.sp-container .sp-placeholder-value,
 .sp-container table th {
     font-size: 0.9rem;
 }
