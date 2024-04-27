@@ -358,6 +358,7 @@
 .sp-container .toggle {
     user-select: none;
     pointer-events: none;
+    transform: scale(0.8);
 }
 
 .sp-container .sp-action-list-content {
