@@ -168,8 +168,9 @@ export function renderActionHeader(actionData: ActionDefinition, ...content: HTM
     if (content) {
         const flexbox = document.createElement('div');
         flexbox.style.display = 'flex';
-        flexbox.style.gap = '10px';
+        flexbox.style.gap = '0.3rem 0.5rem';
         flexbox.style.alignItems = 'center';
+        flexbox.style.flexWrap = 'wrap';
 
         if (actionData.title) {
             flexbox.appendChild(actionTitle);
@@ -181,7 +182,10 @@ export function renderActionHeader(actionData: ActionDefinition, ...content: HTM
         container.appendChild(actionTitle);
     }
 
-    return renderListItem(icon, container.innerHTML);
+    const headerListItem = renderListItem(icon, container.innerHTML);
+    headerListItem.classList.add('action-header');
+
+    return headerListItem;
 }
 
 export function renderHeader(media: string | null, title: string): HTMLElement {

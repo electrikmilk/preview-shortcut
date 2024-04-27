@@ -120,7 +120,7 @@
 
 .sp-preview .sp-container {
     background: #ebebeb;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .sp-preview .sp-sub-container {
@@ -195,7 +195,7 @@
     position: relative;
     border-radius: 0.25rem;
     box-sizing: border-box;
-    padding: 0.30rem;
+    padding: 0.25rem;
     background-color: #c7c7c7;
     user-select: none;
     pointer-events: none;
@@ -204,7 +204,16 @@
 }
 
 .sp-container .sp-action-icon i {
-    font-size: 1.2rem;
+    font-size: 1rem;
+}
+
+.sp-container .action-header > .item-content {
+    padding-left: 0.7rem;
+}
+
+.sp-container .action-header > .item-content .item-inner {
+    padding: 0.5rem 1rem 0.5rem 0;
+    margin-left: 0.5rem;
 }
 
 .sp-container .sp-output-action .sp-output-surface-behavior {
@@ -223,10 +232,15 @@
     font-size: 0.9rem;
 }
 
+.sp-container .sp-action-title {
+    font-size: 0.9rem;
+}
+
 .sp-container .sp-action-title,
-.sp-container .sp-action-title .sp-value,
+.sp-container .sp-variable-value,
+.sp-container .sp-value,
 .sp-container .sp-action-text {
-    font-weight: bold !important;
+    font-weight: 500 !important;
 }
 
 .sp-container .sp-placeholder-value,
@@ -255,7 +269,6 @@
 .sp-container .sp-variable-value {
     background: #e2f0ff;
     padding: 0 5px;
-    font-weight: bold;
     display: inline-grid;
     grid-template-columns: 0fr 1fr;
     place-items: center;
@@ -264,7 +277,6 @@
 
 .sp-container .sp-value {
     background: #f2f7ff;
-    font-weight: bold;
     font-size: 0.9rem;
 }
 
@@ -291,6 +303,18 @@
 .sp-container .sp-variable-icon.doc_on_clipboard {
     background: #e2f0ff;
     color: #067aff;
+}
+
+@media screen and (max-width: 500px) {
+    .sp-container .sp-scrollable-action-content {
+        min-width: auto !important;
+        width: 70% !important;
+    }
+
+    .sp-action-content {
+        width: 80% !important;
+        margin-right: 0 !important;
+    }
 }
 
 .sp-container .sp-scrollable-action-content {
@@ -360,9 +384,9 @@
 .sp-container .table-container {
     border: 1px solid #f2f2f2;
     border-radius: 0.5rem;
-    margin-left: 3.5rem;
+    margin-left: 2.5rem;
     margin-right: 3.5rem;
-    width: 90%;
+    width: 80%;
 }
 
 .sp-container table {
