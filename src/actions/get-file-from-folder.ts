@@ -12,7 +12,7 @@ interface GetIPAddress {
 
 export default {
     title: "Get file from",
-    icon: 'house_fill',
+    icon: 'folder_fill',
     render: (container: HTMLElement, params: GetIPAddress) => {
         container.className += ' sp-blue-action';
 
