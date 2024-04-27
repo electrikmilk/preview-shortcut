@@ -20,8 +20,8 @@
     "homepage": "https://github.com/electrikmilk/preview-shortcut#readme",
     "exports": {
         ".": {
-            "import": "./dist/main.es.js",
-            "require": "./dist/main.cjs.js"
+            "import": "./dist/main.mjs",
+            "require": "./dist/main.mjs"
         },
         "./css": [
             "./dist/style.css",
@@ -53,6 +53,6 @@
         "rollup-plugin-typescript-paths": "^1.3.0",
         "tslib": "^2.4.0",
         "typescript": "^4.7.2",
-        "vite": "^2.9.9"
+        "vite": "5.2.10"
     }
 }
