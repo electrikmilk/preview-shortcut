@@ -47,7 +47,3 @@ export default {
         return action;
     }
 }
-
-function dictToJSON() {
-
-}
