@@ -405,16 +405,25 @@ export function renderDictionary(data: Array<DictionaryItem>) {
 
 export function renderTreeItems(data: Array<DictionaryItem>) {
     let items: HTMLElement[] = [];
+    let idx = 0;
     for (let item of data) {
+        idx++;
+
         let children: HTMLElement[] = [];
 
-        const key = renderValue(item.Key)
-        key.classList.add('sp-unstyled-value');
+        let key = null;
+        if (item.Key) {
+            key = renderValue(item.Key, 'Key')
+            key.classList.add('sp-unstyled-value');
+        } else {
+            // @ts-ignore
+            key = renderElement('div', {className: 'fade'}, renderText(`Item ${idx}`));
+        }
 
-        let values = renderValue(item.Value);
+        let values = renderValue(item.Value, 'Value');
         if (item.Value) {
             if (typeof item.Value.Value !== 'object') {
-                values = renderValue(item.Value.Value);
+                values = renderValue(item.Value.Value, 'Value');
             }
         }
         values.classList.add('sp-unstyled-value');
@@ -441,7 +450,7 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
             renderElement('div', {className: 'tree-row'},
                 key,
                 // @ts-ignore
-                renderElement('div', {className: 'fade'}, renderText(item.Type)),
+                renderElement('div', {}, renderText(item.Type)),
                 values,
             ),
         ], ...children));
@@ -451,18 +460,17 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
 }
 
 export function renderTreeItem(contents: HTMLElement[], ...children: HTMLElement[]): HTMLElement {
-    const toggle = renderClass('treeview-toggle');
-    toggle.onclick = (e) => {
-        console.log(e);
-    };
+    let itemRoot: HTMLElement[] = [];
+    if (children.length !== 0) {
+        itemRoot.push(renderClass('treeview-toggle'));
+    }
+
+    itemRoot.push(renderClass('treeview-item-content',
+        renderClass('treeview-item-label', ...contents)
+    ));
 
     return renderClass('treeview-item',
-        renderClass('treeview-item-root',
-            toggle,
-            renderClass('treeview-item-content',
-                renderClass('treeview-item-label', ...contents)
-            )
-        ),
+        renderClass('treeview-item-root', ...itemRoot),
         renderClass('treeview-item-children', ...children)
     );
 }
