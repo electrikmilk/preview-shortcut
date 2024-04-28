@@ -8,6 +8,8 @@ import {renderInputs, renderShortcut} from "~/render";
 // @ts-ignore
 import {parse} from 'plist/dist/plist-parse.js';
 
+import Framework7 from 'framework7/lite/bundle';
+
 let preview: HTMLDivElement | null;
 export let container: HTMLElement;
 
@@ -75,6 +77,7 @@ export class ShortcutPreview {
     data: ShortcutData = {};
     header: boolean
     meta: boolean
+    framework7: Framework7
 
     constructor(options: PreviewOptions) {
         this.selector = options.selector ?? '#shortcut-preview';
@@ -83,6 +86,8 @@ export class ShortcutPreview {
         this.data = options.data ?? null;
         this.header = options.header ?? true;
         this.meta = options.meta ?? true;
+        this.framework7 = new Framework7();
+
         if (this.data) {
             this.preview();
             return;
