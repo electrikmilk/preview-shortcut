@@ -18,10 +18,6 @@ export interface DictionaryItem {
     WFKey: object,
     WFItemType: Number,
     WFValue: WFValue,
-
-    Key: object,
-    Type: string,
-    Value: WFValue,
 }
 
 interface WFValue {

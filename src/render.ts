@@ -341,52 +341,12 @@ export function renderInputs(shortcut: ShortcutData) {
     container.appendChild(card);
 }
 
-function setDictionaryTypeStrings(items: Array<DictionaryItem>) {
-    for (let item of items) {
-        switch (item.WFItemType) {
-            case 0:
-                // @ts-ignore
-                item.Type = 'Text';
-                break;
-            case 3:
-                // @ts-ignore`
-                item.Type = 'Number';
-                break;
-            case 2:
-                // @ts-ignore
-                item.Type = 'Array';
-                break;
-            case 1:
-                // @ts-ignore
-                item.Type = 'Dictionary';
-                break;
-            case 4:
-                // @ts-ignore
-                item.Type = 'Boolean';
-        }
-
-        item.Key = item.WFKey;
-        item.Value = item.WFValue;
-        // @ts-ignore
-        delete item.WFKey;
-        // @ts-ignore
-        delete item.WFItemType;
-        // @ts-ignore
-        delete item.WFValue;
-
-        // @ts-ignore
-        if (item.Value.Value["WFDictionaryFieldValueItems"]) {
-            // @ts-ignore
-            item.Value.Value["WFDictionaryFieldValueItems"] = setDictionaryTypeStrings(item.Value.Value["WFDictionaryFieldValueItems"]);
-        }
-
-        if (item.Type === 'Array') {
-            // @ts-ignore
-            item.Value.Value = setDictionaryTypeStrings(item.Value.Value);
-        }
-    }
-
-    return items;
+enum ItemType {
+    Text = 0,
+    Number = 3,
+    Array = 2,
+    Dictionary = 1,
+    Boolean = 4
 }
 
 export function renderDictionary(data: Array<DictionaryItem>) {
@@ -394,8 +354,6 @@ export function renderDictionary(data: Array<DictionaryItem>) {
     const thead = document.createElement('thead');
     thead.innerHTML = '<tr><th>Key</th><th>Type</th><th>Value</th></tr>';
     table.appendChild(thead);
-
-    data = setDictionaryTypeStrings(data);
 
     return renderElement('div', {},
         table,
@@ -412,32 +370,32 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
         let children: HTMLElement[] = [];
 
         let key = null;
-        if (item.Key) {
-            key = renderValue(item.Key, 'Key')
+        if (item.WFKey) {
+            key = renderValue(item.WFKey, 'Key')
             key.classList.add('sp-unstyled-value');
         } else {
             // @ts-ignore
             key = renderElement('div', {className: 'fade'}, renderText(`Item ${idx}`));
         }
 
-        let values = renderValue(item.Value, 'Value');
-        if (item.Value) {
-            if (typeof item.Value.Value !== 'object') {
-                values = renderValue(item.Value.Value, 'Value');
+        let values = renderValue(item.WFValue, 'Value');
+        if (item.WFValue) {
+            if (typeof item.WFValue.Value !== 'object') {
+                values = renderValue(item.WFValue.Value, 'Value');
             }
         }
         values.classList.add('sp-unstyled-value');
 
-        if (item.Type === 'Dictionary' || item.Type === 'Array') {
+        if (item.WFItemType === ItemType.Dictionary || item.WFItemType === ItemType.Array) {
             let items: DictionaryItem[] = [];
 
-            if (item.Type === 'Dictionary') {
+            if (item.WFItemType === ItemType.Dictionary) {
                 // @ts-ignore
-                items = item.Value.Value["Value"]["WFDictionaryFieldValueItems"];
+                items = item.WFValue.Value.Value["WFDictionaryFieldValueItems"];
             }
-            if (item.Type === 'Array') {
+            if (item.WFItemType === ItemType.Array) {
                 // @ts-ignore
-                items = item.Value.Value;
+                items = item.WFValue.Value;
             }
 
             // @ts-ignore
@@ -446,11 +404,30 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
             values = renderElement('div', {className: 'fade'}, renderText(`${items.length} items`));
         }
 
+        let itemType;
+        switch (item.WFItemType) {
+            case ItemType.Number:
+                itemType = 'Number';
+                break;
+            case ItemType.Dictionary:
+                itemType = 'Dictionary';
+                break;
+            case ItemType.Boolean:
+                itemType = 'Boolean';
+                break;
+            case ItemType.Array:
+                itemType = 'Array';
+                break;
+            case ItemType.Text:
+                itemType = 'Text';
+                break;
+        }
+
         items.push(renderTreeItem([
             renderElement('div', {className: 'tree-row'},
                 key,
                 // @ts-ignore
-                renderElement('div', {}, renderText(item.Type)),
+                renderElement('div', {}, renderText(itemType)),
                 values,
             ),
         ], ...children));
