@@ -351,9 +351,40 @@
     border-radius: 0;
     background: none;
     color: inherit;
-    font-weight: normal;
+    font-weight: 500 !important;
     padding: 0;
+    display: block
+}
+
+.sp-container .fade {
+    opacity: .7;
+}
+
+.sp-container .treeview-item-root {
+    padding: 0 0.1rem
+}
+
+.sp-container .tree-row {
+    display: flex;
+    gap: 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.9rem
+}
+
+.sp-container .tree-row > div {
+    text-align: left;
+    flex: 1;
+}
+
+.sp-container .treeview-item-content {
     display: block;
+    width: 100%;
+}
+
+.sp-container .treeview-item:nth-child(even) {
+    background: #f4f5f5;
 }
 
 .sp-container .toggle {

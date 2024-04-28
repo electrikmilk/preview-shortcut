@@ -1,12 +1,12 @@
-import {renderActionHeader, renderTable} from "~/render";
+import {renderActionHeader, renderDictionary} from "~/render";
 import {actions} from "~/actions";
-import {renderValue} from "~/value";
+import {renderClass} from "~/element";
 
 interface DictionaryParameters {
     WFItems: WFItems
 }
 
-interface WFItems {
+export interface WFItems {
     Value: Value
 }
 
@@ -14,18 +14,18 @@ interface Value {
     WFDictionaryFieldValueItems: DictionaryItem[]
 }
 
-interface DictionaryItem {
-    WFKey: Object,
+export interface DictionaryItem {
+    WFKey: object,
     WFItemType: Number,
     WFValue: WFValue,
 
-    Key: Object,
-    Type: Number,
+    Key: object,
+    Type: string,
     Value: WFValue,
 }
 
 interface WFValue {
-    Value: Object,
+    Value: object,
     WFSerializationType: string
 }
 
@@ -39,39 +39,7 @@ export default {
         const header = renderActionHeader(actions['dictionary']);
         action.appendChild(header);
 
-        for (let item of params.WFItems.Value.WFDictionaryFieldValueItems) {
-            item.Key = item.WFKey
-            item.Type = item.WFItemType
-            item.Value = item.WFValue
-            // @ts-ignore
-            delete item.WFKey;
-            // @ts-ignore
-            delete item.WFItemType;
-            // @ts-ignore
-            delete item.WFValue;
-        }
-
-        action.appendChild(renderTable(params.WFItems.Value.WFDictionaryFieldValueItems, function (key: any, value: any) {
-            if (key === 'Type') {
-                switch (value) {
-                    case 0:
-                        return 'Text';
-                    case 3:
-                        return 'Number';
-                    case 2:
-                        return 'Array';
-                    case 1:
-                        return 'Dictionary';
-                    case 4:
-                        return 'Boolean';
-                }
-            }
-
-            const valueElement = renderValue(value, key);
-            valueElement.classList.add('sp-unstyled-value');
-
-            return valueElement;
-        }));
+        action.appendChild(renderClass('table-container', renderDictionary(params.WFItems.Value.WFDictionaryFieldValueItems)));
 
         const br = document.createElement('br');
         action.appendChild(br);

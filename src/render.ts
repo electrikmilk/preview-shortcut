@@ -9,6 +9,8 @@ import {
 } from "~/main";
 import {ActionDefinition, actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
+import {DictionaryItem} from "~/actions/dictionary";
+import {renderClass, renderElement, renderText} from "~/element";
 
 interface ActionParameters {
     [key: string]: any
@@ -345,11 +347,130 @@ export function renderInputs(shortcut: ShortcutData) {
     container.appendChild(card);
 }
 
-export function renderElement(tag: string, ...elements: HTMLElement[]) {
-    const element = document.createElement(tag);
-    element.append(...elements);
+function setDictionaryTypeStrings(items: Array<DictionaryItem>) {
+    for (let item of items) {
+        switch (item.WFItemType) {
+            case 0:
+                // @ts-ignore
+                item.Type = 'Text';
+                break;
+            case 3:
+                // @ts-ignore`
+                item.Type = 'Number';
+                break;
+            case 2:
+                // @ts-ignore
+                item.Type = 'Array';
+                break;
+            case 1:
+                // @ts-ignore
+                item.Type = 'Dictionary';
+                break;
+            case 4:
+                // @ts-ignore
+                item.Type = 'Boolean';
+        }
 
-    return element;
+        item.Key = item.WFKey;
+        item.Value = item.WFValue;
+        // @ts-ignore
+        delete item.WFKey;
+        // @ts-ignore
+        delete item.WFItemType;
+        // @ts-ignore
+        delete item.WFValue;
+
+        // @ts-ignore
+        if (item.Value.Value["WFDictionaryFieldValueItems"]) {
+            // @ts-ignore
+            item.Value.Value["WFDictionaryFieldValueItems"] = setDictionaryTypeStrings(item.Value.Value["WFDictionaryFieldValueItems"]);
+        }
+
+        if (item.Type === 'Array') {
+            // @ts-ignore
+            item.Value.Value = setDictionaryTypeStrings(item.Value.Value);
+        }
+    }
+
+    return items;
+}
+
+export function renderDictionary(data: Array<DictionaryItem>) {
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    thead.innerHTML = '<tr><th>Key</th><th>Type</th><th>Value</th></tr>';
+    table.appendChild(thead);
+
+    data = setDictionaryTypeStrings(data);
+
+    return renderElement('div', {},
+        table,
+        renderClass('treeview', ...renderTreeItems(data))
+    )
+}
+
+export function renderTreeItems(data: Array<DictionaryItem>) {
+    let items: HTMLElement[] = [];
+    for (let item of data) {
+        let children: HTMLElement[] = [];
+
+        const key = renderValue(item.Key)
+        key.classList.add('sp-unstyled-value');
+
+        let values = renderValue(item.Value);
+        if (item.Value) {
+            if (typeof item.Value.Value !== 'object') {
+                values = renderValue(item.Value.Value);
+            }
+        }
+        values.classList.add('sp-unstyled-value');
+
+        if (item.Type === 'Dictionary' || item.Type === 'Array') {
+            let items: DictionaryItem[] = [];
+
+            if (item.Type === 'Dictionary') {
+                // @ts-ignore
+                items = item.Value.Value["Value"]["WFDictionaryFieldValueItems"];
+            }
+            if (item.Type === 'Array') {
+                // @ts-ignore
+                items = item.Value.Value;
+            }
+
+            // @ts-ignore
+            children.push(...renderTreeItems(items));
+            // @ts-ignore
+            values = renderElement('div', {className: 'fade'}, renderText(`${items.length} items`));
+        }
+
+        items.push(renderTreeItem([
+            renderElement('div', {className: 'tree-row'},
+                key,
+                // @ts-ignore
+                renderElement('div', {className: 'fade'}, renderText(item.Type)),
+                values,
+            ),
+        ], ...children));
+    }
+
+    return items;
+}
+
+export function renderTreeItem(contents: HTMLElement[], ...children: HTMLElement[]): HTMLElement {
+    const toggle = renderClass('treeview-toggle');
+    toggle.onclick = (e) => {
+        console.log(e);
+    };
+
+    return renderClass('treeview-item',
+        renderClass('treeview-item-root',
+            toggle,
+            renderClass('treeview-item-content',
+                renderClass('treeview-item-label', ...contents)
+            )
+        ),
+        renderClass('treeview-item-children', ...children)
+    );
 }
 
 export function renderTable(data: Array<Object>, callback: Function) {
