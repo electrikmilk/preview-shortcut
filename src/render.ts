@@ -55,19 +55,13 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
 }
 
 function renderCardContent(element: HTMLElement) {
-    const content = document.createElement('div');
-    content.className = 'card-content';
-
-    const list = document.createElement('div');
-    list.className = 'list';
-
-    const ul = document.createElement('ul');
-    ul.innerHTML = element.outerHTML;
-
-    list.appendChild(ul);
-    content.appendChild(list);
-
-    return content;
+    return renderClass('card-content',
+        renderClass('list',
+            renderElement('ul', {},
+                element,
+            )
+        )
+    )
 }
 
 function renderAction(identifier: string, action: ActionData): Node {
