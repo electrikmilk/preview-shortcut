@@ -16,7 +16,7 @@ export let container: HTMLElement;
 export let containers: HTMLElement[] = [];
 export let containerIndex: number = 0;
 
-export const dev = import.meta.env.DEV;
+export const dev = process.env.NODE_ENV ?? import.meta.env.DEV ?? false;
 
 export function resetContainers() {
     containers = [];
@@ -80,6 +80,9 @@ export const Log = {
     error(...message: string[]) {
         Log.log('err', ...message);
     },
+    fail(...message: string[]) {
+        Log.log('fail', ...message);
+    },
     warn(...message: string[]) {
         Log.log('warn', ...message);
     },
@@ -95,6 +98,8 @@ export const Log = {
             case 'err':
                 console.error(prefix, ...message);
                 break;
+            case 'fail':
+                throw new Error([prefix, ...message].join(' '));
             case 'warn':
                 console.warn(prefix, ...message);
                 break;
@@ -118,6 +123,10 @@ export class ShortcutPreview {
     framework7: Framework7
 
     constructor(options: PreviewOptions) {
+        if (dev) {
+            Log.debug('Running in development mode.');
+        }
+
         this.selector = options.selector ?? '#shortcut-preview';
         this.name = options.name ?? null;
         this.url = options.url ?? null;
@@ -129,7 +138,7 @@ export class ShortcutPreview {
         });
 
         if (options.framework7) {
-            Log.debug('[preview-shortcut] ✅ Inherited Framework7 instance.');
+            Log.debug('Inherited Framework7 instance.');
         }
 
         if (this.data) {
@@ -140,7 +149,7 @@ export class ShortcutPreview {
             this.loadURL();
             return;
         }
-        throw new Error('[preview-shortcut] Missing `data` or `url` option.');
+        Log.fail('Missing `data` or `url` option.');
     }
 
     load(data: string | ShortcutData) {
@@ -163,13 +172,14 @@ export class ShortcutPreview {
         }
         fetch(this.url).then(response => {
             if (response.status !== 200) {
-                throw new Error(`Unable to load shortcut (${response.status}): ${this.url}`);
+                Log.fail(`Unable to load shortcut (${response.status}): ${this.url}`);
             }
+
             return response.text();
         }).then(response => {
             this.load(response);
         }).catch(error => {
-            console.error(`[preview-shortcut] ${error}`);
+            Log.error(error.message, error);
         });
     }
 
@@ -177,7 +187,8 @@ export class ShortcutPreview {
         preview = document.querySelector<HTMLDivElement>(this.selector);
         preview?.classList.add('sp-preview');
         if (!preview) {
-            throw new Error(`[preview-shortcut] Selector '${this.selector}' selects nothing.`);
+            Log.fail(`[preview-shortcut] Selector '${this.selector}' selects nothing.`);
+            return;
         }
         preview.innerHTML = '';
 

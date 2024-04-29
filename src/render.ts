@@ -2,6 +2,7 @@ import {
     ActionData,
     container,
     containerIndex,
+    dev,
     newContainer,
     prevContainer,
     resetContainers,
@@ -24,7 +25,9 @@ let actionIndex = 0;
 let actionTotal = 0;
 
 export function renderShortcut(shortcutActions: Array<ActionData>) {
-    console.group('Render Shortcut');
+    if (dev) {
+        console.group('Render Shortcut');
+    }
     actionTotal = shortcutActions.length;
     for (const action of shortcutActions) {
         actionIndex++;
@@ -51,7 +54,9 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
             newContainer();
         }
     }
-    console.groupEnd();
+    if (dev) {
+        console.groupEnd();
+    }
 }
 
 function renderCardContent(element: HTMLElement) {
@@ -65,7 +70,9 @@ function renderCardContent(element: HTMLElement) {
 }
 
 function renderAction(identifier: string, action: ActionData): Node {
-    console.group(`(${actionIndex}/${actionTotal}) Render ${action.WFWorkflowActionIdentifier}`);
+    if (dev) {
+        console.group(`(${actionIndex}/${actionTotal}) Render ${action.WFWorkflowActionIdentifier}`);
+    }
 
     const card = document.createElement('div');
     card.className = 'card';
@@ -74,7 +81,9 @@ function renderAction(identifier: string, action: ActionData): Node {
 
     let actionData = null;
     if (actions[identifier]) {
-        console.log('Found definition.');
+        if (dev) {
+            console.log('Found definition.');
+        }
         actionData = actions[identifier];
         if (actionData.title) {
             identifier = actionData.title;
@@ -83,8 +92,10 @@ function renderAction(identifier: string, action: ActionData): Node {
     if (actionData && actionData.render) {
         card.innerHTML = renderCardContent(actionData.render(card, action.WFWorkflowActionParameters ?? [])).outerHTML;
 
-        console.log('Rendered by definition function.');
-        console.groupEnd();
+        if (dev) {
+            console.log('Rendered by definition function.');
+            console.groupEnd();
+        }
 
         return card;
     }
@@ -96,8 +107,10 @@ function renderAction(identifier: string, action: ActionData): Node {
     }
     card.appendChild(renderCardContent(auto));
 
-    console.log('Automatically rendered.');
-    console.groupEnd();
+    if (dev) {
+        console.log('Automatically rendered.');
+        console.groupEnd();
+    }
 
     return card;
 }
