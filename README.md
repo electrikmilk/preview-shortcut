@@ -51,6 +51,7 @@ const preview = new ShortcutPreview({
     data? : object
     header? : boolean // default: true
     meta? : boolean // default: true
+    framework7 : Framework7 // defaults to internal instance
 });
 ```
 
