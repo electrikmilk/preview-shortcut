@@ -47,6 +47,7 @@ interface PreviewOptions {
     data: object
     header: boolean
     meta: boolean
+    framework7: Framework7
 }
 
 export interface ActionData {
@@ -86,9 +87,13 @@ export class ShortcutPreview {
         this.data = options.data ?? null;
         this.header = options.header ?? true;
         this.meta = options.meta ?? true;
-        this.framework7 = new Framework7({
+        this.framework7 = options.framework7 ?? new Framework7({
             theme: 'ios',
         });
+
+        if (options.framework7) {
+            Log.debug('[preview-shortcut] ✅ Inherited Framework7 instance.');
+        }
 
         if (this.data) {
             this.preview();
