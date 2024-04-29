@@ -16,6 +16,8 @@ export let container: HTMLElement;
 export let containers: HTMLElement[] = [];
 export let containerIndex: number = 0;
 
+export const dev = import.meta.env.DEV;
+
 export function resetContainers() {
     containers = [];
     containers.push(container);
@@ -70,6 +72,41 @@ interface ShortcutIcon {
     WFWorkflowIconStartColor: number
     WFWorkflowIconGlyphNumber: number
 }
+
+export const Log = {
+    info(...message: string[]) {
+        Log.log('info', ...message);
+    },
+    error(...message: string[]) {
+        Log.log('err', ...message);
+    },
+    warn(...message: string[]) {
+        Log.log('warn', ...message);
+    },
+    debug(...message: string[]) {
+        Log.log('debug', ...message);
+    },
+    log(type: string, ...message: string[]) {
+        const prefix = '[preview-shortcut]';
+        switch (type) {
+            case 'info':
+                console.info(prefix, ...message);
+                break;
+            case 'err':
+                console.error(prefix, ...message);
+                break;
+            case 'warn':
+                console.warn(prefix, ...message);
+                break;
+            case 'debug':
+                if (!dev) {
+                    return;
+                }
+                console.log(prefix, ...message);
+                break;
+        }
+    }
+};
 
 export class ShortcutPreview {
     selector: string
