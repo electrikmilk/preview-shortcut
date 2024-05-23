@@ -1,12 +1,14 @@
-# Preview Siri Shortcut
+![Screenshot 2024-05-22 at 20 38 54](https://github.com/electrikmilk/preview-shortcut/assets/4368524/58b32090-8757-41f6-9114-5badf42139ee)
+
+# Siri Shortcut Preview for the Web.
 
 [![Build with Vite](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml/badge.svg)](https://github.com/electrikmilk/preview-shortcut/actions/workflows/vite.yml)
 [![License](https://img.shields.io/github/license/electrikmilk/preview-shortcut)](https://github.com/electrikmilk/preview-shortcut/blob/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/preview-shortcut)](https://www.npmjs.com/package/preview-shortcut)
 
-Siri Shortcut cross-framework preview for the web.
+Preview Shortcut renders a fairly accurate Siri Shortcut preview from JSON or property list (PLIST) Shortcut data. It works across frameworks, rendering to a single HTML element.
 
-- Accepts JSON or Property List (.plist) data.
+- Accepts JSON or Property List (.plist) data (will support encrypted in the future).
 - Agnostic to any framework, written in vanilla TypeScript.
 - Displays Shortcut metadata like the icon and name.
 - Dark mode support.
@@ -54,11 +56,6 @@ const preview = new ShortcutPreview({
     framework7 : Framework7 // defaults to internal instance
 });
 ```
-
-### Screenshots
-
-![Screenshot 2023-11-25 at 19 50 52](https://github.com/electrikmilk/preview-shortcut/assets/4368524/60d18d9e-5124-4792-8dd5-3c8d09ae4296)
-
 
 #### Dark Mode Support
 
