@@ -28,6 +28,7 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
     if (dev) {
         console.group('Render Shortcut');
     }
+    actionIndex = 0;
     actionTotal = shortcutActions.length;
     for (const action of shortcutActions) {
         actionIndex++;
