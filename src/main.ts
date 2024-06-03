@@ -42,7 +42,7 @@ export function prevContainer() {
     container = containers[containerIndex];
 }
 
-interface PreviewOptions {
+export interface PreviewOptions {
     selector: string
     name: string
     url: string
