@@ -16,7 +16,7 @@ export let container: HTMLElement;
 export let containers: HTMLElement[] = [];
 export let containerIndex: number = 0;
 
-export const dev = process.env.NODE_ENV ?? import.meta.env.DEV ?? false;
+export const dev = import.meta.env.DEV ?? false;
 
 export function resetContainers() {
     containers = [];
