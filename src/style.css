@@ -4,6 +4,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --f7-theme-color: #007bff;
+        --f7-treeview-toggle-color: rgba(159, 159, 159, .5);
     }
 
     .sp-preview input[type=checkbox]:not(:checked) + .toggle-icon {
@@ -15,7 +16,7 @@
     }
 
     .sp-preview .sp-header {
-        background: #383837 !important;
+        background: #333233 !important;
         color: #fafafa !important;
         border-color: black !important;
     }
@@ -30,8 +31,8 @@
 
     .sp-container .card {
         color: white;
-        background: #28282b;
-        border: 1px solid #3a3a3d;
+        background: #242323;
+        border: 1px solid #373636;
     }
 
     .sp-container .sp-output-action .sp-output-surface-behavior {
@@ -85,10 +86,10 @@
     }
 
     .sp-container thead tr {
-        background: #232227 !important;
+        background: #1d1d1d !important;
     }
 
-    .sp-container table, .sp-container table thead {
+    .sp-container .table-container {
         border-color: #333335 !important;
     }
 
@@ -96,8 +97,16 @@
         background: #222225 !important;
     }
 
-    .sp-container table tbody tr:nth-child(even) {
-        background: #2c2c2f !important;
+    .sp-container .treeview-item:nth-child(even) {
+        background: #282828 !important;
+    }
+
+    .sp-container .treeview-item:hover {
+        background: #464646 !important;
+    }
+
+    .sp-container table th:not(:first-child), .sp-container table thead {
+        border-color: #414141 !important;
     }
 }
 
