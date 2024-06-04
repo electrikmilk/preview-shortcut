@@ -2,7 +2,7 @@ import {renderActionHeader, renderParameters} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
-interface GetIPAddress {
+interface GetFileFromFolderParams {
     WFGetFilePath: string | object
     WFFile: string | object
     WFGetFolderContents: boolean
@@ -13,7 +13,7 @@ interface GetIPAddress {
 export default {
     title: "Get file from",
     icon: 'folder_fill',
-    render: (container: HTMLElement, params: GetIPAddress) => {
+    render: (container: HTMLElement, params: GetFileFromFolderParams) => {
         container.className += ' sp-blue-action';
 
         const action = renderActionHeader(actions['documentpicker.open'],
