@@ -127,6 +127,11 @@ function renderActionConnection(card: HTMLElement, action: ActionData) {
             if (paramValue.Value && paramValue.Value.OutputUUID) {
                 outputUUIDs.push(paramValue.Value.OutputUUID);
             }
+            if (paramValue.Value && paramValue.Value.attachmentsByRange) {
+                for (const attachment in paramValue.Value.attachmentsByRange) {
+                    outputUUIDs.push(paramValue.Value.attachmentsByRange[attachment].OutputUUID);
+                }
+            }
         }
         if (outputUUIDs.length !== 0) {
             // @ts-ignore
