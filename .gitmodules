@@ -1,0 +1,3 @@
+[submodule "src/shortcut-icons"]
+	path = src/shortcut-icons
+	url = https://github.com/atnbueno/shortcut-icons.git
