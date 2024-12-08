@@ -30,7 +30,7 @@ import CalculateExpression from "~/actions/calculate-expression";
 import Dictionary from "~/actions/dictionary";
 import GetDictionary from "~/actions/get-dictionary";
 import GetDictionaryValue from "~/actions/get-dictionary-value";
-import setDictionaryValue from "~/actions/set-dictionary-value";
+import SetDictionaryValue from "~/actions/set-dictionary-value";
 import GetIpAddress from "~/actions/get-ip-address";
 import GetFileFromFolder from "~/actions/get-file-from-folder";
 import GetType from "~/actions/get-type";
@@ -85,7 +85,7 @@ export let actions: ActionDefinitions = {
     'dictionary': Dictionary,
     'detect.dictionary': GetDictionary,
     'getvalueforkey': GetDictionaryValue,
-    'setvalueforkey': setDictionaryValue,
+    'setvalueforkey': SetDictionaryValue,
     'getipaddress': GetIpAddress,
     'documentpicker.open': GetFileFromFolder,
     'getitemtype': GetType,
