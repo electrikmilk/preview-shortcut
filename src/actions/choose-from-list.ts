@@ -14,11 +14,11 @@ export default {
     icon: "square_list_fill",
     background: '#55bef0',
     render: (container: HTMLElement, params: ChooseFromListParamteers) => {
-        const action = renderActionHeader(actions['choosefromlist'], renderValue(params['WFInput'], 'Informational message'));
+        const action = renderActionHeader(actions['choosefromlist'], renderValue(params['WFInput'], 'List'));
         action.appendChild(renderParameters(actions['choosefromlist'], {
             'Prompt': params['WFChooseFromListActionPrompt'],
-            'Select Multiple': params['WFChooseFromListActionSelectMultiple'] ?? true,
-            'Select All Initially': params['WFChooseFromListActionSelectMultiple'] ?? true
+            'Select Multiple': params['WFChooseFromListActionSelectMultiple'] ?? false,
+            'Select All Initially': params['WFChooseFromListActionSelectMultiple'] ?? false
         }));
 
         return action;
