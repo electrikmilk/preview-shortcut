@@ -34,7 +34,7 @@ export default {
         const footer = document.createElement('div');
         footer.className = 'sp-action-list-footer';
         const itemsSize = params["WFItems"].length;
-        footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : null);
+        footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : '');
 
         list.appendChild(ul);
         list.appendChild(footer);
