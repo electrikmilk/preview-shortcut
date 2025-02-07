@@ -47,15 +47,13 @@ import 'preview-shortcut/css';
 import {ShortcutPreview} from 'preview-shortcut';
 
 const preview = new ShortcutPreview({
-    selector? : string // default: #shortcut-preview
-    name? : string
-    url? : string
-    data? : object
-    header? : boolean // default: true
-    meta? : boolean // default: true
-    framework7 : Framework7 // defaults to internal instance
+    data: {...} // plist data as JSON object
+    // or...
+    url: 'https://example.com/example.plist'
 });
 ```
+
+[Learn more on the project wiki.](https://github.com/electrikmilk/preview-shortcut/wiki)
 
 #### Dark Mode Support
 
