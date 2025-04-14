@@ -81,7 +81,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                 let varTypeName = variable.OutputName ?? variable.Variable ?? variable.VariableName ?? variable.PropertyName;
                 let varAggr = getAggrandizements(variable.Aggrandizements)
                 if (varAggr != "") {
-                    varTypeName = varAggr
+                    varTypeName += varAggr
                 }
 
                 const inlineVar = renderInlineVariable(varTypeName, variable.Type);
