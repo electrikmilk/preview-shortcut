@@ -10,8 +10,14 @@ export interface WFItems {
     Value: Value
 }
 
-interface Value {
+export interface Value {
     WFDictionaryFieldValueItems: DictionaryItem[]
+    Aggrandizements: Aggrandizement[]
+}
+
+export interface Aggrandizement {
+    DictionaryKey: string
+    Type: string
 }
 
 export interface DictionaryItem {

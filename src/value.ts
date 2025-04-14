@@ -43,6 +43,28 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
     return container;
 }
 
+function getAggrandizements(aggrandizements?:any): string {
+    let varRef = ""
+    if (aggrandizements && arguments.length) {
+        const aggrs = aggrandizements[0];
+        switch (aggrs.Type) {
+            case 'WFDictionaryValueVariableAggrandizement':
+                // @ts-ignore
+                varRef += ` (${aggrs.DictionaryKey})`;
+                break;
+            case 'WFCoercionVariableAggrandizement':
+                // @ts-ignore
+                varRef += ` (${contentItemTypes[aggrs.CoercionItemClass]})`;
+                break;
+        }
+        if (aggrs.PropertyName) {
+            varRef = aggrs.PropertyName;
+        }
+    }
+
+    return varRef
+}
+
 function renderObjectValue(container: HTMLElement, value?: any) {
     if (!value) {
         container.innerText = '';
@@ -57,22 +79,11 @@ function renderObjectValue(container: HTMLElement, value?: any) {
             for (let v in value.Value.attachmentsByRange) {
                 let variable = value.Value.attachmentsByRange[v];
                 let varTypeName = variable.OutputName ?? variable.Variable ?? variable.VariableName ?? variable.PropertyName;
-                if (variable.Aggrandizements && variable.Aggrandizements.length) {
-                    const aggrandizements = variable.Aggrandizements[0];
-                    switch (aggrandizements.Type) {
-                        case 'WFDictionaryValueVariableAggrandizement':
-                            // @ts-ignore
-                            varTypeName += ` (${aggrandizements.DictionaryKey})`;
-                            break;
-                        case 'WFCoercionVariableAggrandizement':
-                            // @ts-ignore
-                            varTypeName += ` (${contentItemTypes[aggrandizements.CoercionItemClass]})`;
-                            break;
-                    }
-                    if (aggrandizements.PropertyName) {
-                        varTypeName = aggrandizements.PropertyName;
-                    }
+                let varAggr = getAggrandizements(variable.Aggrandizements)
+                if (varAggr != "") {
+                    varTypeName = varAggr
                 }
+
                 const inlineVar = renderInlineVariable(varTypeName, variable.Type);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
@@ -87,6 +98,10 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
         varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
+
+        if (value.Value.Aggrandizements) {
+            varName += getAggrandizements(value.Value.Aggrandizements)
+        }
     } else if (value.Variable) {
         const variableValue = value.Variable.Value;
         varName = variableValue.VariableName ?? variableValue.OutputName ?? variableValue.PropertyName;
