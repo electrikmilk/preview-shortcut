@@ -17,6 +17,7 @@ export interface Value {
 
 export interface Aggrandizement {
     DictionaryKey: string
+    PropertyName: string
     Type: string
 }
 

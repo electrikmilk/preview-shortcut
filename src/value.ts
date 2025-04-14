@@ -1,4 +1,5 @@
 import {contentItemTypes} from "~/render";
+import {Aggrandizement} from "~/actions/dictionary";
 
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
@@ -43,22 +44,24 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
     return container;
 }
 
-function getAggrandizements(aggrandizements?:any): string {
+function getAggrandizements(aggrandizements: Aggrandizement[]): string {
     let varRef = ""
     if (aggrandizements && arguments.length) {
-        const aggrs = aggrandizements[0];
-        switch (aggrs.Type) {
-            case 'WFDictionaryValueVariableAggrandizement':
-                // @ts-ignore
-                varRef += ` (${aggrs.DictionaryKey})`;
-                break;
-            case 'WFCoercionVariableAggrandizement':
-                // @ts-ignore
-                varRef += ` (${contentItemTypes[aggrs.CoercionItemClass]})`;
-                break;
-        }
-        if (aggrs.PropertyName) {
-            varRef = aggrs.PropertyName;
+        for(let aggr of aggrandizements) {
+            if (aggr.PropertyName) {
+                varRef += aggr.PropertyName;
+            }
+
+            switch (aggr.Type) {
+                case 'WFDictionaryValueVariableAggrandizement':
+                    // @ts-ignore
+                    varRef += ` (${aggr.DictionaryKey})`;
+                    break;
+                case 'WFCoercionVariableAggrandizement':
+                    // @ts-ignore
+                    varRef += ` (${contentItemTypes[aggr.CoercionItemClass]})`;
+                    break;
+            }
         }
     }
 
