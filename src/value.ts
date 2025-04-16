@@ -78,7 +78,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     let varType;
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
-            let str = String(value.Value.string);
+            let str = escapeHTML(String(value.Value.string));
             for (let v in value.Value.attachmentsByRange) {
                 let variable = value.Value.attachmentsByRange[v];
                 let varTypeName = variable.OutputName ?? variable.Variable ?? variable.VariableName ?? variable.PropertyName;
@@ -124,6 +124,12 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     container.appendChild(
         renderInlineVariable(varName, varType),
     );
+}
+
+function escapeHTML(unsafe: string): string {
+    return unsafe.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
 function variableIcon(valueType: string) {
