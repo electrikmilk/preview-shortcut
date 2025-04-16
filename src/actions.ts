@@ -37,6 +37,7 @@ import GetType from "~/actions/get-type";
 import GetNumbers from "~/actions/get-numbers";
 import EmailAddress from "~/actions/email-address";
 import PhoneNumber from "~/actions/phone-number";
+import URLEncode from "~/actions/url-encode";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -95,6 +96,7 @@ export let actions: ActionDefinitions = {
     'detect.number': GetNumbers,
     'email': EmailAddress,
     'phonenumber': PhoneNumber,
+    'urlencode': URLEncode,
 };
 
 export function actionText(value: string): HTMLElement {
