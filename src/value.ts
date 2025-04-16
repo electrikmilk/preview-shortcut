@@ -188,3 +188,26 @@ function renderInlineVariable(varName: string, char?: string) {
 
     return variable;
 }
+
+export interface ContactValue {
+    EntryType: Number
+    SerializedEntry: object
+}
+
+const EmailAddressEntry = 2;
+const PhoneNumberEntry = 1;
+
+export function renderContactValue(value: object, entryType: Number): HTMLElement {
+    let key: string
+    switch (entryType) {
+        case EmailAddressEntry:
+            key = "link.contentkit.emailaddress";
+            break;
+        case PhoneNumberEntry:
+            key = "link.contentkit.phonenumber";
+            break;
+    }
+
+    // @ts-ignore
+    return renderValue(value[key]);
+}

@@ -35,6 +35,8 @@ import GetIpAddress from "~/actions/get-ip-address";
 import GetFileFromFolder from "~/actions/get-file-from-folder";
 import GetType from "~/actions/get-type";
 import GetNumbers from "~/actions/get-numbers";
+import EmailAddress from "~/actions/email-address";
+import PhoneNumber from "~/actions/phone-number";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -91,6 +93,8 @@ export let actions: ActionDefinitions = {
     'documentpicker.open': GetFileFromFolder,
     'getitemtype': GetType,
     'detect.number': GetNumbers,
+    'email': EmailAddress,
+    'phonenumber': PhoneNumber,
 };
 
 export function actionText(value: string): HTMLElement {
