@@ -47,7 +47,7 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
 function getAggrandizements(aggrandizements: Aggrandizement[]): string {
     let varRef = ""
     if (aggrandizements && arguments.length) {
-        for(let aggr of aggrandizements) {
+        for (let aggr of aggrandizements) {
             if (aggr.PropertyName) {
                 varRef += aggr.PropertyName;
             }
