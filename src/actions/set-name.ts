@@ -2,6 +2,8 @@ import {renderActionHeader, renderParameters} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface SetNameParameters {
     WFInput: string,
     WFName: string,
@@ -11,7 +13,7 @@ interface SetNameParameters {
 export default {
     title: "Set name",
     icon: "text_cursor",
-    background: '#8e8e93',
+    background: Colors.Gray,
     render: (container: HTMLElement, params: SetNameParameters) => {
         const action = renderActionHeader(actions['setitemname'],
             renderValue(params['WFInput'], 'Input'),

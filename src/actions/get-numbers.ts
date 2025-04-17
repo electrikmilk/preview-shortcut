@@ -1,6 +1,8 @@
 import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
-import {actions, actionText} from "~/actions";
+import {actions} from "~/actions";
+
+import {Colors} from "~/colors";
 
 interface GetNumbersParameters {
     WFInput: string | object
@@ -9,7 +11,7 @@ interface GetNumbersParameters {
 export default {
     title: "Get numbers from",
     icon: "number_circle_fill",
-    background: "#8e8e93",
+    background: Colors.Gray,
     render: (container: HTMLElement, params: GetNumbersParameters) => {
         return renderActionHeader(actions['detect.number'],
             renderValue(params['WFInput'] ?? null, 'Input'),

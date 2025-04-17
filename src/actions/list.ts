@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface ListParameters {
     WFItems: Array<string>
 }
@@ -9,7 +11,7 @@ interface ListParameters {
 export default {
     title: 'List',
     color: 'white',
-    background: '#fc880f',
+    background: Colors.Orange,
     icon: 'list_bullet',
     render: (container: HTMLElement, params: ListParameters) => {
         const action = document.createElement('div');

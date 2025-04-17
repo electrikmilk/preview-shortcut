@@ -1,6 +1,8 @@
 import {renderActionHeader, renderParameters} from "~/render";
 import {actions} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface GetIPAddress {
     WFIPAddressTypeOption: string | object
     WFIPAddressSourceOption: string | object
@@ -9,7 +11,7 @@ interface GetIPAddress {
 export default {
     title: "Get current IP address",
     color: 'white',
-    background: '#007aff',
+    background: Colors.Blue,
     icon: 'globe',
     render: (container: HTMLElement, params: GetIPAddress) => {
         const action = renderActionHeader(actions['getipaddress']);

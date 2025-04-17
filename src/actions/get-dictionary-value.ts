@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface GetDictionaryValueParameters {
     WFGetDictionaryValueType: string
     WFInput: string | object
@@ -11,7 +13,7 @@ interface GetDictionaryValueParameters {
 export default {
     title: 'Get',
     color: 'white',
-    background: '#fc880f',
+    background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: GetDictionaryValueParameters) => {
         let content: HTMLElement[] = [renderValue(params.WFGetDictionaryValueType)];

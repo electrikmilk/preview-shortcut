@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface MathParameters {
     WFInput: string | object
     WFMathOperation: string | object
@@ -10,7 +12,7 @@ interface MathParameters {
 
 export default {
     icon: "plus_slash_minus",
-    background: "#8e8e93",
+    background: Colors.Gray,
     render: (container: HTMLElement, params: MathParameters) => {
         return renderActionHeader(actions['math'],
             renderValue(params['WFInput'], 'Number'),

@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface SplitTextParameters {
     text: string
     WFTextSeparator: string
@@ -11,7 +13,7 @@ interface SplitTextParameters {
 export default {
     title: 'Split',
     color: 'white',
-    background: '#ffc200',
+    background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: SplitTextParameters) => {
         let split: HTMLElement[] = [

@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface ShowAlertParameters {
     WFOutput: string | object
     WFNoOutputSurfaceBehavior: string
@@ -11,7 +13,7 @@ interface ShowAlertParameters {
 export default {
     title: "Stop and output",
     icon: "square_arrow_left",
-    background: "#007aff",
+    background: Colors.Blue,
     render: (container: HTMLElement, params: ShowAlertParameters) => {
         container.classList.add('sp-output-action');
         const action = renderActionHeader(actions['output'], renderValue(params['WFOutput'], 'Output'));

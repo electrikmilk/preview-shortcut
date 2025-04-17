@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface TextActionParameters {
     WFTextActionText: any
 }
@@ -9,7 +11,7 @@ interface TextActionParameters {
 export default {
     title: 'Text',
     color: 'white',
-    background: '#ffc200',
+    background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: TextActionParameters) => {
         const action = document.createElement('div');

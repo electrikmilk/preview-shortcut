@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface CountParameters {
     WFCountType: string | object
     Input: string | object
@@ -10,7 +12,7 @@ interface CountParameters {
 export default {
     title: "Count",
     icon: "sum",
-    background: "#8e8e93",
+    background: Colors.Gray,
     render: (container: HTMLElement, params: CountParameters) => {
         return renderActionHeader(actions['count'],
             renderValue(params['WFCountType'], 'Type'),

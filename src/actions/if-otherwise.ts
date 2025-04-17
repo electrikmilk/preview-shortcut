@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {ActionDefinition} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface IfElseParameters {
     WFInput: string | object,
     WFConditionalActionString: string | object
@@ -14,7 +16,7 @@ export default {
     render: (container: HTMLElement, params: IfElseParameters) => {
         let actionData: ActionDefinition = {
             icon: 'arrow_branch',
-            background: '#8e8e93',
+            background: Colors.Gray,
         };
         let header: HTMLElement[] = [];
 

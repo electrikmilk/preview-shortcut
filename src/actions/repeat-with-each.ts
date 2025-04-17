@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {ActionDefinition} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface RepeatWithEachParameters {
     WFInput: string | object,
     WFControlFlowMode: number,
@@ -11,7 +13,7 @@ export default {
     render: (container: HTMLElement, params: RepeatWithEachParameters) => {
         let actionData: ActionDefinition = {
             icon: 'arrow_2_circlepath_circle_fill',
-            background: '#8e8e93',
+            background: Colors.Gray,
         };
         let header: HTMLElement[] = [];
 

@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 import {ContactValue, renderContactValue, renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface EmailAddressParameters {
     WFEmailAddress: WFEmailAddress
 }
@@ -17,11 +19,11 @@ interface Value {
 export default {
     title: 'Email Address',
     icon: 'envelope_fill',
-    background: '#54bef0',
+    background: Colors.LightBlue,
     render: (container: HTMLElement, params: EmailAddressParameters) => {
         let values = [];
         if (params.WFEmailAddress.Value.WFContactFieldValues !== undefined) {
-            for(const param of params.WFEmailAddress.Value.WFContactFieldValues) {
+            for (const param of params.WFEmailAddress.Value.WFContactFieldValues) {
                 values.push(renderContactValue(param.SerializedEntry, param.EntryType))
             }
         } else {

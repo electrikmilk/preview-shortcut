@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface WaitParameters {
     WFDelayTime: number | object
 }
@@ -9,7 +11,7 @@ interface WaitParameters {
 export default {
     title: 'Wait',
     icon: 'clock_fill',
-    background: '#8e8e93',
+    background: Colors.Gray,
     render: (container: HTMLElement, params: WaitParameters) => {
         let value
         if (typeof params['WFDelayTime'] == 'number') {

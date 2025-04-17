@@ -2,6 +2,8 @@ import {renderActionHeader, renderDictionary} from "~/render";
 import {actions} from "~/actions";
 import {renderClass} from "~/element";
 
+import {Colors} from "~/colors";
+
 interface DictionaryParameters {
     WFItems: WFItems
 }
@@ -35,7 +37,7 @@ interface WFValue {
 export default {
     title: 'Dictionary',
     color: 'white',
-    background: '#fc880f',
+    background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: DictionaryParameters) => {
         const action = document.createElement('div');

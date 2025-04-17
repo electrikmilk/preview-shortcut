@@ -2,6 +2,8 @@ import {renderActionHeader, renderParameters} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface AskForInputParameters {
     WFInputType: string,
     WFAskActionPrompt: boolean,
@@ -12,7 +14,7 @@ interface AskForInputParameters {
 export default {
     title: "Ask for",
     icon: "plus_bubble_fill",
-    background: '#55bef0',
+    background: Colors.LightBlue,
     render: (container: HTMLElement, params: AskForInputParameters) => {
         const action = renderActionHeader(actions['ask'],
             renderValue(params['WFInputType'], 'Input Type'),

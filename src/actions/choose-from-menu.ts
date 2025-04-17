@@ -2,6 +2,8 @@ import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 
+import {Colors} from "~/colors";
+
 interface ChooseFromMenuParameters {
     WFMenuPrompt: string | object,
     WFControlFlowMode: number,
@@ -17,7 +19,7 @@ interface ChooseFromMenuItem {
 
 export default {
     icon: 'square_list',
-    background: '#55bef0',
+    background: Colors.LightBlue,
     render: (container: HTMLElement, params: ChooseFromMenuParameters) => {
         let action;
         if (params['WFControlFlowMode'] == 0) {

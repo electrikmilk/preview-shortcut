@@ -2,6 +2,8 @@ import {renderActionHeader, renderParameters} from "~/render";
 import {actions} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface ChooseFromListParamteers {
     WFInput: string,
     WFChooseFromListActionPrompt: string,
@@ -12,7 +14,7 @@ interface ChooseFromListParamteers {
 export default {
     title: "Choose from",
     icon: "square_list_fill",
-    background: '#55bef0',
+    background: Colors.LightBlue,
     render: (container: HTMLElement, params: ChooseFromListParamteers) => {
         const action = renderActionHeader(actions['choosefromlist'], renderValue(params['WFInput'], 'List'));
         action.appendChild(renderParameters(actions['choosefromlist'], {

@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface GetFromListParameters {
     WFInput: string | object,
     WFItemSpecifier: string
@@ -11,7 +13,7 @@ interface GetFromListParameters {
 export default {
     title: 'Get',
     color: 'white',
-    background: '#fc880f',
+    background: Colors.Orange,
     icon: 'list_bullet',
     render: (container: HTMLElement, params: GetFromListParameters) => {
         return renderActionHeader(actions['getitemfromlist'],

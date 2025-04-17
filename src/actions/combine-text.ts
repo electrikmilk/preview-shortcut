@@ -2,6 +2,8 @@ import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 
+import {Colors} from "~/colors";
+
 interface CombineTextParameters {
     text: string
     WFTextSeparator: string
@@ -11,7 +13,7 @@ interface CombineTextParameters {
 export default {
     title: 'Combine',
     color: 'white',
-    background: '#ffc200',
+    background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: CombineTextParameters) => {
         return renderActionHeader(actions['text.combine'],
