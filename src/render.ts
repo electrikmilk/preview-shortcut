@@ -12,6 +12,7 @@ import {ActionDefinition, actions, actionText} from "~/actions";
 import {renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {renderClass, renderElement, renderText} from "~/element";
+import {Colors} from "~/colors";
 
 interface ActionParameters {
     [key: string]: any
@@ -347,12 +348,12 @@ export function renderInputs(shortcut: ShortcutData) {
     const render = renderActionHeader({
             title: 'Receives',
             icon: 'layers_fill',
-            color: '#007aff',
+            color: Colors.Blue,
             background: 'transparent',
         },
-        renderValue(inputs.length !== 0 ? inputs.join(', ') : null, 'No'),
+        renderValue(inputs.length !== 0 ? inputs.filter(i => i).join(', ') : null, 'No'),
         actionText('input from'),
-        renderValue(workflows.length !== 0 ? workflows.join(', ') : null, 'Nowhere')
+        renderValue(workflows.length !== 0 ? workflows.filter(i => i).join(', ') : null, 'Nowhere')
     );
 
     card.innerHTML = renderCardContent(render).outerHTML;
