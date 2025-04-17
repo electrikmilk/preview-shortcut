@@ -178,6 +178,21 @@ function renderInlineVariable(varName: string, char?: string) {
     variable.className = 'sp-variable-value';
 
     if (char) {
+        switch (char) {
+            case 'DeviceDetails':
+                varName = 'Device';
+                break;
+            case 'ActionOutput':
+                break;
+            case'ExtensionInput':
+                varName = 'Shortcut Input';
+                break;
+            case 'CurrentDate':
+                varName = 'Current Date';
+                break;
+            default:
+                varName = char
+        }
         char = variableIcon(char);
     }
     const icon = document.createElement('div');
