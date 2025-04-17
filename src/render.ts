@@ -518,3 +518,11 @@ export function renderTable(data: Array<Object>, callback: Function) {
 
     return container;
 }
+
+export function renderLabel(label: string, ...children: HTMLElement[]) {
+    const container = document.createElement('div');
+    container.classList.add('sp-label')
+    container.append(renderText(label + ':'), ...children);
+
+    return container;
+}

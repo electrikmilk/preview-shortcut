@@ -435,6 +435,13 @@
     color: #878787;
 }
 
+.sp-container .sp-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
 .sp-container .table-container {
     border: 1px solid #f2f2f2;
     border-radius: 0.5rem;

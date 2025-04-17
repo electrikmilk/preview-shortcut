@@ -38,6 +38,7 @@ import GetNumbers from "~/actions/get-numbers";
 import EmailAddress from "~/actions/email-address";
 import PhoneNumber from "~/actions/phone-number";
 import URLEncode from "~/actions/url-encode";
+import DownloadURL from "~/actions/download-url";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -58,6 +59,7 @@ interface ActionParameterMap {
 
 export let actions: ActionDefinitions = {
     'gettext': Text,
+    'downloadurl': DownloadURL,
     'ask': AskForInput,
     'text.combine': CombineText,
     'text.split': SplitText,
