@@ -39,6 +39,7 @@ import EmailAddress from "~/actions/email-address";
 import PhoneNumber from "~/actions/phone-number";
 import URLEncode from "~/actions/url-encode";
 import DownloadURL from "~/actions/download-url";
+import SaveToCameraRoll from "~/actions/save-to-camera-roll";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -99,6 +100,7 @@ export let actions: ActionDefinitions = {
     'email': EmailAddress,
     'phonenumber': PhoneNumber,
     'urlencode': URLEncode,
+    'savetocameraroll': SaveToCameraRoll,
 };
 
 export function actionText(value: string): HTMLElement {
