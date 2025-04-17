@@ -527,9 +527,11 @@ export function renderTable(data: Array<Object>, callback: Function) {
 }
 
 export function renderLabel(label: string, ...children: HTMLElement[]) {
-    const container = document.createElement('div');
-    container.classList.add('sp-label')
-    container.append(renderText(label + ':'), ...children);
 
-    return container;
+    return renderElement('div',
+        {className: 'sp-label'},
+        // @ts-ignore
+        renderText(label + ':'),
+        ...children
+    );
 }
