@@ -448,6 +448,13 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
                 break;
         }
 
+
+        if (!itemType) {
+            itemType = typeof item;
+            // @ts-ignore
+            values = renderValue(item);
+        }
+
         items.push(renderTreeItem([
             renderElement('div', {className: 'tree-row'},
                 key,
