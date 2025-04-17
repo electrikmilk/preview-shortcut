@@ -40,6 +40,7 @@ import PhoneNumber from "~/actions/phone-number";
 import URLEncode from "~/actions/url-encode";
 import DownloadURL from "~/actions/download-url";
 import SaveToCameraRoll from "~/actions/save-to-camera-roll";
+import OpenURL from "~/actions/open-url";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -101,6 +102,7 @@ export let actions: ActionDefinitions = {
     'phonenumber': PhoneNumber,
     'urlencode': URLEncode,
     'savetocameraroll': SaveToCameraRoll,
+    'openurl': OpenURL,
 };
 
 export function actionText(value: string): HTMLElement {
