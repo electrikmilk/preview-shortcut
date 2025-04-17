@@ -1,4 +1,4 @@
-import {contentItemTypes} from "~/render";
+import {contentItemTypes, renderDictionary} from "~/render";
 import {Aggrandizement} from "~/actions/dictionary";
 
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
@@ -104,6 +104,10 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
         if (value.Value.Aggrandizements) {
             varName += getAggrandizements(value.Value.Aggrandizements)
+        }
+
+        if (value.Value.Value && value.Value.Value.WFDictionaryFieldValueItems) {
+            container.appendChild(renderDictionary(value.Value.Value.WFDictionaryFieldValueItems))
         }
     } else if (value.Variable) {
         const variableValue = value.Variable.Value;
