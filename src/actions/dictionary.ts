@@ -1,6 +1,6 @@
 import {renderActionHeader, renderDictionary} from "~/render";
 import {actions} from "~/actions";
-import {renderClass} from "~/element";
+import {renderClass, renderElement} from "~/element";
 
 import {Colors} from "~/colors";
 
@@ -42,12 +42,12 @@ export default {
     render: (container: HTMLElement, params: DictionaryParameters) => {
         const action = document.createElement('div');
         const header = renderActionHeader(actions['dictionary']);
-        action.appendChild(header);
 
-        action.appendChild(renderClass('table-container', renderDictionary(params.WFItems.Value.WFDictionaryFieldValueItems)));
-
-        const br = document.createElement('br');
-        action.appendChild(br);
+        action.append(
+            header,
+            renderClass('table-container', renderDictionary(params.WFItems.Value.WFDictionaryFieldValueItems)),
+            renderElement('br')
+        );
 
         return action;
     }

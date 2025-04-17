@@ -374,9 +374,15 @@ export function renderDictionary(data: Array<DictionaryItem>) {
     thead.innerHTML = '<tr><th>Key</th><th>Type</th><th>Value</th></tr>';
     table.appendChild(thead);
 
+    const footer = document.createElement('div');
+    footer.className = 'sp-action-list-footer';
+    const itemsSize = data.length;
+    footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : '');
+
     return renderElement('div', {},
         table,
-        renderClass('treeview', ...renderTreeItems(data))
+        renderClass('treeview', ...renderTreeItems(data)),
+        footer
     )
 }
 

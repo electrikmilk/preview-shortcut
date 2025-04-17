@@ -1,4 +1,4 @@
-export function renderElement(tag: string, attributes: object, ...elements: HTMLElement[]) {
+export function renderElement(tag: string, attributes: object = {}, ...elements: HTMLElement[]) {
     const element = document.createElement(tag);
     for (const key in attributes) {
         // @ts-ignore
