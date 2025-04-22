@@ -85,7 +85,6 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                 varTypeName += getAggrandizements(attachment.Aggrandizements)
 
                 const inlineVar = renderInlineVariable(varTypeName, attachment.Type);
-                console.log(varTypeName, inlineVar);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
             container.innerHTML = str;
