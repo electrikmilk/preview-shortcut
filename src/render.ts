@@ -331,6 +331,21 @@ const workflowTypes = {
     "ReceivesOnScreenContent": "What's On Screen",
 }
 
+const workflows = {
+    MenuBar: "MenuBar",
+    QuickActions: "QuickActions",
+    ActionExtension: "ActionExtension",
+    NCWidget: "NCWidget",
+    Sleep: "Sleep",
+    Watch: "Watch",
+    ReceivesOnScreenContent: "ReceivesOnScreenContent",
+}
+
+const quickActions = {
+    Finder: "Finder",
+    Services: "Services",
+}
+
 export function renderInputs(shortcut: ShortcutData) {
     if (!shortcut.WFWorkflowHasShortcutInputVariables) {
         return;
