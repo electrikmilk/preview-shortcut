@@ -80,14 +80,12 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         if (value.Value.attachmentsByRange) {
             let str = escapeHTML(String(value.Value.string));
             for (let v in value.Value.attachmentsByRange) {
-                let variable = value.Value.attachmentsByRange[v];
-                let varTypeName = variable.OutputName ?? variable.Variable ?? variable.VariableName ?? variable.PropertyName;
-                let varAggr = getAggrandizements(variable.Aggrandizements)
-                if (varAggr != "") {
-                    varTypeName += varAggr
-                }
+                let attachment = value.Value.attachmentsByRange[v];
+                let varTypeName = attachment.OutputName ?? attachment.Variable ?? attachment.VariableName ?? attachment.PropertyName;
+                varTypeName += getAggrandizements(attachment.Aggrandizements)
 
-                const inlineVar = renderInlineVariable(varTypeName, variable.Type);
+                const inlineVar = renderInlineVariable(varTypeName, attachment.Type);
+                console.log(varTypeName, inlineVar);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
             container.innerHTML = str;
@@ -194,7 +192,9 @@ function renderInlineVariable(varName: string, char?: string) {
                 varName = 'Current Date';
                 break;
             default:
-                varName = char
+                if (varName === "") {
+                    varName = char
+                }
         }
         char = variableIcon(char);
     }
