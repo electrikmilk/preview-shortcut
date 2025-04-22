@@ -113,6 +113,9 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         const variableValue = value.Variable.Value;
         varName = variableValue.VariableName ?? variableValue.OutputName ?? variableValue.PropertyName;
         varType = variableValue.Type;
+        if (value.Variable.Value.Aggrandizements) {
+            varName += getAggrandizements(value.Variable.Value.Aggrandizements)
+        }
     } else if (value.workflowName) {
         container.innerText = value.workflowName;
         return;
