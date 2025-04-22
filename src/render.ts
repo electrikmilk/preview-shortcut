@@ -63,11 +63,7 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
 
 function renderCardContent(element: HTMLElement) {
     return renderClass('card-content',
-        renderClass('list',
-            renderElement('ul', {},
-                element,
-            )
-        )
+        renderList(element)
     )
 }
 
@@ -219,7 +215,7 @@ export function renderContainer(...content: HTMLElement[]) {
         container.appendChild(flexbox);
     }
 
-    return renderElement('div', {className: ''}, container);
+    return renderElement('div', {}, container);
 }
 
 export function renderHeader(media: string | null, title: string): HTMLElement {
@@ -231,7 +227,13 @@ export function renderHeader(media: string | null, title: string): HTMLElement {
 }
 
 export function renderActionContent(...content: HTMLElement[]): HTMLElement {
-    return renderElement('div', {className: 'sp-action-content'}, ...content);
+    return renderClass('sp-action-content', ...content);
+}
+
+export function renderList(...content: HTMLElement[]): HTMLElement {
+    return renderClass('list',
+        renderElement('ul', {}, ...content)
+    )
 }
 
 export function renderListItem(image?: HTMLElement | string | null, title?: HTMLElement | string, after?: HTMLElement | string): HTMLElement {

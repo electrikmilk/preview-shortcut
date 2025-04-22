@@ -3,7 +3,7 @@ import {renderActionContent, renderActionHeader, renderContainer} from "~/render
 import {actions, actionText} from "~/actions";
 
 import {Colors} from "~/colors";
-import {renderElement} from "~/element";
+import {renderClass, renderElement} from "~/element";
 
 interface IfOtherwiseParameters {
     WFInput: string | object
@@ -63,7 +63,7 @@ export default {
                             header.push(...renderConditional(params.WFConditions.Value.WFActionParameterFilterTemplates[0]))
                         } else {
                             for (const condition of params.WFConditions.Value.WFActionParameterFilterTemplates) {
-                                conditionals.push(renderElement('div', {className: 'sp-condition'}, renderContainer(...renderConditional(condition))))
+                                conditionals.push(renderClass('sp-condition', renderContainer(...renderConditional(condition))))
                             }
                         }
                     }
