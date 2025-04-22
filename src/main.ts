@@ -9,6 +9,7 @@ import {renderInputs, renderShortcut} from "~/render";
 import {parse} from 'plist/dist/plist-parse.js';
 
 import Framework7 from 'framework7/lite/bundle';
+import {renderElement} from "~/element";
 
 let preview: HTMLDivElement | null;
 export let container: HTMLElement;
@@ -193,35 +194,33 @@ export class ShortcutPreview {
         preview.innerHTML = '';
 
         if (this.header) {
-            const header = document.createElement('div');
-            header.className = 'sp-header';
+            const header = renderElement('div', {className: 'sp-header'});
 
-            const icon = document.createElement('div');
-            icon.className = 'shortcut-icon s64';
+            const icon = renderElement('div', {className: 'shortcut-icon s64'});
             if (this.data.WFWorkflowIcon) {
                 const iconColor: number = this.data.WFWorkflowIcon.WFWorkflowIconStartColor;
                 const iconGlyph: number = this.data.WFWorkflowIcon.WFWorkflowIconGlyphNumber;
                 icon.classList.add('c' + iconColor)
                 icon.classList.add('g' + iconGlyph)
             }
-
             header.appendChild(icon);
 
-            const title = document.createElement('div');
-            title.className = 'sp-header-title';
-            title.innerText = this.name ?? this.data.WFWorkflowName ?? 'Shortcut';
+            const title = renderElement('div', {
+                className: 'sp-header-title',
+                innerText: this.name ?? this.data.WFWorkflowName ?? 'Shortcut',
+            });
             header.appendChild(title);
 
-            const count = document.createElement('div');
-            count.className = 'sp-header-action-count';
-            count.innerText = this.data.WFWorkflowActions?.length + ' actions';
+            const count = renderElement('div', {
+                className: 'sp-header-action-count',
+                innerText: this.data.WFWorkflowActions?.length + ' actions'
+            });
             header.appendChild(count);
 
             preview.appendChild(header);
         }
 
-        container = document.createElement('div');
-        container.className = 'sp-container ios';
+        container = renderElement('div', {className: 'sp-container ios'});
 
         containers = [];
         containers.push(container);
@@ -233,9 +232,10 @@ export class ShortcutPreview {
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
             renderShortcut(this.data.WFWorkflowActions);
         } else {
-            const empty = document.createElement('div');
-            empty.className = 'sp-actions-empty';
-            empty.innerText = 'This Shortcut contains 0 actions.';
+            const empty = renderElement('div', {
+                className: 'sp-actions-empty',
+                innerText: 'This Shortcut contains 0 actions.'
+            });
             container.appendChild(empty);
         }
 
