@@ -204,6 +204,24 @@ export function renderActionHeader(actionData: ActionDefinition, ...content: HTM
     return headerListItem;
 }
 
+export function renderContainer(...content: HTMLElement[]) {
+    const container = document.createElement('div');
+
+    if (content) {
+        const flexbox = document.createElement('div');
+        flexbox.style.display = 'flex';
+        flexbox.style.gap = '0.3rem 0.5rem';
+        flexbox.style.alignItems = 'center';
+        flexbox.style.flexWrap = 'wrap';
+
+        flexbox.append(...content);
+
+        container.appendChild(flexbox);
+    }
+
+    return renderElement('div', {className: ''}, container);
+}
+
 export function renderHeader(media: string | null, title: string): HTMLElement {
     const actionTitle = document.createElement('div');
     actionTitle.className = 'sp-action-title';
@@ -212,13 +230,8 @@ export function renderHeader(media: string | null, title: string): HTMLElement {
     return renderListItem(media, title ? actionTitle.outerHTML : '');
 }
 
-export function renderActionContent(content: HTMLElement | string): HTMLElement {
-    const li = document.createElement('li');
-    const ul = document.createElement('ul');
-    ul.appendChild(renderListItem(null, content));
-    li.appendChild(ul);
-
-    return li;
+export function renderActionContent(...content: HTMLElement[]): HTMLElement {
+    return renderElement('div', {className: 'sp-action-content'}, ...content);
 }
 
 export function renderListItem(image?: HTMLElement | string | null, title?: HTMLElement | string, after?: HTMLElement | string): HTMLElement {

@@ -8,7 +8,7 @@ import ShowResult from "~/actions/show-result";
 import List from "~/actions/list";
 import RepeatWithEach from "~/actions/repeat-with-each";
 import Repeat from "~/actions/repeat";
-import IfElse from "~/actions/if-otherwise";
+import IfOtherwise from "~/actions/if-otherwise";
 import Nothing from "~/actions/nothing";
 import Url from "~/actions/url";
 import Date from "~/actions/date";
@@ -79,7 +79,7 @@ export let actions: ActionDefinitions = {
     'count': Count,
     'choosefrommenu': ChooseFromMenu,
     'choosefromlist': ChooseFromList,
-    'conditional': IfElse,
+    'conditional': IfOtherwise,
     'repeat.count': Repeat,
     'repeat.each': RepeatWithEach,
     'math': Math,

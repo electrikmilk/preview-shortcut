@@ -108,6 +108,10 @@
     .sp-container table th:not(:first-child), .sp-container table thead {
         border-color: #414141 !important;
     }
+
+    .sp-condition {
+        border-color: #3a3a3b !important;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -197,7 +201,7 @@
 .sp-action-content {
     font-size: 0.8rem;
     border-radius: 0.5rem;
-    margin-left: 3.5rem;
+    margin-left: 2.5rem;
     margin-right: 3.5rem;
     width: 90%;
 }
@@ -478,4 +482,12 @@
 
 .sp-container table tbody tr:nth-child(even) {
     background: #f4f5f5;
+}
+
+.sp-action-content .sp-condition {
+    padding: 1rem 0;
+}
+
+.sp-action-content .sp-condition:not(:last-child) {
+    border-bottom: 0.1rem solid #e6e6e6;
 }
