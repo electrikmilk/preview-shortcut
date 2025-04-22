@@ -549,3 +549,10 @@ export function renderLabel(label: string, ...children: HTMLElement[]) {
         ...children
     );
 }
+
+export function renderInlineIcon(icon: string) {
+    return renderElement('i', {className: 'icon f7-icons'},
+        // @ts-ignore
+        renderText(icon),
+    )
+}

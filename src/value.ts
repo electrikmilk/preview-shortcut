@@ -1,5 +1,6 @@
-import {contentItemTypes, renderDictionary} from "~/render";
+import {contentItemTypes, renderDictionary, renderInlineIcon} from "~/render";
 import {Aggrandizement} from "~/actions/dictionary";
+import {renderElement} from "~/element";
 
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
@@ -174,8 +175,7 @@ function renderInlineVariable(varName: string, char?: string) {
             varName = 'Ask Each Time';
     }
 
-    const variable = document.createElement('div');
-    variable.className = 'sp-variable-value';
+    const variable = renderElement('div', {className: 'sp-variable-value'});
 
     if (char) {
         switch (char) {
@@ -197,21 +197,14 @@ function renderInlineVariable(varName: string, char?: string) {
         }
         char = variableIcon(char);
     }
-    const icon = document.createElement('div');
-    icon.className = 'sp-action-icon sp-variable-icon';
-    const i = document.createElement('i');
-    i.className = 'icon f7-icons';
-    i.innerText = char ?? 'f_cursive';
-    icon.appendChild(i);
+    const icon = renderElement('div', {className: 'sp-action-icon sp-variable-icon'});
+    icon.appendChild(renderInlineIcon(char ?? 'f_cursive'));
 
     if (char) {
         icon.classList.add(char);
     }
 
-    variable.appendChild(icon);
-    const name = document.createElement('div');
-    name.innerText = varName;
-    variable.appendChild(name);
+    variable.append(icon, renderElement('div', {innerText: varName}));
 
     return variable;
 }
