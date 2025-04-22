@@ -1,4 +1,5 @@
 export let Colors = {
+    Red: '#ff3b2f',
     Yellow: '#ffc200',
     Orange: '#fc880f',
     Green: '#27cd41',
