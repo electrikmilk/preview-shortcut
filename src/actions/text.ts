@@ -1,6 +1,6 @@
 import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
-import {renderValue} from "~/value";
+import {renderUnstyledValue} from "~/value";
 
 import {Colors} from "~/colors";
 
@@ -24,9 +24,7 @@ export default {
         const text = document.createElement('div');
         text.className = 'sp-scrollable-action-content';
 
-        const value = renderValue(params['WFTextActionText'], 'Text');
-        value.classList.add('sp-value', 'sp-unstyled-value');
-        text.appendChild(value);
+        text.appendChild(renderUnstyledValue(params['WFTextActionText'], 'Text'));
 
         content.appendChild(text);
         action.appendChild(content);

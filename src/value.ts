@@ -45,6 +45,12 @@ export function renderValue(value?: any, placeholder: string = 'Value'): HTMLEle
     return container;
 }
 
+export function renderUnstyledValue(value?: any, placeholder: string = 'Value') {
+    const renderedValue = renderValue(value, placeholder);
+    renderedValue.classList.add('sp-value', 'sp-unstyled-value');
+    return renderedValue;
+}
+
 function getAggrandizements(aggrandizements: Aggrandizement[]): string {
     let varRef = ""
     if (aggrandizements && arguments.length) {
