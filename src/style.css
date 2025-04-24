@@ -513,9 +513,9 @@
 }
 
 .sp-open-details {
-    position: fixed;
-    top: 0.5rem;
-    right: 0.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
     z-index: 10;
     background: #ffffff;
     padding: 0.5rem;
