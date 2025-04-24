@@ -125,6 +125,10 @@
         color: #ffffff;
     }
 
+    .sp-container .block-header {
+        color: #6e6e6d !important;
+    }
+
     .sp-container .segmented-highlight {
         background-color: #505051 !important;
     }
