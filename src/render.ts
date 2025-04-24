@@ -9,7 +9,7 @@ import {
     ShortcutData
 } from "~/main";
 import {ActionDefinition, actions, actionText} from "~/actions";
-import {renderValue} from "~/value";
+import {renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";
@@ -427,20 +427,18 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
 
         let key = null;
         if (item.WFKey) {
-            key = renderValue(item.WFKey, 'Key')
-            key.classList.add('sp-unstyled-value');
+            key = renderUnstyledValue(item.WFKey, 'Key')
         } else {
             // @ts-ignore
             key = renderElement('div', {className: 'fade'}, renderText(`Item ${idx}`));
         }
 
-        let values = renderValue(item.WFValue, 'Value');
+        let values = renderUnstyledValue(item.WFValue, 'Value');
         if (item.WFValue) {
             if (typeof item.WFValue.Value !== 'object') {
-                values = renderValue(item.WFValue.Value, 'Value');
+                values = renderUnstyledValue(item.WFValue.Value, 'Value');
             }
         }
-        values.classList.add('sp-unstyled-value');
 
         if (item.WFItemType === ItemType.Dictionary || item.WFItemType === ItemType.Array) {
             let items: DictionaryItem[] = [];
@@ -482,8 +480,7 @@ export function renderTreeItems(data: Array<DictionaryItem>) {
 
         if (!itemType) {
             itemType = typeof item;
-            // @ts-ignore
-            values = renderValue(item);
+            values = renderUnstyledValue(item);
         }
 
         items.push(renderTreeItem([
