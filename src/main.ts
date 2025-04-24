@@ -3,13 +3,13 @@ import 'framework7-icons';
 
 import './style.css';
 
-import {renderInputs, renderShortcut} from "~/render";
+import {renderDetails, renderInputs, renderShortcut} from "~/render";
 
 // @ts-ignore
 import {parse} from 'plist/dist/plist-parse.js';
 
 import Framework7 from 'framework7/lite/bundle';
-import {renderElement} from "~/element";
+import {renderClass, renderElement} from "~/element";
 
 let preview: HTMLDivElement | null;
 export let container: HTMLElement;
@@ -25,8 +25,7 @@ export function resetContainers() {
 }
 
 export function newContainer() {
-    const renderContainer = document.createElement('div');
-    renderContainer.className = 'sp-sub-container';
+    const renderContainer = renderClass('sp-sub-container')
     container.appendChild(renderContainer);
 
     containers.push(renderContainer);
@@ -67,6 +66,15 @@ export interface ShortcutData {
     WFWorkflowOutputContentItemClasses?: Array<String>
     WFQuickActionSurfaces?: Array<String>
     WFWorkflowTypes?: Array<String>
+    WFWorkflowImportQuestions?: Array<WFWorkflowImportQuestion>
+}
+
+interface WFWorkflowImportQuestion {
+    ActionIndex: number
+    Category: string
+    DefaultValue: string
+    ParameterKey: string
+    Text: string
 }
 
 interface ShortcutIcon {
@@ -194,9 +202,9 @@ export class ShortcutPreview {
         preview.innerHTML = '';
 
         if (this.header) {
-            const header = renderElement('div', {className: 'sp-header'});
+            const header = renderClass('sp-header');
 
-            const icon = renderElement('div', {className: 'shortcut-icon s64'});
+            const icon = renderClass('shortcut-icon s64');
             if (this.data.WFWorkflowIcon) {
                 const iconColor: number = this.data.WFWorkflowIcon.WFWorkflowIconStartColor;
                 const iconGlyph: number = this.data.WFWorkflowIcon.WFWorkflowIconGlyphNumber;
@@ -220,12 +228,13 @@ export class ShortcutPreview {
             preview.appendChild(header);
         }
 
-        container = renderElement('div', {className: 'sp-container ios'});
+        container = renderClass('sp-container ios');
 
         containers = [];
         containers.push(container);
 
         if (this.meta) {
+            renderDetails(this.data)
             renderInputs(this.data);
         }
 

@@ -29,7 +29,11 @@
         background: #141414 !important;
     }
 
-    .sp-container .card {
+    .sp-container .sp-open-details {
+        background: #333233 !important;
+    }
+
+    .sp-container .card, .sp-container .list-strong ul {
         color: white;
         background: #242323;
         border: 1px solid #373636;
@@ -111,6 +115,18 @@
 
     .sp-condition {
         border-color: #3a3a3b !important;
+    }
+
+    .sp-container .sp-modal .sp-modal-content {
+        background: #121212 !important;
+    }
+
+    .sp-container .segmented .button {
+        color: #ffffff;
+    }
+
+    .sp-container .segmented-highlight {
+        background-color: #505051 !important;
     }
 }
 
@@ -490,4 +506,32 @@
 
 .sp-action-content .sp-condition:not(:last-child) {
     border-bottom: 0.1rem solid #e6e6e6;
+}
+
+.sp-open-details {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 10;
+    background: #ffffff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border-right: 0.5rem;
+}
+
+/* Modal */
+.sp-modal {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: none;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: safe center;
+    background: rgba(50, 50, 50, .5);
+}
+
+.sp-modal-content {
+    background: #e7e7e8;
+    border-radius: 0.5rem;
 }
