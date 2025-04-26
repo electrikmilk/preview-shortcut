@@ -452,15 +452,16 @@ export function renderDetails(shortcut: ShortcutData): void {
                         },
                     ]),
                 ),
-                renderElement('div', {
-                    className: 'tab',
-                    id: 'tab-details'
-                }, ...renderDetailsTab(shortcut)),
-                renderElement('div', {
-                    className: 'tab',
-                    id: 'tab-setup',
-                    style: 'display:none'
-                }, ...renderSetupTab(shortcut)),
+                renderClass('tabs',
+                    renderElement('div', {
+                        className: 'tab tab-active',
+                        id: 'tab-details'
+                    }, ...renderDetailsTab(shortcut)),
+                    renderElement('div', {
+                        className: 'tab',
+                        id: 'tab-setup',
+                    }, ...renderSetupTab(shortcut)),
+                ),
             )
         ),
     ))
@@ -573,8 +574,9 @@ export function renderSegmentedControl(buttons: Array<SegmentedButton>) {
     const segmented = renderElement('p', {className: 'segmented segmented-strong'});
     for (const i in buttons) {
         const props = buttons[i];
-        const button = renderElement('button', {
-            className: 'button',
+        const button = renderElement('a', {
+            href: '#tab-' + props.text.toLowerCase(),
+            className: 'button tab-link',
             innerText: props.text
         })
         // @ts-ignore
