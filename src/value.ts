@@ -120,6 +120,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
         if (value.Value.Value && value.Value.Value.WFDictionaryFieldValueItems) {
             container.appendChild(renderDictionary(value.Value.Value.WFDictionaryFieldValueItems))
+            return;
         }
     } else if (value.Variable) {
         const variableValue = value.Variable.Value;
