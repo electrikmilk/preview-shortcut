@@ -41,6 +41,7 @@ import URLEncode from "~/actions/url-encode";
 import DownloadURL from "~/actions/download-url";
 import SaveToCameraRoll from "~/actions/save-to-camera-roll";
 import OpenURL from "~/actions/open-url";
+import Quicklook from "~/actions/quicklook";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -103,6 +104,7 @@ export let actions: ActionDefinitions = {
     'urlencode': URLEncode,
     'savetocameraroll': SaveToCameraRoll,
     'openurl': OpenURL,
+    'previewdocument': Quicklook,
 };
 
 export function actionText(value: string): HTMLElement {
