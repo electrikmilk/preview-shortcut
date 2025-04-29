@@ -14,7 +14,7 @@ export default defineConfig({
                 purgecss({
                     content: ['./src/**/*.ts'],
                     css: ['./src/style.css'],
-                    safelist: [/^c-?\d+/, /^g\d+/, /treeview/, /segmented/, /tab/]
+                    safelist: [/^c-?\d+/, /^g\d+/, /treeview/]
                 })
             ]
         }
