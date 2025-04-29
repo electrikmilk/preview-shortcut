@@ -553,7 +553,7 @@ function renderSetupTab(shortcut: ShortcutData): HTMLElement[] {
     return [
         renderElement('div', {
                 className: 'block',
-                style: 'text-align:left',
+                style: 'text-align:left;min-width:20rem',
             },
             renderElement('h3', {innerText: 'Import Questions'}),
         ),
