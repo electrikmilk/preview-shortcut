@@ -42,6 +42,7 @@ import DownloadURL from "~/actions/download-url";
 import SaveToCameraRoll from "~/actions/save-to-camera-roll";
 import OpenURL from "~/actions/open-url";
 import Quicklook from "~/actions/quicklook";
+import ShowWebpage from "~/actions/show-webpage";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -105,6 +106,7 @@ export let actions: ActionDefinitions = {
     'savetocameraroll': SaveToCameraRoll,
     'openurl': OpenURL,
     'previewdocument': Quicklook,
+    'showwebpage': ShowWebpage,
 };
 
 export function actionText(value: string): HTMLElement {
