@@ -218,7 +218,7 @@ function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string
         icon.classList.add(char);
     }
 
-    if (aggrandizements.length) {
+    if (aggrandizements) {
         varName += getAggrandizements(aggrandizements)
     }
 

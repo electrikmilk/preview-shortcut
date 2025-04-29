@@ -236,10 +236,17 @@ export function renderList(...content: HTMLElement[]): HTMLElement {
     )
 }
 
+export function renderInsetList(...content: HTMLElement[]): HTMLElement {
+    return renderClass('list list-strong inset list-dividers',
+        renderElement('ul', {}, ...content)
+    )
+}
+
 export function renderListItem(image?: HTMLElement | string | null, title?: HTMLElement | string, after?: HTMLElement | string): HTMLElement {
     const item = document.createElement('li');
     const content = document.createElement('div');
     content.className = 'item-content';
+    content.style.alignItems = 'baseline';
 
     if (image) {
         const media = document.createElement('div');
@@ -258,11 +265,14 @@ export function renderListItem(image?: HTMLElement | string | null, title?: HTML
         const inner = document.createElement('div');
         inner.className = 'item-inner';
         if (title) {
-            const titleText = document.createElement('div');
-            titleText.className = 'item-title';
-            // @ts-ignore
-            titleText.innerHTML = title.innerHTML ?? title;
-            inner.appendChild(titleText);
+            if (title instanceof HTMLElement) {
+                inner.appendChild(title);
+            } else {
+                const titleText = document.createElement('div');
+                titleText.className = 'item-title';
+                titleText.innerHTML = title;
+                inner.appendChild(titleText)
+            }
         }
         if (after) {
             const afterText = document.createElement('div');
@@ -389,6 +399,184 @@ export function renderInputs(shortcut: ShortcutData) {
     card.innerHTML = renderCardContent(render).outerHTML;
 
     container.appendChild(card);
+}
+
+function toggleModal() {
+    const modal = document.querySelector('.sp-modal') as HTMLElement;
+    if (modal) {
+        modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+    }
+}
+
+export function renderDetails(shortcut: ShortcutData): void {
+    container.appendChild(renderElement('div', {},
+        renderElement('div', {
+                className: 'link text-color-blue sp-open-details',
+                onclick: toggleModal,
+                ariaLabel: 'View Shortcut Details',
+                title: 'Shortcut Details',
+            },
+            renderInlineIcon('info_circle'),
+        ),
+
+        renderClass('sp-modal',
+            renderClass('sp-modal-content',
+                renderElement('div', {style: 'margin:1rem'},
+                    renderElement('div', {style: 'text-align:right'},
+                        renderElement('div', {
+                                className: 'link text-color-blue',
+                                onclick: toggleModal,
+                            },
+                            renderInlineIcon('xmark'),
+                        ),
+                    ),
+                    renderSegmentedControl([
+                        {
+                            text: 'Details',
+                        },
+                        {
+                            text: 'Setup',
+                        },
+                    ]),
+                ),
+                renderClass('tabs',
+                    renderElement('div', {
+                        className: 'tab tab-active',
+                        id: 'tab-details'
+                    }, ...renderDetailsTab(shortcut)),
+                    renderElement('div', {
+                        className: 'tab',
+                        id: 'tab-setup',
+                    }, ...renderSetupTab(shortcut)),
+                ),
+            )
+        ),
+    ))
+}
+
+function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
+    return [
+        renderInsetList(
+            renderListItem(renderActionIcon('square_arrow_up', 'white', Colors.Blue), 'Show in Share Sheet',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.ActionExtension) : false)
+            ),
+        ),
+        renderBlockHeader('Mac'),
+        renderInsetList(
+            renderListItem(renderActionIcon('macwindow', 'white', Colors.Gray), 'Pin in Menu Bar',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.MenuBar) : false)
+            ),
+            renderListItem(renderActionIcon('doc_text_viewfinder', 'white', Colors.Red), 'Receive What\'s On Screen',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.ReceivesOnScreenContent) : false)
+            ),
+            renderListItem(renderActionIcon('gear_alt_fill', 'white', Colors.Gray), 'Use as a Quick Action',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
+            ),
+            renderActionContent(
+                renderListItem(null, 'Finder',
+                    renderValue(shortcut.WFQuickActionSurfaces ?
+                        shortcut.WFQuickActionSurfaces.includes(quickActions.Finder) : false)
+                ),
+                renderListItem(null, 'Services Menu',
+                    renderValue(shortcut.WFQuickActionSurfaces ?
+                        shortcut.WFQuickActionSurfaces.includes(quickActions.Finder) : false)
+                )
+            )
+        ),
+        renderBlockHeader('Apple Watch'),
+        renderInsetList(
+            renderListItem(null, 'Show on Apple Watch',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
+            ),
+        )
+    ];
+}
+
+export function renderBlockHeader(header: string): HTMLElement {
+    return renderElement('div', {
+        className: 'block-header',
+        innerText: header.toUpperCase(),
+        style: 'text-align:left'
+    })
+}
+
+function renderSetupTab(shortcut: ShortcutData): HTMLElement[] {
+    let questions: HTMLElement[] = [];
+    if (shortcut.WFWorkflowActions && shortcut.WFWorkflowImportQuestions) {
+        for (let question of shortcut.WFWorkflowImportQuestions) {
+            const shortcutAction = shortcut.WFWorkflowActions[question.ActionIndex]
+            if (shortcutAction) {
+                const identifier = shortcutAction.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
+                const action = actions[identifier]
+
+                questions.push(renderListItem(
+                    renderActionIcon(action.icon, action.color, action.background),
+                    renderElement('div', {style: 'text-align: left'},
+                        renderElement('div', {className: 'item-title-row'},
+                            renderElement('div', {
+                                className: 'item-title',
+                                innerHTML: `<strong>${action.title}</strong>`
+                            })
+                        ),
+                        actionText('Question:'),
+                        renderScrollableContent(
+                            renderUnstyledValue(question.Text, 'Question')
+                        ),
+                        actionText('Default Answer:'),
+                        renderScrollableContent(
+                            renderUnstyledValue(question.DefaultValue, 'Default Value')
+                        )
+                    )
+                ))
+            }
+        }
+    }
+
+    return [
+        renderElement('div', {
+                className: 'block',
+                style: 'text-align:left;min-width:20rem',
+            },
+            renderElement('h3', {innerText: 'Import Questions'}),
+        ),
+        renderInsetList(...questions)
+    ];
+}
+
+export function renderScrollableContent(...content: HTMLElement[]) {
+    return renderClass('sp-scrollable-action-content', ...content)
+}
+
+interface SegmentedButton {
+    text: string
+}
+
+export function renderSegmentedControl(buttons: Array<SegmentedButton>) {
+    const segmented = renderElement('p', {className: 'segmented segmented-strong'});
+    for (const i in buttons) {
+        const props = buttons[i];
+        const button = renderElement('a', {
+            href: '#tab-' + props.text.toLowerCase(),
+            className: 'button tab-link',
+            innerText: props.text
+        })
+        if (i === "0") {
+            button.classList.add('button-active');
+        }
+        button.onclick = () => {
+            segmented.querySelectorAll('a')?.forEach(b => b.classList.remove('button-active'));
+            button.classList.add('button-active');
+        };
+        segmented.appendChild(button);
+    }
+    segmented.appendChild(renderElement('span', {className: 'segmented-highlight'}))
+
+    return segmented
 }
 
 enum ItemType {
