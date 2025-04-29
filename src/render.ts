@@ -408,17 +408,6 @@ function toggleModal() {
     }
 }
 
-function toggleTab(id: string) {
-    const tabs = document.querySelectorAll('div.tab') as NodeListOf<HTMLElement>;
-    if (tabs) {
-        tabs.forEach(t => t.style.display = 'none');
-    }
-    const tab = document.querySelector('div.tab#tab-' + id) as HTMLElement;
-    if (tab) {
-        tab.style.display = 'block';
-    }
-}
-
 export function renderDetails(shortcut: ShortcutData): void {
     container.appendChild(renderElement('div', {},
         renderElement('div', {
@@ -444,11 +433,9 @@ export function renderDetails(shortcut: ShortcutData): void {
                     renderSegmentedControl([
                         {
                             text: 'Details',
-                            onclick: () => toggleTab('details'),
                         },
                         {
                             text: 'Setup',
-                            onclick: () => toggleTab('setup'),
                         },
                     ]),
                 ),
@@ -567,7 +554,6 @@ export function renderScrollableContent(...content: HTMLElement[]) {
 
 interface SegmentedButton {
     text: string
-    onclick: () => void
 }
 
 export function renderSegmentedControl(buttons: Array<SegmentedButton>) {
@@ -586,10 +572,6 @@ export function renderSegmentedControl(buttons: Array<SegmentedButton>) {
         button.onclick = () => {
             segmented.querySelectorAll('button')?.forEach(b => b.classList.remove('button-active'));
             button.classList.add('button-active');
-
-            if (props.onclick) {
-                button.onclick = props.onclick;
-            }
         };
         segmented.appendChild(button);
     }
