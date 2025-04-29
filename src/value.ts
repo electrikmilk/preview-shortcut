@@ -194,7 +194,7 @@ function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string
     if (char) {
         switch (char) {
             case 'DeviceDetails':
-                varName = 'Device';
+                varName = 'Device Details';
                 break;
             case 'ActionOutput':
                 break;
