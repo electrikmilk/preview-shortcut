@@ -565,12 +565,11 @@ export function renderSegmentedControl(buttons: Array<SegmentedButton>) {
             className: 'button tab-link',
             innerText: props.text
         })
-        // @ts-ignore
-        if (Number(i) === 0) {
+        if (i === "0") {
             button.classList.add('button-active');
         }
         button.onclick = () => {
-            segmented.querySelectorAll('button')?.forEach(b => b.classList.remove('button-active'));
+            segmented.querySelectorAll('a')?.forEach(b => b.classList.remove('button-active'));
             button.classList.add('button-active');
         };
         segmented.appendChild(button);
