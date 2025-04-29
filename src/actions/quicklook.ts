@@ -13,6 +13,6 @@ export default {
     icon: "eye_fill",
     background: Colors.Yellow,
     render: (container: HTMLElement, params: QuicklookParameters) => {
-        return renderActionHeader(actions['previewdocument'], renderValue(params['WFInput'] ?? null, 'Result'), actionText('in Quick Look'));
+        return renderActionHeader(actions['previewdocument'], renderValue(params.WFInput ?? null, 'Input'), actionText('in Quick Look'));
     }
 }
