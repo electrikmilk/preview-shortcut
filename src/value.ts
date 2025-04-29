@@ -91,15 +91,15 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
     let varName;
     let varType;
+    let attachments: Aggrandizement[] = []
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
             let str = escapeHTML(String(value.Value.string));
             for (let v in value.Value.attachmentsByRange) {
                 let attachment = value.Value.attachmentsByRange[v];
                 let varTypeName = attachment.OutputName ?? attachment.Variable ?? attachment.VariableName ?? attachment.PropertyName;
-                varTypeName += getAggrandizements(attachment.Aggrandizements)
 
-                const inlineVar = renderInlineVariable(varTypeName, attachment.Type);
+                const inlineVar = renderInlineVariable(attachment.Aggrandizements, varTypeName, attachment.Type);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
             container.innerHTML = str;
@@ -115,7 +115,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varType = value.Value.Type;
 
         if (value.Value.Aggrandizements) {
-            varName += getAggrandizements(value.Value.Aggrandizements)
+            attachments = value.Value.Aggrandizements
         }
 
         if (value.Value.Value && value.Value.Value.WFDictionaryFieldValueItems) {
@@ -126,7 +126,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varName = variableValue.VariableName ?? variableValue.OutputName ?? variableValue.PropertyName;
         varType = variableValue.Type;
         if (value.Variable.Value.Aggrandizements) {
-            varName += getAggrandizements(value.Variable.Value.Aggrandizements)
+            attachments = value.Variable.Value.Aggrandizements
         }
     } else if (value.workflowName) {
         container.innerText = value.workflowName;
@@ -141,7 +141,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     }
 
     container.appendChild(
-        renderInlineVariable(varName, varType),
+        renderInlineVariable(attachments, varName, varType),
     );
 }
 
@@ -174,7 +174,7 @@ function variableIcon(valueType: string) {
     }
 }
 
-function renderInlineVariable(varName: string, char?: string) {
+function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string, char?: string) {
     switch (varName) {
         case 'ShortcutInput':
             varName = 'Shortcut Input';
@@ -216,6 +216,10 @@ function renderInlineVariable(varName: string, char?: string) {
 
     if (char) {
         icon.classList.add(char);
+    }
+
+    if (aggrandizements.length) {
+        varName += getAggrandizements(aggrandizements)
     }
 
     variable.append(icon, renderElement('div', {innerText: varName}));
