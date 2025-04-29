@@ -206,7 +206,7 @@ function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string
                 varName = 'Current Date';
                 break;
             default:
-                if (varName === "") {
+                if (!varName) {
                     varName = char
                 }
         }
