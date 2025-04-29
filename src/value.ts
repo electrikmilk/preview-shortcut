@@ -54,21 +54,29 @@ export function renderUnstyledValue(value?: any, placeholder: string = 'Value') 
 function getAggrandizements(aggrandizements: Aggrandizement[]): string {
     let varRef = ""
     if (aggrandizements && arguments.length) {
+        let getAs: string = ""
+        let coerce: string = ""
         for (let aggr of aggrandizements) {
             if (aggr.PropertyName) {
-                varRef += aggr.PropertyName;
+                getAs = aggr.PropertyName
             }
 
             switch (aggr.Type) {
                 case 'WFDictionaryValueVariableAggrandizement':
                     // @ts-ignore
-                    varRef += ` (${aggr.DictionaryKey})`;
+                    getAs = aggr.DictionaryKey
                     break;
                 case 'WFCoercionVariableAggrandizement':
                     // @ts-ignore
-                    varRef += ` (${contentItemTypes[aggr.CoercionItemClass]})`;
+                    coerce = contentItemTypes[aggr.CoercionItemClass]
                     break;
             }
+        }
+        if (getAs.length) {
+            varRef += ` (${getAs})`
+        }
+        if (coerce.length) {
+            varRef += ` (${coerce})`
         }
     }
 
