@@ -16,11 +16,11 @@ export default {
     background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: GetDictionaryValueParameters) => {
-        let content: HTMLElement[] = [renderValue(params.WFGetDictionaryValueType)];
-        if (params.WFGetDictionaryValueType === 'Value') {
-            content.push(actionText('for'), renderValue(params['WFDictionaryKey'], 'Key'));
+        let content: HTMLElement[] = [renderValue(params.WFGetDictionaryValueType ?? 'Value')];
+        if (params.WFDictionaryKey) {
+            content.push(actionText('for'), renderValue(params.WFDictionaryKey, 'Key'));
         }
-        content.push(actionText('in'), renderValue(params['WFInput'], 'Dictionary'))
+        content.push(actionText('in'), renderValue(params.WFInput, 'Dictionary'))
 
         return renderActionHeader(actions['getvalueforkey'], ...content);
     }
