@@ -45,6 +45,7 @@ import Quicklook from "~/actions/quicklook";
 import ShowWebpage from "~/actions/show-webpage";
 import File from "~/actions/file";
 import SaveFile from "~/actions/save-file";
+import GetShortcuts from "~/actions/get-shortcuts";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -110,7 +111,8 @@ export let actions: ActionDefinitions = {
     'previewdocument': Quicklook,
     'showwebpage': ShowWebpage,
     'file': File,
-    'documentpicker.save': SaveFile
+    'documentpicker.save': SaveFile,
+    'getmyworkflows': GetShortcuts,
 };
 
 export function actionText(value: string): HTMLElement {
