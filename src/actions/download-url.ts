@@ -68,7 +68,9 @@ export default {
             action.appendChild(renderLabel('File', renderValue(params.WFRequestVariable, 'Variable')))
         }
 
-        action.appendChild(renderElement('br'));
+        if (params.WFHTTPMethod || params.WFHTTPBodyType || params.WFHTTPHeaders) {
+            action.appendChild(renderElement('br'));
+        }
 
         return action
     }
