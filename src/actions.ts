@@ -44,6 +44,7 @@ import OpenURL from "~/actions/open-url";
 import Quicklook from "~/actions/quicklook";
 import ShowWebpage from "~/actions/show-webpage";
 import File from "~/actions/file";
+import SaveFile from "~/actions/save-file";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -109,6 +110,7 @@ export let actions: ActionDefinitions = {
     'previewdocument': Quicklook,
     'showwebpage': ShowWebpage,
     'file': File,
+    'documentpicker.save': SaveFile
 };
 
 export function actionText(value: string): HTMLElement {
