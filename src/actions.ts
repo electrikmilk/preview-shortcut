@@ -46,6 +46,7 @@ import ShowWebpage from "~/actions/show-webpage";
 import File from "~/actions/file";
 import SaveFile from "~/actions/save-file";
 import GetShortcuts from "~/actions/get-shortcuts";
+import CreateFolder from "~/actions/create-folder";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -113,6 +114,7 @@ export let actions: ActionDefinitions = {
     'file': File,
     'documentpicker.save': SaveFile,
     'getmyworkflows': GetShortcuts,
+    'file.createfolder': CreateFolder
 };
 
 export function actionText(value: string): HTMLElement {
