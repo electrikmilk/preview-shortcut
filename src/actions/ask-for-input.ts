@@ -17,7 +17,7 @@ export default {
     background: Colors.LightBlue,
     render: (container: HTMLElement, params: AskForInputParameters) => {
         const action = renderActionHeader(actions['ask'],
-            renderValue(params['WFInputType'], 'Input Type'),
+            renderValue(params['WFInputType'] ?? 'Text'),
             actionText("with"),
             renderValue(params['WFAskActionPrompt'], 'Informational message')
         );
