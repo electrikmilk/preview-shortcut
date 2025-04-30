@@ -337,7 +337,6 @@
     display: flex;
     flex-wrap: wrap;
     word-break: break-word;
-    white-space: pre-wrap !important;
     text-align: left !important;
 }
 
