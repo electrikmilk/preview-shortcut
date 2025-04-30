@@ -35,7 +35,9 @@ export default {
         const header = renderActionHeader(actions['downloadurl'], renderValue(params.WFURL));
         action.appendChild(header);
 
-        action.appendChild(renderLabel('Method', renderValue(params.WFHTTPMethod ?? 'GET')))
+        if (params.WFHTTPMethod) {
+            action.appendChild(renderLabel('Method', renderValue(params.WFHTTPMethod ?? 'GET')))
+        }
 
         if (params.WFHTTPHeaders) {
             const headers = document.createElement('div');
