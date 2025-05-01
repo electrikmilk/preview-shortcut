@@ -151,6 +151,85 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
+"@plist/binary.parse@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/binary.parse/-/binary.parse-1.1.0.tgz#c14812451fd0de714292b03eb152bd0accc03348"
+  integrity sha512-0Bkyt9rCZnlEHQghafWStePBMquIne+9Z9nFTns8OF3ku4QsQ2HMdSSM1MvQfc+6JOU0Q5JlGvAPEUtP9meFsw==
+  dependencies:
+    "@plist/common" "^1.1.0"
+
+"@plist/binary.serialize@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/binary.serialize/-/binary.serialize-1.1.0.tgz#4233f67c3292b94d7de06abeb853c71964e40c34"
+  integrity sha512-+CveX99bM1fqlxIaGyD7YbKLpK411qjAW8FHpCuigUyxLTgo28WOXEBxrYaUZGuMPEv6fsDI5e+E2pLvRfcdtA==
+  dependencies:
+    "@plist/common" "^1.1.0"
+
+"@plist/common@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/common/-/common-1.1.0.tgz#1fc9f7c39e47ae9e3a35ebd265419dccd337f6c4"
+  integrity sha512-zZAx3dLVsDaW/ulxCbHS3ptVUnO5XEPQ75UPyNJpwPdv9ViWLYXQmbYNmFR8thKpw067RAORuQpBWHvKPffvIg==
+
+"@plist/openstep.parse@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@plist/openstep.parse/-/openstep.parse-1.1.1.tgz#ac0782f0030f0e3b38a9acf1a9b3e08aee3ab28f"
+  integrity sha512-ZUDkVGVy4MIoq4D8WDD+Bb10W8rnNopSoF9JBNmaEZuJY3KeNSZvj9to1TkZo99EqEP9OM5bcUR5wzFrrqlbGg==
+  dependencies:
+    "@plist/common" "^1.1.0"
+
+"@plist/openstep.serialize@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@plist/openstep.serialize/-/openstep.serialize-1.1.1.tgz#b929be9974d062649fb503bdaaddb4cbcef9616a"
+  integrity sha512-cD6LIxfH3fhEVmwUugAAJqp/Tkhja7dBF+h+kmNMXF/9x1TWMYwYqwqPrXCbzKeFGehUeR1SpCnsMSbhlIwk2A==
+  dependencies:
+    "@plist/common" "^1.1.0"
+
+"@plist/parse@^1.0.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/parse/-/parse-1.1.0.tgz#c434610a21f8157fc6b392e192f09e3a85145306"
+  integrity sha512-s/8zU3ryJCJGLjd0KWZYaM07+05Y5V4JmPM7F5I1o53a5qXh0iaZ7n1nyxZ/viXgN6Qrk7OxtY5mYoRwjvuhbQ==
+  dependencies:
+    "@plist/binary.parse" "^1.1.0"
+    "@plist/common" "^1.1.0"
+    "@plist/openstep.parse" "^1.1.0"
+    "@plist/xml.parse" "^1.1.0"
+
+"@plist/plist@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@plist/plist/-/plist-1.0.0.tgz#75ea61b6506895f5a62705ccc57e01a8c6c6da5d"
+  integrity sha512-Tc9QBV9SFpc51ZzHl7DB512Ui9cxlzFU58RqgEMJMVT8E3v7h1s/yQnMK4NsCfWs4z63q688KEvdrwj8Q4QpbQ==
+  dependencies:
+    "@plist/parse" "^1.0.0"
+    "@plist/serialize" "^1.0.0"
+
+"@plist/serialize@^1.0.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/serialize/-/serialize-1.1.0.tgz#164f5207192ec6ce55e509c8e8de22b422670a7f"
+  integrity sha512-P0zyEDd0PpAIwMigSZgvyLXwfgBGNlCnB/vG3uCKBbV2bLtQm5pDXn2+5YMm8NuD3vGlo2JQD0FAQiP8/+tzow==
+  dependencies:
+    "@plist/binary.serialize" "^1.1.0"
+    "@plist/common" "^1.1.0"
+    "@plist/openstep.serialize" "^1.1.0"
+    "@plist/xml.serialize" "^1.1.0"
+
+"@plist/xml.parse@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@plist/xml.parse/-/xml.parse-1.1.0.tgz#dce1802b3ccd99a6dd7d5c95f12f6dc0ad29d7a9"
+  integrity sha512-g3FIK0LjizCi4lIDjtvJY6rQxGQHBlcZP56K3jGHkD2plmNYn9hs1rhtigDbyBfCmIQhqLNWtl3e2JJiL9h3Vw==
+  dependencies:
+    "@plist/common" "^1.1.0"
+    base64-js "^1.5.1"
+    fast-xml-parser "^4.0.8"
+
+"@plist/xml.serialize@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@plist/xml.serialize/-/xml.serialize-1.1.1.tgz#1a1cf4d053a78bb7f09c68361e4b378454bca7e0"
+  integrity sha512-wpVvLOVcdDlpAriJPacural0voiAnOFK8mUZf6t1WLtaAcHRmIFdUm8iY5aYssCfcyGyPDj5zjldbincCPwNwA==
+  dependencies:
+    "@plist/common" "^1.1.0"
+    base64-js "^1.5.1"
+    fast-xml-parser "^4.0.8"
+
 "@rollup/plugin-typescript@^9.0.2":
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-9.0.2.tgz#c0cdfa39e267f306ff7316405a35406d5821eaa7"
@@ -447,6 +526,13 @@ estree-walker@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
+
+fast-xml-parser@^4.0.8:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.5.3.tgz#c54d6b35aa0f23dc1ea60b6c884340c006dc6efb"
+  integrity sha512-RKihhV+SHsIUGXObeVy9AXiBbFwkVk7Syp8XgwN5U3JV416+Gwp/GO9i0JYKmikykgz/UHRrrV4ROuZEo/T0ig==
+  dependencies:
+    strnum "^1.1.1"
 
 foreground-child@^3.1.0:
   version "3.3.1"
@@ -783,6 +869,11 @@ strip-ansi@^7.0.1:
   integrity sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==
   dependencies:
     ansi-regex "^6.0.1"
+
+strnum@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/strnum/-/strnum-1.1.2.tgz#57bca4fbaa6f271081715dbc9ed7cee5493e28e4"
+  integrity sha512-vrN+B7DBIoTTZjnPNewwhx6cBA/H+IS7rfW68n7XxC1y7uoiGQBxaKzqucGUgavX15dJgiGztLJ8vxuEzwqBdA==
 
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"

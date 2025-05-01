@@ -5,8 +5,7 @@ import './style.css';
 
 import {renderDetails, renderInputs, renderShortcut} from "~/render";
 
-// @ts-ignore
-import {parse} from 'plist/dist/plist-parse.js';
+import {parse} from '@plist/plist';
 
 import Framework7 from 'framework7/lite/bundle';
 import {renderClass, renderElement} from "~/element";
@@ -170,6 +169,7 @@ export class ShortcutPreview {
         try {
             this.data = JSON.parse(String(data));
         } catch (e) {
+            // @ts-ignore
             this.data = parse(data);
         }
         this.preview();
