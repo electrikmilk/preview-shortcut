@@ -161,7 +161,12 @@ export class ShortcutPreview {
     }
 
     load(data: string | ShortcutData) {
-        if (typeof data === 'object') {
+        if (data instanceof ArrayBuffer) {
+            // @ts-ignore
+            this.data = parse(data);
+            this.preview();
+            return;
+        } else if (typeof data === 'object') {
             this.data = data;
             this.preview();
             return;
