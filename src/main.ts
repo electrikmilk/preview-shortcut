@@ -188,7 +188,7 @@ export class ShortcutPreview {
         }).then(response => {
             this.load(response);
         }).catch(error => {
-            Log.error(error.message, error);
+            Log.error(error);
         });
     }
 
