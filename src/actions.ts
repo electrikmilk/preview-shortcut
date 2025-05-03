@@ -48,6 +48,7 @@ import SaveFile from "~/actions/save-file";
 import GetShortcuts from "~/actions/get-shortcuts";
 import CreateFolder from "~/actions/create-folder";
 import GetVariable from "~/actions/get-variable";
+import GetDeviceDetails from "~/actions/get-device-details";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -117,6 +118,7 @@ export let actions: ActionDefinitions = {
     'getmyworkflows': GetShortcuts,
     'file.createfolder': CreateFolder,
     'getvariable': GetVariable,
+    'getdevicedetails': GetDeviceDetails,
 };
 
 export function actionText(value: string): HTMLElement {
