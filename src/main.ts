@@ -26,10 +26,7 @@ export function resetContainers() {
 export function newContainer() {
     const renderContainer = renderClass('sp-sub-container')
     container.appendChild(renderContainer);
-
-    containers.push(renderContainer);
-    containerIndex++;
-
+    containers[++containerIndex] = renderContainer;
     container = renderContainer;
 }
 
@@ -37,8 +34,7 @@ export function prevContainer() {
     if (containers.length === 1) {
         return;
     }
-    containerIndex--;
-    container = containers[containerIndex];
+    container = containers[--containerIndex];
 }
 
 export interface PreviewOptions {
