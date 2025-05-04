@@ -12,8 +12,9 @@ export default {
     background: Colors.Red,
     icon: 'sun_max_fill',
     render(container: HTMLElement, params: SetBrightnessParameters) {
-        let brightness: string = "";
-        if (typeof params.WFBrightness === 'number') {
+        let brightness = params.WFBrightness;
+        if (typeof brightness === 'number') {
+            // @ts-ignore
             brightness = toPercentage(params.WFBrightness)
         }
 

@@ -12,8 +12,9 @@ export default {
     icon: 'speaker_3_fill',
     background: Colors.Red,
     render: function (container: HTMLElement, params: SetVolumeParameters) {
-        let volume: string = "";
-        if (typeof params.WFVolume === 'number') {
+        let volume = params.WFVolume;
+        if (typeof volume === 'number') {
+            // @ts-ignore
             volume = toPercentage(params.WFVolume)
         }
 

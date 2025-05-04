@@ -251,7 +251,7 @@ export function renderContactValue(value: object, entryType: Number): HTMLElemen
     return renderValue(value[key]);
 }
 
-export function toPercentage(value: number) {
+export function toPercentage(value: number = 0) {
     return `${Math.floor(value * 100)}%`
 }
 
