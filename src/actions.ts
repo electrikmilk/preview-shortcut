@@ -63,6 +63,8 @@ import DeleteFiles from "~/actions/delete-files";
 
 import {capitalize, renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
+import Translate from "~/actions/translate";
+import DetectLanguage from "~/actions/detect-language";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -144,6 +146,8 @@ export let actions: ActionDefinitions = {
     'appearance': SetAppearance,
     'openapp': OpenApp,
     'file.delete': DeleteFiles,
+    'text.translate': Translate,
+    'detectlanguage': DetectLanguage,
 };
 
 export interface ToggleSetParameters {
