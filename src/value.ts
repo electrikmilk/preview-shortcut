@@ -254,3 +254,7 @@ export function renderContactValue(value: object, entryType: Number): HTMLElemen
 export function toPercentage(value: number) {
     return `${Math.floor(value * 100)}%`
 }
+
+export function capitalize(string: string) {
+    return string.charAt(0).toUpperCase() + string.substring(1);
+}

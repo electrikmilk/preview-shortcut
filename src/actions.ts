@@ -52,13 +52,14 @@ import GetDeviceDetails from "~/actions/get-device-details";
 import SetVolume from "~/actions/set-volume";
 import SetBrightness from "~/actions/set-brightness";
 import SetAirplaneMode from "~/actions/set-airplane-mode";
-import {renderValue} from "~/value";
+import {capitalize, renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import SetCellularData from "~/actions/set-cellulardata";
 import SetWifi from "~/actions/set-wifi";
 import SetBluetooth from "~/actions/set-bluetooth";
 import SetLowerPowerMode from "~/actions/set-lower-power-mode";
 import ShowNotification from "~/actions/show-notification";
+import SetAppearance from "~/actions/set-appearance";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -137,6 +138,7 @@ export let actions: ActionDefinitions = {
     'bluetooth.set': SetBluetooth,
     'lowpowermode.set': SetLowerPowerMode,
     'notification': ShowNotification,
+    'appearance': SetAppearance
 };
 
 export interface ToggleSetParameters {
