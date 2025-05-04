@@ -1,8 +1,9 @@
-import {renderValue} from "~/value";
+import {renderUnstyledValue, renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
 import {actions, actionText} from "~/actions";
 
 import {Colors} from "~/colors";
+import {renderClass, renderElement} from "~/element";
 
 interface ChooseFromMenuParameters {
     WFMenuPrompt: string | object,
@@ -23,39 +24,35 @@ export default {
                 renderValue(params.WFMenuPrompt ?? null, 'Prompt')
             );
 
-            const list = document.createElement('div');
-            list.className = 'sp-action-list-content sp-unstyled-value';
-            const ul = document.createElement('ul');
+            const list = renderClass('sp-action-list-content sp-unstyled-value');
+            const ul = renderElement('ul');
             if (params.WFMenuItems.length !== 0) {
                 for (let item in params.WFMenuItems) {
-                    const li = document.createElement('li');
+                    const li = renderElement('li');
                     // @ts-ignore
-                    const value = renderValue(params.WFMenuItems[item].WFValue ?? params.WFMenuItems[item], 'Menu Item');
-                    value.classList.add('sp-unstyled-value');
+                    const value = renderUnstyledValue(params.WFMenuItems[item].WFValue ?? params.WFMenuItems[item], 'Menu Item');
                     li.appendChild(value);
                     ul.appendChild(li);
                 }
             }
-            const footer = document.createElement('div');
-            footer.className = 'sp-action-list-footer';
-            footer.innerText = params.WFMenuItems.length + ' item';
-            if (params.WFMenuItems.length !== 1) {
-                footer.innerText += 's';
-            }
+            const itemsSize = params.WFMenuItems.length;
+            const footer = renderElement('div', {
+                className: 'sp-action-list-footer',
+                innerText: itemsSize + ' item' + (itemsSize ? 's' : '')
+            })
 
             list.appendChild(ul);
             list.appendChild(footer);
             action.appendChild(list);
 
-            action.appendChild(document.createElement('br'));
+            action.appendChild(renderElement('br'));
         } else {
             const header: HTMLElement[] = [];
 
             if (params.WFControlFlowMode == 2) {
                 header.push(actionText('End Menu'));
             } else if (params.WFControlFlowMode == 1) {
-                const value = renderValue(params.WFMenuItemTitle ?? params.WFMenuItemAttributedTitle ?? null, 'Item');
-                value.classList.add('sp-unstyled-value');
+                const value = renderUnstyledValue(params.WFMenuItemTitle ?? params.WFMenuItemAttributedTitle ?? null, 'Item');
                 value.setAttribute('style', 'font-weight: bold');
                 header.push(value);
             }

@@ -1,11 +1,12 @@
 import {renderActionHeader} from "~/render";
 import {actions} from "~/actions";
-import {renderValue} from "~/value";
+import {renderUnstyledValue} from "~/value";
 
 import {Colors} from "~/colors";
+import {renderClass, renderElement} from "~/element";
 
 interface ListParameters {
-    WFItems: Array<string>
+    WFItems: []
 }
 
 export default {
@@ -14,36 +15,33 @@ export default {
     background: Colors.Orange,
     icon: 'list_bullet',
     render: (container: HTMLElement, params: ListParameters) => {
-        const action = document.createElement('div');
+        const action = renderElement();
         const header = renderActionHeader(actions['list']);
         action.appendChild(header);
-        const list = document.createElement('div');
-        list.className = 'sp-action-list-content';
-        const ul = document.createElement('ul');
-        if (params['WFItems'].length !== 0) {
-            for (let item in params['WFItems']) {
-                const li = document.createElement('li');
-                let itemValue = params['WFItems'][item];
+        const list = renderClass('sp-action-list-content');
+        const ul = renderElement('ul');
+        if (params.WFItems.length !== 0) {
+            for (let item in params.WFItems) {
+                const li = renderElement('li');
+                let itemValue = params.WFItems[item];
                 if (typeof itemValue !== 'string') {
                     itemValue = itemValue['WFValue']
                 }
-                const value = renderValue(itemValue, 'List Item');
-                value.classList.add('sp-unstyled-value');
-                li.appendChild(value);
+                li.appendChild(renderUnstyledValue(itemValue, 'List Item'));
                 ul.appendChild(li);
             }
         }
-        const footer = document.createElement('div');
-        footer.className = 'sp-action-list-footer';
-        const itemsSize = params["WFItems"].length;
-        footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : '');
+        const itemsSize = params.WFItems.length;
+        const footer = renderElement('div', {
+            className: 'sp-action-list-footer',
+            innerText: itemsSize + ' item' + (itemsSize ? 's' : '')
+        })
 
         list.appendChild(ul);
         list.appendChild(footer);
         action.appendChild(list);
 
-        const br = document.createElement('br');
-        action.appendChild(br);
+        action.appendChild(renderElement('br'));
 
         return action;
     }
