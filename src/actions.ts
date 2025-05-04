@@ -49,6 +49,8 @@ import GetShortcuts from "~/actions/get-shortcuts";
 import CreateFolder from "~/actions/create-folder";
 import GetVariable from "~/actions/get-variable";
 import GetDeviceDetails from "~/actions/get-device-details";
+import SetVolume from "~/actions/set-volume";
+import SetBrightness from "~/actions/set-brightness";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -119,6 +121,8 @@ export let actions: ActionDefinitions = {
     'file.createfolder': CreateFolder,
     'getvariable': GetVariable,
     'getdevicedetails': GetDeviceDetails,
+    'setvolume': SetVolume,
+    'setbrightness': SetBrightness,
 };
 
 export function actionText(value: string): HTMLElement {
