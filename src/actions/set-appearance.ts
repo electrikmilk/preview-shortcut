@@ -14,7 +14,7 @@ export default {
         return renderActionHeader(actions['appearance'],
             renderValue(capitalize(String(params.operation ?? 'turn'))),
             actionText('appearance'),
-            renderValue(params.style ?? 'Dark')
+            renderValue(capitalize(String(params.style ?? 'dark')))
         )
     }
 }
