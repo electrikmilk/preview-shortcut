@@ -52,8 +52,6 @@ import GetDeviceDetails from "~/actions/get-device-details";
 import SetVolume from "~/actions/set-volume";
 import SetBrightness from "~/actions/set-brightness";
 import SetAirplaneMode from "~/actions/set-airplane-mode";
-import {capitalize, renderValue} from "~/value";
-import {renderActionHeader} from "~/render";
 import SetCellularData from "~/actions/set-cellulardata";
 import SetWifi from "~/actions/set-wifi";
 import SetBluetooth from "~/actions/set-bluetooth";
@@ -62,6 +60,9 @@ import ShowNotification from "~/actions/show-notification";
 import SetAppearance from "~/actions/set-appearance";
 import OpenApp from "~/actions/open-app";
 import DeleteFiles from "~/actions/delete-files";
+
+import {capitalize, renderValue} from "~/value";
+import {renderActionHeader} from "~/render";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
