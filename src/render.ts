@@ -149,7 +149,6 @@ function renderActionConnection(card: HTMLElement, action: ActionData) {
             }
         }
         if (outputUUIDs.length !== 0) {
-            // @ts-ignore
             for (let j in lastAction.WFWorkflowActionParameters) {
                 if (j !== "UUID") {
                     continue;
