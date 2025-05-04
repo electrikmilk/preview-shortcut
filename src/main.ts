@@ -3,7 +3,15 @@ import 'framework7-icons';
 
 import './style.css';
 
-import {container, renderDetails, renderInputs, renderShortcut, resetContainers, setContainer} from "~/render";
+import {
+    container,
+    renderDetails,
+    renderInputs,
+    renderShortcut,
+    resetContainers,
+    setContainer,
+    WFWorkflowNoInputBehavior
+} from "~/render";
 
 import {parse} from '@plist/plist';
 
@@ -39,6 +47,7 @@ export interface ShortcutData {
     WFQuickActionSurfaces?: Array<String>
     WFWorkflowTypes?: Array<String>
     WFWorkflowImportQuestions?: Array<WFWorkflowImportQuestion>
+    WFWorkflowNoInputBehavior?: WFWorkflowNoInputBehavior
 }
 
 interface WFWorkflowImportQuestion {

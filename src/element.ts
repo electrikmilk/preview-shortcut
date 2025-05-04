@@ -10,6 +10,13 @@ export function renderElement(tag: string = 'div', attributes: object = {}, ...e
     return element;
 }
 
+export function applyStyles(element: HTMLElement, styles: object) {
+    for (let property in styles) {
+        // @ts-ignore
+        element.style[property] = styles[property]
+    }
+}
+
 export function renderText(text: string) {
     return document.createTextNode(text);
 }

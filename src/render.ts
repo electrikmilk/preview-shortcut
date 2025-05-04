@@ -2,7 +2,7 @@ import {ActionData, dev, ShortcutData} from "~/main";
 import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
 import {renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
-import {renderClass, renderElement, renderText} from "~/element";
+import {applyStyles, renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";
 
 export let container: HTMLElement;
@@ -414,6 +414,8 @@ export function renderInputs(shortcut: ShortcutData) {
         renderValue(workflows.length !== 0 ? workflows.filter(i => i).join(', ') : null, 'Nowhere')
     );
 
+    render.appendChild(renderShortcutOutputSurfaceBehavior(shortcut))
+
     card.innerHTML = renderCardContent(render).outerHTML;
 
     container.appendChild(card);
@@ -739,4 +741,74 @@ export function renderInlineIcon(icon: string) {
         // @ts-ignore
         renderText(icon),
     )
+}
+
+enum NoInputBehavior {
+    ShowError = 'WFWorkflowNoInputBehaviorShowError',
+    GetClipboard = 'WFWorkflowNoInputBehaviorGetClipboard',
+    AskForInput = 'WFWorkflowNoInputBehaviorAskForInput',
+}
+
+export interface WFWorkflowNoInputBehavior {
+    Name: NoInputBehavior
+    Parameters?: NoInputBehaviorParameters
+}
+
+interface NoInputBehaviorParameters {
+    Error?: string
+    ItemClass?: string
+}
+
+export interface StopAndOutputParameters {
+    WFOutput: string | object
+    WFNoOutputSurfaceBehavior: string
+    WFResponse: string | object
+}
+
+export function renderOutputSurfaceBehavior(WFNoOutputSurfaceBehavior: any, WFResponse: any = null): HTMLElement {
+    const flexbox = renderElement('div')
+    applyStyles(flexbox, {
+        display: 'flex',
+        gap: '10px',
+        alignItems: 'center',
+        margin: '0 16px',
+        height: '3rem',
+    })
+
+    flexbox.appendChild(renderValue(WFNoOutputSurfaceBehavior ?? 'Continue', 'Behavior'));
+    if (WFResponse) {
+        flexbox.appendChild(renderValue(WFResponse, 'Result'));
+    }
+
+
+    return renderElement('div', {}, renderElement('div', {
+        innerText: 'If there\'s nowhere to output:',
+        className: 'sp-output-surface-behavior'
+    }), flexbox);
+}
+
+export function renderShortcutOutputSurfaceBehavior(shortcut: ShortcutData): HTMLElement {
+    let behavior: string = ""
+    let response: string = ""
+    if (shortcut.WFWorkflowNoInputBehavior?.Parameters) {
+        switch (shortcut.WFWorkflowNoInputBehavior.Name) {
+            case NoInputBehavior.ShowError:
+                behavior = 'Stop and Respond'
+                if (shortcut.WFWorkflowNoInputBehavior.Parameters?.Error) {
+                    response = shortcut.WFWorkflowNoInputBehavior.Parameters.Error
+                }
+                break;
+            case NoInputBehavior.AskForInput:
+                behavior = 'Ask For';
+                if (shortcut.WFWorkflowNoInputBehavior.Parameters?.ItemClass) {
+                    // @ts-ignore
+                    response = contentItemTypes[shortcut.WFWorkflowNoInputBehavior.Parameters.ItemClass]
+                }
+                break;
+            case NoInputBehavior.GetClipboard:
+                behavior = 'Get Clipboard'
+        }
+    }
+
+    return renderOutputSurfaceBehavior(behavior, response)
 }

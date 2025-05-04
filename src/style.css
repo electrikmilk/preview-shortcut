@@ -39,7 +39,7 @@
         border: 1px solid #373636;
     }
 
-    .sp-container .sp-output-action .sp-output-surface-behavior {
+    .sp-container .sp-output-surface-behavior {
         color: #9f9f9d !important;
     }
 
@@ -279,7 +279,7 @@
     flex-shrink: 1;
 }
 
-.sp-container .sp-output-action .sp-output-surface-behavior {
+.sp-container .sp-output-surface-behavior {
     text-align: left;
     font-weight: bold;
     color: #808080;
@@ -291,7 +291,7 @@
 }
 
 .sp-container .sp-action-title,
-.sp-container .sp-output-action .sp-output-surface-behavior,
+.sp-container .sp-output-surface-behavior,
 .sp-container .item-title,
 .sp-container .sp-value,
 .sp-container .sp-placeholder-value,
