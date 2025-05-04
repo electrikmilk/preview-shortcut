@@ -50,9 +50,6 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
         );
 
         if (controlFlowMode === controlFlowStart || controlFlowMode === controlFlowItem) {
-            if (controlFlowMode === controlFlowStart && identifier === 'choosefrommenu') {
-                continue;
-            }
             newContainer();
         }
     }
