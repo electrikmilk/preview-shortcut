@@ -66,6 +66,7 @@ import {renderActionHeader} from "~/render";
 import Translate from "~/actions/translate";
 import DetectLanguage from "~/actions/detect-language";
 import ReplaceText from "~/actions/replace-text";
+import Base64Encode from "~/actions/base64-encode";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -150,6 +151,7 @@ export let actions: ActionDefinitions = {
     'text.translate': Translate,
     'detectlanguage': DetectLanguage,
     'text.replace': ReplaceText,
+    'base64encode': Base64Encode,
 };
 
 export interface ToggleSetParameters {
