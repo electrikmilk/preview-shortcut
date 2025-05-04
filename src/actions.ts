@@ -51,6 +51,9 @@ import GetVariable from "~/actions/get-variable";
 import GetDeviceDetails from "~/actions/get-device-details";
 import SetVolume from "~/actions/set-volume";
 import SetBrightness from "~/actions/set-brightness";
+import SetAirplaneMode from "~/actions/set-airplane-mode";
+import {renderValue} from "~/value";
+import {renderActionHeader} from "~/render";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -123,7 +126,36 @@ export let actions: ActionDefinitions = {
     'getdevicedetails': GetDeviceDetails,
     'setvolume': SetVolume,
     'setbrightness': SetBrightness,
+    'airplanemode.set': SetAirplaneMode,
 };
+
+export interface ToggleSetParameters {
+    OnValue: number | object
+    state: boolean | object
+    operation: object | string
+}
+
+export function renderToggleSetAction(definition: ActionDefinition, text: string, params: ToggleSetParameters) {
+    let header: HTMLElement[] = [renderValue(params.operation ?? 'Turn'), actionText(text)];
+    if (params.OnValue || params.state || !params.operation) {
+        let state = params.OnValue ?? params.state ?? 1;
+        let value;
+        switch (typeof state) {
+            case 'number':
+                value = state === 1 ? 'On' : 'Off'
+                break;
+            case 'boolean':
+                value = state ? 'On' : 'Off'
+                break;
+            default:
+                value = state;
+        }
+
+        header.push(renderValue(value))
+    }
+
+    return renderActionHeader(definition, ...header)
+}
 
 export function actionText(value: string): HTMLElement {
     const text = document.createElement('div');
