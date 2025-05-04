@@ -54,6 +54,10 @@ import SetBrightness from "~/actions/set-brightness";
 import SetAirplaneMode from "~/actions/set-airplane-mode";
 import {renderValue} from "~/value";
 import {renderActionHeader} from "~/render";
+import SetCellularData from "~/actions/set-cellulardata";
+import SetWifi from "~/actions/set-wifi";
+import SetBluetooth from "~/actions/set-bluetooth";
+import SetLowerPowerMode from "~/actions/set-lower-power-mode";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -127,6 +131,10 @@ export let actions: ActionDefinitions = {
     'setvolume': SetVolume,
     'setbrightness': SetBrightness,
     'airplanemode.set': SetAirplaneMode,
+    'cellulardata.set': SetCellularData,
+    'wifi.set': SetWifi,
+    'bluetooth.set': SetBluetooth,
+    'lowpowermode.set': SetLowerPowerMode,
 };
 
 export interface ToggleSetParameters {
