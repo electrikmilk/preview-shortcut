@@ -72,7 +72,7 @@ const preview = new ShortcutPreview({
   look like in the Shortcuts app.
 - [ ] Optional components for JS frameworks instead of having to use a DOM selector.
 
-These are growing pains and are planned to be resolved by version 1.0.
+These are growing pains and are planned to be resolved.
 
 ## Dependencies
 
