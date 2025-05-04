@@ -60,6 +60,8 @@ import SetBluetooth from "~/actions/set-bluetooth";
 import SetLowerPowerMode from "~/actions/set-lower-power-mode";
 import ShowNotification from "~/actions/show-notification";
 import SetAppearance from "~/actions/set-appearance";
+import OpenApp from "~/actions/open-app";
+import DeleteFiles from "~/actions/delete-files";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -138,7 +140,9 @@ export let actions: ActionDefinitions = {
     'bluetooth.set': SetBluetooth,
     'lowpowermode.set': SetLowerPowerMode,
     'notification': ShowNotification,
-    'appearance': SetAppearance
+    'appearance': SetAppearance,
+    'openapp': OpenApp,
+    'file.delete': DeleteFiles,
 };
 
 export interface ToggleSetParameters {
