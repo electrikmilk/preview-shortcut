@@ -112,6 +112,9 @@ function renderAction(identifier: string, action: ActionData): Node {
 
         return card;
     }
+    if (!actionData) {
+        console.warn('Missing formal definition of', action.WFWorkflowActionIdentifier);
+    }
     const auto = document.createElement('div');
     const header = actionData ? renderActionHeader(actionData) : renderHeader(renderActionIcon('gear', 'white', 'darkgray'), identifier);
     auto.appendChild(header);
