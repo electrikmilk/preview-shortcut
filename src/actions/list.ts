@@ -11,7 +11,6 @@ interface ListParameters {
 
 export default {
     title: 'List',
-    color: 'white',
     background: Colors.Orange,
     icon: 'list_bullet',
     render: (container: HTMLElement, params: ListParameters) => {

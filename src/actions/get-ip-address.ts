@@ -10,7 +10,6 @@ interface GetIPAddress {
 
 export default {
     title: "Get current IP address",
-    color: 'white',
     background: Colors.Blue,
     icon: 'globe',
     render: (container: HTMLElement, params: GetIPAddress) => {

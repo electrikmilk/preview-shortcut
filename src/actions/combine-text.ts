@@ -12,7 +12,6 @@ interface CombineTextParameters {
 
 export default {
     title: 'Combine',
-    color: 'white',
     background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: CombineTextParameters) => {

@@ -36,7 +36,6 @@ interface WFValue {
 
 export default {
     title: 'Dictionary',
-    color: 'white',
     background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: DictionaryParameters) => {

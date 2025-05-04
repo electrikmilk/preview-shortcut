@@ -12,7 +12,6 @@ interface GetFromListParameters {
 
 export default {
     title: 'Get',
-    color: 'white',
     background: Colors.Orange,
     icon: 'list_bullet',
     render: (container: HTMLElement, params: GetFromListParameters) => {

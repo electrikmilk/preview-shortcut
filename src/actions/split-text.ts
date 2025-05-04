@@ -12,7 +12,6 @@ interface SplitTextParameters {
 
 export default {
     title: 'Split',
-    color: 'white',
     background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: SplitTextParameters) => {

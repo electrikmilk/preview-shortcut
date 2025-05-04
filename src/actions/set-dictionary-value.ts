@@ -12,7 +12,6 @@ interface SetDictionaryValueParameters {
 
 export default {
     title: 'Set',
-    color: 'white',
     background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: SetDictionaryValueParameters) => {

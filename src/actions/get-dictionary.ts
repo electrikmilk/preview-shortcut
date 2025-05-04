@@ -10,7 +10,6 @@ interface GetDictionaryParameters {
 
 export default {
     title: 'Get dictionary from',
-    color: 'white',
     background: Colors.Orange,
     icon: 'book_fill',
     render: (container: HTMLElement, params: GetDictionaryParameters) => {

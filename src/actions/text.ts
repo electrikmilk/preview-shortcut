@@ -10,7 +10,6 @@ interface TextActionParameters {
 
 export default {
     title: 'Text',
-    color: 'white',
     background: Colors.Yellow,
     icon: 'icon-text_alignleft',
     render: (container: HTMLElement, params: TextActionParameters) => {
