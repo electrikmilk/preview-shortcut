@@ -5,6 +5,7 @@ export default {
     icon: 'bluetooth',
     background: Colors.Blue,
     render(container: HTMLElement, params: ToggleSetParameters) {
-        return renderToggleSetAction(actions['airplanemode.set'], 'Bluetooth', params)
+        container.classList.add('sp-bluetooth-action');
+        return renderToggleSetAction(actions['bluetooth.set'], 'Bluetooth', params)
     }
 }
