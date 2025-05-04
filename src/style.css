@@ -255,7 +255,8 @@
     user-select: none;
     pointer-events: none;
     line-height: 0;
-    background-size: contain;
+    background-size: 105%;
+    background-position: center;
 }
 
 .sp-container .sp-action-icon i {
