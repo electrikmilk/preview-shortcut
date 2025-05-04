@@ -50,6 +50,9 @@ const preview = new ShortcutPreview({
     data: {...} // plist data as JSON object
     // or...
     url: 'https://example.com/example.plist'
+
+    header: true,
+    meta: true
 });
 ```
 
