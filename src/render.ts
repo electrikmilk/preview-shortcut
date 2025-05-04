@@ -1,5 +1,5 @@
 import {ActionData, dev, ShortcutData} from "~/main";
-import {ActionDefinition, actions, actionText} from "~/actions";
+import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
 import {renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {renderClass, renderElement, renderText} from "~/element";
@@ -112,8 +112,8 @@ function renderAction(identifier: string, action: ActionData): Node {
 
         return card;
     }
-    if (!actionData) {
-        console.warn('Missing formal definition of', action.WFWorkflowActionIdentifier);
+    if (!actionData && action.WFWorkflowActionIdentifier) {
+        missingFormalDefinition(action.WFWorkflowActionIdentifier)
     }
     const auto = document.createElement('div');
     const header = actionData ? renderActionHeader(actionData) : renderHeader(renderActionIcon('gear', 'white', 'darkgray'), identifier);

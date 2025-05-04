@@ -189,3 +189,22 @@ export function actionText(value: string): HTMLElement {
 
     return text;
 }
+
+export let missingDefs: Array<string> = []
+
+export function missingFormalDefinition(identifier: string) {
+    if (missingDefs.includes(identifier)) {
+        return;
+    }
+    if (!missingDefs.length) {
+        console.warn(
+            'Missing formal definitions for the following actions.',
+            '\n\nAutomatic rendering should allow you to still read the value of the action\'s parameters.' +
+            '\n\n**However, values unique to the action will likely not render properly.**'
+        );
+    }
+    console.warn(
+        `Missing formal definition of ${identifier}.`,
+    );
+    missingDefs.push(identifier);
+}
