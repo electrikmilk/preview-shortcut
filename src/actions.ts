@@ -58,6 +58,7 @@ import SetCellularData from "~/actions/set-cellulardata";
 import SetWifi from "~/actions/set-wifi";
 import SetBluetooth from "~/actions/set-bluetooth";
 import SetLowerPowerMode from "~/actions/set-lower-power-mode";
+import ShowNotification from "~/actions/show-notification";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -135,6 +136,7 @@ export let actions: ActionDefinitions = {
     'wifi.set': SetWifi,
     'bluetooth.set': SetBluetooth,
     'lowpowermode.set': SetLowerPowerMode,
+    'notification': ShowNotification,
 };
 
 export interface ToggleSetParameters {
