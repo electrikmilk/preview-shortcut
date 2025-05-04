@@ -27,7 +27,7 @@ export default {
         action.appendChild(renderParameters(actions['documentpicker.save'], {
             'Ask Where to Save': params.WFAskWhereToSave ?? true,
             'Subpath': params.WFFileDestinationPath,
-            'Overwrite If File Exists': params.WFSaveFileOverwrite
+            'Overwrite If File Exists': params.WFSaveFileOverwrite ?? false
         }));
 
         return action;
