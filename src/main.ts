@@ -3,7 +3,7 @@ import 'framework7-icons';
 
 import './style.css';
 
-import {renderDetails, renderInputs, renderShortcut} from "~/render";
+import {container, renderDetails, renderInputs, renderShortcut, resetContainers, setContainer} from "~/render";
 
 import {parse} from '@plist/plist';
 
@@ -11,31 +11,8 @@ import Framework7 from 'framework7/lite/bundle';
 import {renderClass, renderElement} from "~/element";
 
 let preview: HTMLDivElement | null;
-export let container: HTMLElement;
-
-export let containers: HTMLElement[] = [];
-export let containerIndex: number = 0;
 
 export const dev = import.meta.env.DEV ?? false;
-
-export function resetContainers() {
-    containers = [];
-    containers.push(container);
-}
-
-export function newContainer() {
-    const renderContainer = renderClass('sp-sub-container')
-    container.appendChild(renderContainer);
-    containers[++containerIndex] = renderContainer;
-    container = renderContainer;
-}
-
-export function prevContainer() {
-    if (containers.length === 1) {
-        return;
-    }
-    container = containers[--containerIndex];
-}
 
 export interface PreviewOptions {
     selector: string
@@ -229,10 +206,9 @@ export class ShortcutPreview {
             preview.appendChild(header);
         }
 
-        container = renderClass('sp-container ios');
+        setContainer(renderClass('sp-container ios'))
 
-        containers = [];
-        containers.push(container);
+        resetContainers()
 
         if (this.meta) {
             renderDetails(this.data)

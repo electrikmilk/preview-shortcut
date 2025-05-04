@@ -1,18 +1,13 @@
-import {
-    ActionData,
-    container,
-    containerIndex,
-    dev,
-    newContainer,
-    prevContainer,
-    resetContainers,
-    ShortcutData
-} from "~/main";
+import {ActionData, dev, ShortcutData} from "~/main";
 import {ActionDefinition, actions, actionText} from "~/actions";
 import {renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";
+
+export let container: HTMLElement;
+export let containers: HTMLElement[] = [];
+export let containerIndex: number = 0;
 
 interface ActionParameters {
     [key: string]: any
@@ -56,6 +51,29 @@ export function renderShortcut(shortcutActions: Array<ActionData>) {
     if (dev) {
         console.groupEnd();
     }
+}
+
+export function resetContainers() {
+    containers = [];
+    containers.push(container);
+}
+
+export function newContainer() {
+    const renderContainer = renderClass('sp-sub-container')
+    container.appendChild(renderContainer);
+    containers[++containerIndex] = renderContainer;
+    container = renderContainer;
+}
+
+export function prevContainer() {
+    if (containers.length === 1) {
+        return;
+    }
+    container = containers[--containerIndex];
+}
+
+export function setContainer(newContainer: HTMLElement) {
+    container = newContainer;
 }
 
 function renderCardContent(element: HTMLElement) {
@@ -695,48 +713,6 @@ export function renderTreeItem(contents: HTMLElement[], ...children: HTMLElement
         renderClass('treeview-item-root', ...itemRoot),
         renderClass('treeview-item-children', ...children)
     );
-}
-
-export function renderTable(data: Array<Object>, callback: Function) {
-    const table = document.createElement('table');
-    const thead = document.createElement('thead');
-    const theadRow = document.createElement('tr');
-    const keys = Object.keys(data[0]);
-    for (const key of keys) {
-        const th = document.createElement('th');
-        th.innerHTML = key;
-        theadRow.appendChild(th);
-    }
-    thead.appendChild(theadRow);
-    table.appendChild(thead);
-
-
-    const tbody = document.createElement('tbody');
-    for (let item of data) {
-        const tr = document.createElement('tr');
-
-        for (const key in item) {
-            // @ts-ignore
-            tr.appendChild(renderElement('td', callback(key, item[key])));
-        }
-
-        tbody.appendChild(tr);
-    }
-
-    const footer = document.createElement('tr');
-    footer.className = 'sp-action-list-footer';
-    const itemsSize = data.length;
-    const s = itemsSize ? 's' : null;
-    footer.innerHTML = `<td>${itemsSize} item${s}</td><td></td><td></td>`;
-    tbody.appendChild(footer);
-
-    table.appendChild(tbody);
-
-    const container = document.createElement('div');
-    container.className = 'table-container';
-    container.appendChild(table);
-
-    return container;
 }
 
 export function renderLabel(label: string, ...children: HTMLElement[]) {
