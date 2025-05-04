@@ -148,7 +148,7 @@ export interface ToggleSetParameters {
 }
 
 export function renderToggleSetAction(definition: ActionDefinition, text: string, params: ToggleSetParameters) {
-    let header: HTMLElement[] = [renderValue(params.operation ?? 'Turn'), actionText(text)];
+    let header: HTMLElement[] = [renderValue(capitalize(String(params.operation) ?? 'Turn')), actionText(text)];
     if (params.OnValue || params.state || !params.operation) {
         let state = params.OnValue ?? params.state ?? 1;
         let value;
