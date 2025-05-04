@@ -47,7 +47,7 @@ import 'preview-shortcut/css';
 import {ShortcutPreview} from 'preview-shortcut';
 
 const preview = new ShortcutPreview({
-    data: {...} // plist data as JSON object
+    data: {...} // plist data or object
     // or...
     url: 'https://example.com/example.plist'
 
