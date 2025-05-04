@@ -50,7 +50,7 @@ export default {
             actionText('from'),
             renderValue(codeToLanguage(params.WFSelectedFromLanguage ?? 'Detected Language')),
             actionText('to'),
-            renderValue(codeToLanguage(params.WFSelectedLanguage))
+            renderValue(codeToLanguage(params.WFSelectedLanguage ?? 'System Language'))
         )
     }
 }
