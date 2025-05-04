@@ -550,6 +550,12 @@ function renderSetupTab(shortcut: ShortcutData): HTMLElement[] {
                 ))
             }
         }
+        if (!shortcut.WFWorkflowImportQuestions.length) {
+            questions.push(renderListItem(null,
+                // @ts-ignore
+                renderElement('div', {}, renderText('No import questions')),
+            ))
+        }
     }
 
     return [
