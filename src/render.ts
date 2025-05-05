@@ -787,7 +787,7 @@ export function renderOutputSurfaceBehavior(WFNoOutputSurfaceBehavior: any, WFRe
 }
 
 export function renderShortcutOutputSurfaceBehavior(shortcut: ShortcutData): HTMLElement {
-    let behavior: string = ""
+    let behavior: string = "Continue"
     let response: string = ""
     if (shortcut.WFWorkflowNoInputBehavior?.Parameters) {
         switch (shortcut.WFWorkflowNoInputBehavior.Name) {
