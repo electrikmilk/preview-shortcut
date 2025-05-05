@@ -58,9 +58,19 @@ const preview = new ShortcutPreview({
 
 [Learn more on the project wiki.](https://github.com/electrikmilk/preview-shortcut/wiki)
 
-#### Dark Mode Support
+### Inputs, No Input
 
-![Screenshot 2023-11-25 at 19 51 04](https://github.com/electrikmilk/preview-shortcut/assets/4368524/9cac0dc7-945c-4ada-804e-5c3e447f0fc3)
+<img width="449" alt="Inputs" src="https://github.com/user-attachments/assets/3582fe8e-0940-4746-9150-e55cbe6b4c13" />
+
+### Details and Setup
+
+<img width="346" alt="Screenshot 2025-05-04 at 22 49 58" src="https://github.com/user-attachments/assets/366d025a-421d-4e2b-a92c-9d5ec1dfba43" />
+
+<img width="479" alt="Screenshot 2025-05-04 at 19 19 22" src="https://github.com/user-attachments/assets/9e1ed15f-74a8-45aa-a65a-bd39fef59dba" />
+
+### Dark Mode Support
+
+<img width="449" alt="Dark Mode" src="[https://github.com/user-attachments/assets/3582fe8e-0940-4746-9150-e55cbe6b4c13](https://github.com/electrikmilk/preview-shortcut/assets/4368524/9cac0dc7-945c-4ada-804e-5c3e447f0fc3)" />
 
 ## Work in Progress
 
