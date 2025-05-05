@@ -534,7 +534,7 @@ function renderSetupTab(shortcut: ShortcutData): HTMLElement[] {
                 const action = actions[identifier]
 
                 questions.push(renderListItem(
-                    renderActionIcon(action.icon, action.color, action.background),
+                    renderActionIcon(action.icon ?? 'gear', action.color ?? 'white', action.background ?? Colors.Gray),
                     renderElement('div', {style: 'text-align: left'},
                         renderElement('div', {className: 'item-title-row'},
                             renderElement('div', {
