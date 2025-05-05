@@ -64,6 +64,8 @@ const preview = new ShortcutPreview({
 
 ### Details and Setup
 
+Clicking on the info circle will pop a modal containing Details and Setup tabs similar to the Shortcuts app.
+
 <img width="346" alt="Screenshot 2025-05-04 at 22 49 58" src="https://github.com/user-attachments/assets/366d025a-421d-4e2b-a92c-9d5ec1dfba43" />
 
 <img width="479" alt="Screenshot 2025-05-04 at 19 19 22" src="https://github.com/user-attachments/assets/9e1ed15f-74a8-45aa-a65a-bd39fef59dba" />
