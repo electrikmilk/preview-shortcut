@@ -70,7 +70,7 @@ const preview = new ShortcutPreview({
 
 ### Dark Mode Support
 
-<img width="449" alt="Dark Mode" src="[https://github.com/user-attachments/assets/3582fe8e-0940-4746-9150-e55cbe6b4c13](https://github.com/electrikmilk/preview-shortcut/assets/4368524/9cac0dc7-945c-4ada-804e-5c3e447f0fc3)" />
+<img width="449" alt="Dark Mode" src="https://github.com/electrikmilk/preview-shortcut/assets/4368524/9cac0dc7-945c-4ada-804e-5c3e447f0fc3" />
 
 ## Work in Progress
 
