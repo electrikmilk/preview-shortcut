@@ -510,7 +510,7 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
         renderInsetList(
             renderListItem(null, 'Show on Apple Watch',
                 renderValue(shortcut.WFWorkflowTypes ?
-                    shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
+                    shortcut.WFWorkflowTypes.includes(workflows.Watch) : false)
             ),
         )
     ];
