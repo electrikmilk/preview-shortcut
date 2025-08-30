@@ -10,7 +10,7 @@ interface WaitParameters {
 
 export default {
     title: 'Wait',
-    icon: 'clock_fill',
+    icon: 'hourglass',
     background: Colors.Gray,
     render: (container: HTMLElement, params: WaitParameters) => {
         let value
