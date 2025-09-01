@@ -21,7 +21,7 @@ import ChooseFromList from "~/actions/choose-from-list";
 import CombineText from "~/actions/combine-text";
 import AskForInput from "~/actions/ask-for-input";
 import SplitText from "~/actions/split-text";
-import GetFromList from "~/actions/get-from-list";
+import GetItemFromList from "~/actions/get-item-from-list";
 import SetName from "~/actions/set-name";
 import Output from "~/actions/output";
 import CopyToClipboard from "~/actions/copy-to-clipboard";
@@ -91,7 +91,7 @@ export let actions: ActionDefinitions = {
     'ask': AskForInput,
     'text.combine': CombineText,
     'text.split': SplitText,
-    'getitemfromlist': GetFromList,
+    'getitemfromlist': GetItemFromList,
     'comment': Comment,
     'setvariable': SetVariable,
     'appendvariable': AddToVariable,
