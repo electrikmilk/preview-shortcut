@@ -92,6 +92,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     let varName;
     let varType;
     let varUUID;
+    let prompt;
     let aggrandizements: Aggrandizement[] = []
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
@@ -115,6 +116,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
         varUUID = value.Value.OutputUUID ?? value.Value.UUID;
+        prompt = value.Value?.Prompt;
 
         if (value.Value.Aggrandizements) {
             aggrandizements = value.Value.Aggrandizements
@@ -145,7 +147,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     }
 
     container.appendChild(
-        renderInlineRef(aggrandizements, varName, varType, varUUID),
+        renderInlineRef(aggrandizements, varName, varType, varUUID, prompt),
     );
 }
 
@@ -177,7 +179,7 @@ function globalIcon(valueType: string) {
 
 const globals = ['DeviceDetails', 'ExtensionInput', 'CurrentDate', 'Ask', 'Clipboard'];
 
-function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string) {
+function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string, prompt?: string) {
     let char = 'f_cursive';
 
     switch (varName) {
@@ -234,6 +236,9 @@ function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, typ
 
     if (char) {
         icon.classList.add(char);
+    }
+    if (prompt) {
+        varName += `: "${prompt}"`;
     }
     if (aggrandizements) {
         varName += getAggrandizements(aggrandizements)
