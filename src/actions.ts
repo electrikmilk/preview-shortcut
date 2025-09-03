@@ -71,6 +71,7 @@ import GetContentsOfWebpage from "~/actions/get-contents-of-webpage";
 import GetLocation from "~/actions/get-location";
 import DetectText from "~/actions/detect-text";
 import GetBatteryStatus from "~/actions/get-battery-level";
+import SetFocusMode from "~/actions/set-focus-mode";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -160,6 +161,7 @@ export let actions: ActionDefinitions = {
     'location': GetLocation,
     'detect.text': DetectText,
     'getbatterylevel': GetBatteryStatus,
+    'dnd.set': SetFocusMode,
 };
 
 export interface ToggleSetParameters {
