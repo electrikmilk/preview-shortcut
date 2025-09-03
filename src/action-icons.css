@@ -22,6 +22,11 @@
         background: #3d2622 !important;
     }
 
+    .sp-container .sp-location-action .sp-action-icon:not(.sp-variable-icon) {
+        color: #27cd41 !important;
+        background: #304034 !important;
+    }
+
     .sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {
         color: #0b84ff !important;
         background: #202d3b !important;
@@ -32,6 +37,10 @@
     .sp-container .sp-date-action .sp-action-icon:not(.sp-variable-icon) {
         color: #ff3b2f !important;
         background: #ffeeee !important;
+    }
+
+    .sp-container .sp-location-action .sp-action-icon:not(.sp-variable-icon) {
+        background: #e4f7e7 !important;
     }
 
     .sp-container .sp-blue-action .sp-action-icon:not(.sp-variable-icon) {

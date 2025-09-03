@@ -68,6 +68,7 @@ import DetectLanguage from "~/actions/detect-language";
 import ReplaceText from "~/actions/replace-text";
 import Base64Encode from "~/actions/base64-encode";
 import GetContentsOfWebpage from "~/actions/get-contents-of-webpage";
+import GetLocation from "~/actions/get-location";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -154,6 +155,7 @@ export let actions: ActionDefinitions = {
     'text.replace': ReplaceText,
     'base64encode': Base64Encode,
     'getwebpagecontents': GetContentsOfWebpage,
+    'location': GetLocation,
 };
 
 export interface ToggleSetParameters {
