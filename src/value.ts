@@ -178,6 +178,8 @@ function globalIcon(valueType: string) {
 const globals = ['DeviceDetails', 'ExtensionInput', 'CurrentDate', 'Ask', 'Clipboard'];
 
 function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string) {
+    let char = 'f_cursive';
+
     switch (varName) {
         case 'ShortcutInput':
             varName = 'Shortcut Input';
@@ -195,7 +197,6 @@ function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, typ
     const variable = renderElement('div', {className: 'sp-variable-value'});
     const icon = renderElement('div', {className: 'sp-action-icon sp-variable-icon'});
 
-    let char;
     if (type) {
         switch (type) {
             case 'DeviceDetails':
@@ -224,12 +225,12 @@ function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, typ
                     varName = type
                 }
         }
-        if (globals.includes(varName)) {
+        if (globals.includes(type)) {
             char = globalIcon(type);
         }
     }
 
-    icon.appendChild(renderInlineIcon(char ?? 'f_cursive'));
+    icon.appendChild(renderInlineIcon(char));
 
     if (char) {
         icon.classList.add(char);
