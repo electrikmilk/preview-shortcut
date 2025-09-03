@@ -9,6 +9,8 @@ export let container: HTMLElement;
 export let containers: HTMLElement[] = [];
 export let containerIndex: number = 0;
 
+let shortcutActions: Array<ActionData>
+
 interface ActionParameters {
     [key: string]: any
 }
@@ -20,10 +22,13 @@ export const controlFlowEnd = 2;
 let actionIndex = 0;
 let actionTotal = 0;
 
-export function renderShortcut(shortcutActions: Array<ActionData>) {
+export function renderShortcut(actionData: Array<ActionData>) {
     if (dev) {
         console.group('Render Shortcut');
     }
+
+    shortcutActions = actionData;
+
     actionIndex = 0;
     actionTotal = shortcutActions.length;
     for (const action of shortcutActions) {
@@ -80,6 +85,24 @@ function renderCardContent(element: HTMLElement) {
     return renderClass('card-content',
         renderList(element)
     )
+}
+
+// Get action by UUID from actions tree.
+export function getActionByUUID(uuid: string): ActionDefinition | null {
+    for (const action of shortcutActions) {
+        const identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '')
+        if (
+            !action.WFWorkflowActionParameters.hasOwnProperty("UUID") ||
+            // @ts-ignore
+            action.WFWorkflowActionParameters["UUID"] !== uuid ||
+            !actions[identifier]
+        ) {
+            continue;
+        }
+
+        return actions[identifier];
+    }
+    return null;
 }
 
 function renderAction(identifier: string, action: ActionData): Node {

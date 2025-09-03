@@ -1,6 +1,7 @@
-import {contentItemTypes, renderDictionary, renderInlineIcon} from "~/render";
-import {Aggrandizement} from "~/actions/dictionary";
+import {contentItemTypes, getActionByUUID, renderDictionary, renderInlineIcon} from "~/render";
+import {Aggrandizement, Value} from "~/actions/dictionary";
 import {renderElement} from "~/element";
+import {Colors} from "~/colors";
 
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
@@ -91,6 +92,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
     let varName;
     let varType;
+    let varUUID;
     let attachments: Aggrandizement[] = []
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
@@ -99,7 +101,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
                 let attachment = value.Value.attachmentsByRange[v];
                 let varTypeName = attachment.OutputName ?? attachment.Variable ?? attachment.VariableName ?? attachment.PropertyName;
 
-                const inlineVar = renderInlineVariable(attachment.Aggrandizements, varTypeName, attachment.Type);
+                const inlineVar = renderInlineRef(attachment.Aggrandizements, varTypeName, attachment.Type, attachment.OutputUUID);
                 str = str.replace('\uFFFC', inlineVar.outerHTML);
             }
             container.innerHTML = str;
@@ -113,6 +115,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
         varName = value.Value.VariableName ?? value.Value.OutputName ?? value.Value.PropertyName;
         varType = value.Value.Type;
+        varUUID = value.Value.OutputUUID ?? value.Value.UUID;
 
         if (value.Value.Aggrandizements) {
             attachments = value.Value.Aggrandizements
@@ -126,6 +129,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         const variableValue = value.Variable.Value;
         varName = variableValue.VariableName ?? variableValue.OutputName ?? variableValue.PropertyName;
         varType = variableValue.Type;
+        varUUID = variableValue.OutputUUID
         if (value.Variable.Value.Aggrandizements) {
             attachments = value.Variable.Value.Aggrandizements
         }
@@ -142,7 +146,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     }
 
     container.appendChild(
-        renderInlineVariable(attachments, varName, varType),
+        renderInlineRef(attachments, varName, varType, varUUID),
     );
 }
 
@@ -151,7 +155,7 @@ function escapeHTML(unsafe: string): string {
         .replace(/"/g, "&quot;").replace(/'/g, "&#039;")
 }
 
-function variableIcon(valueType: string) {
+function globalIcon(valueType: string) {
     let icon = 'f_cursive';
     if (valueType !== 'Variable') {
         icon = 'globe';
@@ -159,8 +163,6 @@ function variableIcon(valueType: string) {
     switch (valueType) {
         case 'DeviceDetails':
             return 'desktopcomputer';
-        case 'ActionOutput':
-            return 'wand_stars';
         case'ExtensionInput':
             return 'layers_fill';
         case 'Ask':
@@ -174,7 +176,9 @@ function variableIcon(valueType: string) {
     }
 }
 
-function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string, char?: string) {
+const globals = ['DeviceDetails', 'ExtensionInput', 'CurrentDate', 'Ask', 'Clipboard'];
+
+function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string) {
     switch (varName) {
         case 'ShortcutInput':
             varName = 'Shortcut Input';
@@ -190,15 +194,25 @@ function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string
     }
 
     const variable = renderElement('div', {className: 'sp-variable-value'});
+    const icon = renderElement('div', {className: 'sp-action-icon sp-variable-icon'});
 
-    if (char) {
-        switch (char) {
+    let char;
+    if (type) {
+        switch (type) {
             case 'DeviceDetails':
                 varName = 'Device Details';
                 break;
             case 'ActionOutput':
+                char = 'wand_stars';
+                if (uuid) {
+                    const attachmentAction = getActionByUUID(uuid)
+                    if (attachmentAction?.icon) {
+                        char = attachmentAction.icon;
+                    }
+                    icon.style.backgroundColor = attachmentAction?.background ?? Colors.Gray;
+                }
                 break;
-            case'ExtensionInput':
+            case 'ExtensionInput':
                 varName = 'Shortcut Input';
                 break;
             case 'CurrentDate':
@@ -206,18 +220,19 @@ function renderInlineVariable(aggrandizements: Aggrandizement[], varName: string
                 break;
             default:
                 if (!varName) {
-                    varName = char
+                    varName = type
                 }
         }
-        char = variableIcon(char);
+        if (globals.includes(varName)) {
+            char = globalIcon(type);
+        }
     }
-    const icon = renderElement('div', {className: 'sp-action-icon sp-variable-icon'});
+
     icon.appendChild(renderInlineIcon(char ?? 'f_cursive'));
 
     if (char) {
         icon.classList.add(char);
     }
-
     if (aggrandizements) {
         varName += getAggrandizements(aggrandizements)
     }

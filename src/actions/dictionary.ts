@@ -21,6 +21,7 @@ export interface Aggrandizement {
     DictionaryKey: string
     PropertyName: string
     Type: string
+    OutputUUID: string
 }
 
 export interface DictionaryItem {
