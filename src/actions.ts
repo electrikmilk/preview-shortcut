@@ -1,3 +1,6 @@
+import {capitalize, renderValue} from "~/value";
+import {renderActionHeader} from "~/render";
+
 import Text from "~/actions/text";
 import Comment from "~/actions/comment";
 import SetVariable from "~/actions/set-variable";
@@ -60,13 +63,11 @@ import ShowNotification from "~/actions/show-notification";
 import SetAppearance from "~/actions/set-appearance";
 import OpenApp from "~/actions/open-app";
 import DeleteFiles from "~/actions/delete-files";
-
-import {capitalize, renderValue} from "~/value";
-import {renderActionHeader} from "~/render";
 import Translate from "~/actions/translate";
 import DetectLanguage from "~/actions/detect-language";
 import ReplaceText from "~/actions/replace-text";
 import Base64Encode from "~/actions/base64-encode";
+import GetContentsOfWebpage from "~/actions/get-contents-of-webpage";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -152,6 +153,7 @@ export let actions: ActionDefinitions = {
     'detectlanguage': DetectLanguage,
     'text.replace': ReplaceText,
     'base64encode': Base64Encode,
+    'getwebpagecontents': GetContentsOfWebpage,
 };
 
 export interface ToggleSetParameters {
