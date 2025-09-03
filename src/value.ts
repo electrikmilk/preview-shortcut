@@ -1,7 +1,6 @@
 import {contentItemTypes, getActionByUUID, renderDictionary, renderInlineIcon} from "~/render";
 import {Aggrandizement, Value} from "~/actions/dictionary";
 import {renderElement} from "~/element";
-import {Colors} from "~/colors";
 
 export function renderValue(value?: any, placeholder: string = 'Value'): HTMLElement {
     const container = document.createElement('div');
@@ -209,7 +208,9 @@ function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, typ
                     if (attachmentAction?.icon) {
                         char = attachmentAction.icon;
                     }
-                    icon.style.backgroundColor = attachmentAction?.background ?? Colors.Gray;
+                    if (attachmentAction?.background) {
+                        icon.style.backgroundColor = attachmentAction?.background;
+                    }
                 }
                 break;
             case 'ExtensionInput':
