@@ -69,6 +69,8 @@ import ReplaceText from "~/actions/replace-text";
 import Base64Encode from "~/actions/base64-encode";
 import GetContentsOfWebpage from "~/actions/get-contents-of-webpage";
 import GetLocation from "~/actions/get-location";
+import DetectText from "~/actions/detect-text";
+import GetBatteryStatus from "~/actions/get-battery-level";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -156,6 +158,8 @@ export let actions: ActionDefinitions = {
     'base64encode': Base64Encode,
     'getwebpagecontents': GetContentsOfWebpage,
     'location': GetLocation,
+    'detect.text': DetectText,
+    'getbatterylevel': GetBatteryStatus,
 };
 
 export interface ToggleSetParameters {
