@@ -57,6 +57,9 @@
     .sp-container .sp-variable-icon.layers_fill,
     .sp-container .sp-variable-icon.desktopcomputer,
     .sp-container .sp-variable-icon.calendar,
+    .sp-container .sp-variable-icon.folder_fill,
+    .sp-container .sp-variable-icon.arrow_down_doc_fill,
+    .sp-container .sp-variable-icon.map_pin,
     .sp-container .sp-variable-icon.doc_on_clipboard {
         background: #1d222b !important;
         color: #007aff !important;
