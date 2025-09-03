@@ -196,7 +196,13 @@ function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, typ
             varName = 'Ask Each Time';
     }
 
-    const variable = renderElement('div', {className: 'sp-variable-value'});
+    const variable = renderElement('a', {className: 'sp-variable-value external'});
+    if (uuid) {
+        variable.setAttribute('href', `#action-${uuid}`)
+    } else if (type === 'ExtensionInput') {
+        variable.setAttribute('href', '#shortcut-input')
+    }
+
     const icon = renderElement('div', {className: 'sp-action-icon sp-variable-icon'});
 
     if (type) {

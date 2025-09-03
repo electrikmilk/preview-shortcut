@@ -113,6 +113,14 @@ function renderAction(identifier: string, action: ActionData): Node {
     const card = document.createElement('div');
     card.className = 'card';
 
+    // @ts-ignore
+    if (action.WFWorkflowActionParameters["UUID"]) {
+        card.id = `action-${
+            // @ts-ignore
+            action.WFWorkflowActionParameters["UUID"]
+        }`
+    }
+
     renderActionConnection(card, action);
 
     let actionData = null;
@@ -402,6 +410,7 @@ export function renderInputs(shortcut: ShortcutData) {
     }
     const card = document.createElement('div');
     card.className = 'card sp-linked-action';
+    card.id = 'shortcut-input'
 
     let inputs = [];
     if (shortcut.WFWorkflowInputContentItemClasses) {
