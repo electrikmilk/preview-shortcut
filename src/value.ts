@@ -93,7 +93,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     let varName;
     let varType;
     let varUUID;
-    let attachments: Aggrandizement[] = []
+    let aggrandizements: Aggrandizement[] = []
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
             let str = escapeHTML(String(value.Value.string));
@@ -118,7 +118,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varUUID = value.Value.OutputUUID ?? value.Value.UUID;
 
         if (value.Value.Aggrandizements) {
-            attachments = value.Value.Aggrandizements
+            aggrandizements = value.Value.Aggrandizements
         }
 
         if (value.Value.Value && value.Value.Value.WFDictionaryFieldValueItems) {
@@ -131,7 +131,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
         varType = variableValue.Type;
         varUUID = variableValue.OutputUUID
         if (value.Variable.Value.Aggrandizements) {
-            attachments = value.Variable.Value.Aggrandizements
+            aggrandizements = value.Variable.Value.Aggrandizements
         }
     } else if (value.workflowName) {
         container.innerText = value.workflowName;
@@ -146,7 +146,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     }
 
     container.appendChild(
-        renderInlineRef(attachments, varName, varType, varUUID),
+        renderInlineRef(aggrandizements, varName, varType, varUUID),
     );
 }
 
