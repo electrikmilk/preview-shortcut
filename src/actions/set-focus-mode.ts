@@ -10,6 +10,12 @@ interface DoNotDisturbParameters {
     AssertionType: string
     Event: object | string
     Time: object | string
+    FocusModes: FocusMode
+}
+
+interface FocusMode {
+    DisplayString: string
+    Identifier: string
 }
 
 export default {
@@ -39,6 +45,6 @@ export default {
             }
         }
 
-        return renderActionHeader(actions['dnd.set'], renderValue(params.Operation ?? 'Turn'), actionText("Do Not Disturb"), ...header);
+        return renderActionHeader(actions['dnd.set'], renderValue(params.Operation ?? 'Turn'), renderValue(params.FocusModes.DisplayString ?? 'Do Not Disturb'), ...header);
     }
 }
