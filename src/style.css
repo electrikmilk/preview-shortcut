@@ -338,11 +338,12 @@
     place-content: center;
     user-select: none;
     cursor: default;
+    transition: 0.3s all;
 }
 
 .sp-container .sp-variable-value[href]:hover {
     cursor: pointer;
-    filter: brightness(120%);
+    filter: brightness(110%);
 }
 
 .sp-container .sp-value {
