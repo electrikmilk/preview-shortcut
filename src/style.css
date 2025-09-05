@@ -227,6 +227,11 @@
     border-radius: 0.8rem;
 }
 
+.sp-container .card:target {
+    outline: 0.1rem solid #0b84ff;
+    box-shadow: 0 0 1rem #0b84ff;
+}
+
 .sp-action-content {
     font-size: 0.8rem;
     border-radius: 0.5rem;
