@@ -1,8 +1,17 @@
 export function renderElement(tag: string = 'div', attributes: object = {}, ...elements: HTMLElement[]) {
     const element = document.createElement(tag);
     for (const key in attributes) {
-        // @ts-ignore
-        element[key] = attributes[key];
+        if (key in element) {
+            // @ts-ignore
+            element[key] = attributes[key];
+            // @ts-ignore
+        } else if (typeof attributes[key] === 'boolean') {
+            // @ts-ignore
+            element.toggleAttribute(key, attributes[key])
+        } else {
+            // @ts-ignore
+            element.setAttribute(key, attributes[key])
+        }
     }
 
     element.append(...elements);
