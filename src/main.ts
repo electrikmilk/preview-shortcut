@@ -8,6 +8,7 @@ import {
     renderDetails,
     renderInputs,
     renderShortcut,
+    renderVariables,
     resetContainers,
     setContainer,
     WFWorkflowNoInputBehavior
@@ -29,6 +30,7 @@ export interface PreviewOptions {
     data: object
     header: boolean
     meta: boolean
+    variables: boolean
     framework7: Framework7
 }
 
@@ -110,6 +112,7 @@ export class ShortcutPreview {
     data: ShortcutData = {};
     header: boolean
     meta: boolean
+    variables: boolean
     framework7: Framework7
 
     constructor(options: PreviewOptions) {
@@ -123,6 +126,7 @@ export class ShortcutPreview {
         this.data = options.data ?? null;
         this.header = options.header ?? true;
         this.meta = options.meta ?? true;
+        this.variables = options.variables ?? true;
         this.framework7 = options.framework7 ?? new Framework7({
             theme: 'ios',
         });
@@ -188,6 +192,17 @@ export class ShortcutPreview {
         }
         preview.innerHTML = '';
 
+        setContainer(renderClass('sp-container ios'))
+
+        resetContainers()
+
+        if (this.variables && this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
+            renderVariables(this.data.WFWorkflowActions)
+        }
+        if (this.meta) {
+            renderDetails(this.data)
+        }
+
         if (this.header) {
             const header = renderClass('sp-header');
 
@@ -215,12 +230,7 @@ export class ShortcutPreview {
             preview.appendChild(header);
         }
 
-        setContainer(renderClass('sp-container ios'))
-
-        resetContainers()
-
         if (this.meta) {
-            renderDetails(this.data)
             renderInputs(this.data);
         }
 

@@ -179,7 +179,7 @@ function globalIcon(valueType: string) {
 
 const globals = ['DeviceDetails', 'ExtensionInput', 'CurrentDate', 'Ask', 'Clipboard'];
 
-function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string, prompt?: string) {
+export function renderInlineRef(aggrandizements: Aggrandizement[], varName: string, type?: string, uuid?: string, prompt?: string) {
     let char = 'f_cursive';
 
     switch (varName) {

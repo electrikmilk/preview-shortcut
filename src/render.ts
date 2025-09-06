@@ -1,6 +1,6 @@
 import {ActionData, dev, ShortcutData} from "~/main";
 import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
-import {renderUnstyledValue, renderValue} from "~/value";
+import {renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {applyStyles, renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";
@@ -459,50 +459,86 @@ function toggleModal() {
     }
 }
 
-export function renderDetails(shortcut: ShortcutData): void {
-    container.appendChild(renderElement('div', {},
-        renderElement('div', {
-                className: 'link text-color-blue sp-open-details',
-                onclick: toggleModal,
-                ariaLabel: 'View Shortcut Details',
-                title: 'Shortcut Details',
-            },
-            renderInlineIcon('info_circle'),
-        ),
+function toggleVariables() {
+    const modal = document.querySelector('.sp-variables-container') as HTMLElement;
+    if (modal) {
+        modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+    }
+}
 
-        renderClass('sp-modal',
-            renderClass('sp-modal-content',
-                renderElement('div', {style: 'margin:1rem'},
-                    renderElement('div', {style: 'text-align:right'},
-                        renderElement('div', {
-                                className: 'link text-color-blue',
-                                onclick: toggleModal,
-                            },
-                            renderInlineIcon('xmark'),
-                        ),
+export function renderVariables(actionData: Array<ActionData>): void {
+    let variables = [];
+    let variableNames: string[] = [];
+    for (const action of actionData) {
+        if (action.WFWorkflowActionIdentifier === 'is.workflow.actions.setvariable') {
+            // @ts-ignore
+            const variableName = action.WFWorkflowActionParameters["WFVariableName"] as string
+            if (!variableNames.includes(variableName)) {
+                variableNames.push(variableName)
+                variables.push(renderElement('div', {},
+                    // @ts-ignore
+                    renderInlineRef(null, variableName)
+                ));
+            }
+        }
+    }
+
+    container.prepend(
+        renderElement('div', {},
+            renderElement('div', {
+                    className: 'link text-color-blue sp-show-variables',
+                    onclick: toggleVariables,
+                    ariaLabel: 'View Shortcut Variables',
+                    title: 'Variables',
+                },
+                renderInlineIcon('f_cursive'),
+            ), renderElement('div', {className: 'sp-variables-container'}, ...variables)
+        )
+    )
+}
+
+export function renderDetails(shortcut: ShortcutData): void {
+    container.appendChild(renderClass('sp-modal',
+        renderClass('sp-modal-content',
+            renderElement('div', {style: 'margin:1rem'},
+                renderElement('div', {style: 'text-align:right'},
+                    renderElement('div', {
+                            className: 'link text-color-blue',
+                            onclick: toggleModal,
+                        },
+                        renderInlineIcon('xmark'),
                     ),
-                    renderSegmentedControl([
-                        {
-                            text: 'Details',
-                        },
-                        {
-                            text: 'Setup',
-                        },
-                    ]),
                 ),
-                renderClass('tabs',
-                    renderElement('div', {
-                        className: 'tab tab-active',
-                        id: 'tab-details'
-                    }, ...renderDetailsTab(shortcut)),
-                    renderElement('div', {
-                        className: 'tab',
-                        id: 'tab-setup',
-                    }, ...renderSetupTab(shortcut)),
-                ),
-            )
-        ),
+                renderSegmentedControl([
+                    {
+                        text: 'Details',
+                    },
+                    {
+                        text: 'Setup',
+                    },
+                ]),
+            ),
+            renderClass('tabs',
+                renderElement('div', {
+                    className: 'tab tab-active',
+                    id: 'tab-details'
+                }, ...renderDetailsTab(shortcut)),
+                renderElement('div', {
+                    className: 'tab',
+                    id: 'tab-setup',
+                }, ...renderSetupTab(shortcut)),
+            ),
+        )
     ))
+
+    container.appendChild(renderElement('div', {
+            className: 'link text-color-blue sp-open-details',
+            onclick: toggleModal,
+            ariaLabel: 'View Shortcut Details',
+            title: 'Shortcut Details',
+        },
+        renderInlineIcon('info_circle'),
+    ));
 }
 
 function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
