@@ -122,8 +122,12 @@
         border-color: #3a3a3b !important;
     }
 
-    .sp-container .sp-modal .sp-modal-content, .sp-container .sp-variables-container {
+    .sp-container .sp-modal .sp-modal-content {
         background: #121212 !important;
+    }
+
+    .sp-container .sp-variables-container {
+        background: #12121299 !important;
     }
 
     .sp-container .segmented .button {
