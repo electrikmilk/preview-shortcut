@@ -73,6 +73,7 @@ import DetectText from "~/actions/detect-text";
 import GetBatteryStatus from "~/actions/get-battery-level";
 import SetFocusMode from "~/actions/set-focus-mode";
 import SelectFile from "~/actions/file-select";
+import SelectPhoto from "~/actions/select-photo";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -164,6 +165,7 @@ export let actions: ActionDefinitions = {
     'getbatterylevel': GetBatteryStatus,
     'dnd.set': SetFocusMode,
     'file.select': SelectFile,
+    'selectphoto': SelectPhoto,
 };
 
 export interface ToggleSetParameters {
