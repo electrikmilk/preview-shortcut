@@ -17,7 +17,7 @@ interface FileLocation {
     relativeSubpath: string
 }
 
-export function fileValue(file: WFFile) {
+function fileValue(file: WFFile) {
     return [
         renderValue(file.fileLocation.WFFileLocationType),
         actionText('/'),
