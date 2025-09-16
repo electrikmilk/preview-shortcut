@@ -11,6 +11,7 @@ Preview Shortcut renders a fairly accurate Siri Shortcut preview from JSON or pr
 - Accepts JSON or Property List (.plist) data (will support encrypted in the future).
 - Agnostic to any framework, written in vanilla TypeScript.
 - Displays Shortcut metadata like the icon, inputs, details and setup.
+- Click action references to jump to that action.
 - Dark mode support.
 
 Sites that use it:
