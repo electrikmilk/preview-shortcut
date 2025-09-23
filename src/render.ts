@@ -387,6 +387,8 @@ const workflowTypes = {
     "Sleep": "Sleep Mode",
     "Watch": "Apple Watch",
     "ReceivesOnScreenContent": "What's On Screen",
+    "WFWorkflowTypeShowInSearch": "Search",
+    "WFWorkflowTypeReceivesInputFromSearch": "Search Result",
 }
 
 const workflows = {
@@ -397,6 +399,8 @@ const workflows = {
     Sleep: "Sleep",
     Watch: "Watch",
     ReceivesOnScreenContent: "ReceivesOnScreenContent",
+    ShowInSearch: "WFWorkflowTypeShowInSearch",
+    ReceivesInputFromSearch: "WFWorkflowTypeReceivesInputFromSearch",
 }
 
 const quickActions = {
@@ -548,6 +552,10 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.ActionExtension) : false)
             ),
+            renderListItem(renderActionIcon('search', 'white', Colors.Gray), 'Show in Search/Spotlight',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.ShowInSearch) : false)
+            ),
         ),
         renderBlockHeader('Mac'),
         renderInsetList(
@@ -559,18 +567,22 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.ReceivesOnScreenContent) : false)
             ),
-            renderListItem(renderActionIcon('gear_alt_fill', 'white', Colors.Gray), 'Use as a Quick Action',
+            renderListItem(renderActionIcon('doc_fill', 'white', Colors.Gray), 'Use as a Quick Action',
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
             ),
+            renderListItem(renderActionIcon('search', 'white', Colors.Gray), 'Receive Input from Spotlight',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
+            ),
             renderActionContent(
-                renderListItem(null, 'Finder',
+                renderListItem(renderActionIcon('folder_fill', 'white', Colors.Blue), 'Finder',
                     renderValue(shortcut.WFQuickActionSurfaces ?
                         shortcut.WFQuickActionSurfaces.includes(quickActions.Finder) : false)
                 ),
-                renderListItem(null, 'Services Menu',
+                renderListItem(renderActionIcon('gear_alt_fill', 'white', Colors.Gray), 'Services Menu',
                     renderValue(shortcut.WFQuickActionSurfaces ?
-                        shortcut.WFQuickActionSurfaces.includes(quickActions.Finder) : false)
+                        shortcut.WFQuickActionSurfaces.includes(quickActions.Services) : false)
                 )
             )
         ),
