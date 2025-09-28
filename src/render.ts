@@ -571,10 +571,6 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
             ),
-            renderListItem(renderActionIcon('search', 'white', Colors.Gray), 'Receive Input from Spotlight',
-                renderValue(shortcut.WFWorkflowTypes ?
-                    shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
-            ),
             renderActionContent(
                 renderListItem(renderActionIcon('folder_fill', 'white', Colors.Blue), 'Finder',
                     renderValue(shortcut.WFQuickActionSurfaces ?
@@ -584,7 +580,17 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                     renderValue(shortcut.WFQuickActionSurfaces ?
                         shortcut.WFQuickActionSurfaces.includes(quickActions.Services) : false)
                 )
-            )
+            ),
+            renderListItem(renderActionIcon('search', 'white', Colors.Gray), 'Show in Search',
+                renderValue(shortcut.WFWorkflowTypes ?
+                    shortcut.WFWorkflowTypes.includes(workflows.ShowInSearch) : false)
+            ),
+            renderActionContent(
+                renderListItem(renderActionIcon('doc_text_search', 'white', Colors.Gray), 'Receive Input from Spotlight',
+                    renderValue(shortcut.WFWorkflowTypes ?
+                        shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
+                ),
+            ),
         ),
         renderBlockHeader('Apple Watch'),
         renderInsetList(
