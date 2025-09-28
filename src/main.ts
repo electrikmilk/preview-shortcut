@@ -126,7 +126,7 @@ export class ShortcutPreview {
         this.data = options.data ?? null;
         this.header = options.header ?? true;
         this.meta = options.meta ?? true;
-        this.variables = options.variables ?? true;
+        this.variables = options.variables ?? false;
         this.framework7 = options.framework7 ?? new Framework7({
             theme: 'ios',
         });
