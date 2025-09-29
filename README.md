@@ -1,4 +1,4 @@
-![Screenshot 2024-05-22 at 20 38 54](https://github.com/electrikmilk/preview-shortcut/assets/4368524/58b32090-8757-41f6-9114-5badf42139ee)
+<img width="2067" height="834" alt="332997475-58b32090-8757-41f6-9114-5badf42139ee" src="https://github.com/user-attachments/assets/383f172b-ccfe-45f5-9033-1fa7422bac8f" />
 
 # Siri Shortcut Preview for the Web.
 
