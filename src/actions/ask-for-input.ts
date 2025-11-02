@@ -5,10 +5,10 @@ import {renderValue} from "~/value";
 import {Colors} from "~/colors";
 
 interface AskForInputParameters {
-    WFInputType: string,
-    WFAskActionPrompt: boolean,
-    WFAskActionDefaultAnswer: string,
-    WFAskActionDefaultAnswerNumber: string,
+    WFInputType: object | string,
+    WFAskActionPrompt: object | string,
+    WFAskActionDefaultAnswer: object | string,
+    WFAskActionDefaultAnswerNumber: object | string,
 }
 
 export default {
