@@ -567,7 +567,7 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.ReceivesOnScreenContent) : false)
             ),
-            renderListItem(renderActionIcon('doc_fill', 'white', Colors.Gray), 'Use as a Quick Action',
+            renderListItem(renderActionIcon('doc_fill', 'white', Colors.Gray), 'Show as Quick Action',
                 renderValue(shortcut.WFWorkflowTypes ?
                     shortcut.WFWorkflowTypes.includes(workflows.QuickActions) : false)
             ),
@@ -586,7 +586,7 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                     shortcut.WFWorkflowTypes.includes(workflows.ShowInSearch) : false)
             ),
             renderActionContent(
-                renderListItem(renderActionIcon('doc_text_search', 'white', Colors.Gray), 'Receive Input from Spotlight',
+                renderListItem(renderActionIcon('doc_text_search', 'white', Colors.Gray), 'Input from Spotlight',
                     renderValue(shortcut.WFWorkflowTypes ?
                         shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
                 ),
