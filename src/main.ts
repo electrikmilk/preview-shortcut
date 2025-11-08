@@ -223,7 +223,7 @@ export class ShortcutPreview {
 
             const count = renderElement('div', {
                 className: 'sp-header-action-count',
-                innerText: this.data.WFWorkflowActions?.length + ' actions'
+                innerText: (this.data?.WFWorkflowActions?.length ?? 0) + ' actions'
             });
             header.appendChild(count);
 
