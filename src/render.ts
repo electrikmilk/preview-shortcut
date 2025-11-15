@@ -581,15 +581,9 @@ function renderDetailsTab(shortcut: ShortcutData): HTMLElement[] {
                         shortcut.WFQuickActionSurfaces.includes(quickActions.Services) : false)
                 )
             ),
-            renderListItem(renderActionIcon('search', 'white', Colors.Gray), 'Show in Search',
+            renderListItem(renderActionIcon('doc_text_search', 'white', Colors.Gray), 'Receive Input from Spotlight',
                 renderValue(shortcut.WFWorkflowTypes ?
-                    shortcut.WFWorkflowTypes.includes(workflows.ShowInSearch) : false)
-            ),
-            renderActionContent(
-                renderListItem(renderActionIcon('doc_text_search', 'white', Colors.Gray), 'Input from Spotlight',
-                    renderValue(shortcut.WFWorkflowTypes ?
-                        shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
-                ),
+                    shortcut.WFWorkflowTypes.includes(workflows.ReceivesInputFromSearch) : false)
             ),
         ),
         renderBlockHeader('Apple Watch'),
