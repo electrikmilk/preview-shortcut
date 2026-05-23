@@ -37,7 +37,7 @@ export function renderShortcut(actionData: Array<ActionData>) {
         let identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '');
         let params = action.WFWorkflowActionParameters;
         // @ts-ignore
-        const controlFlowMode = params['WFControlFlowMode'];
+        const controlFlowMode = params?.['WFControlFlowMode'];
         if (controlFlowMode === controlFlowEnd || controlFlowMode == controlFlowItem) {
             prevContainer();
         }
@@ -92,7 +92,8 @@ export function getActionByUUID(uuid: string): ActionDefinition | null {
     for (const action of shortcutActions) {
         const identifier = action.WFWorkflowActionIdentifier.replace('is.workflow.actions.', '')
         if (
-            !action.WFWorkflowActionParameters.hasOwnProperty("UUID") ||
+            // @ts-ignore
+            !action.WFWorkflowActionParameters?.hasOwnProperty("UUID") ||
             // @ts-ignore
             action.WFWorkflowActionParameters["UUID"] !== uuid ||
             !actions[identifier]
@@ -114,11 +115,9 @@ function renderAction(identifier: string, action: ActionData): Node {
     card.className = 'card';
 
     // @ts-ignore
-    if (action.WFWorkflowActionParameters["UUID"]) {
-        card.id = `action-${
-            // @ts-ignore
-            action.WFWorkflowActionParameters["UUID"]
-        }`
+    if (action.WFWorkflowActionParameters?.["UUID"]) {
+        // @ts-ignore
+        card.id = `action-${action.WFWorkflowActionParameters["UUID"]}`
     }
 
     renderActionConnection(card, action);
@@ -476,7 +475,7 @@ export function renderVariables(actionData: Array<ActionData>): void {
     for (const action of actionData) {
         if (action.WFWorkflowActionIdentifier === 'is.workflow.actions.setvariable') {
             // @ts-ignore
-            const variableName = action.WFWorkflowActionParameters["WFVariableName"] as string
+            const variableName = action.WFWorkflowActionParameters?.["WFVariableName"] as string
             if (!variableNames.includes(variableName)) {
                 variableNames.push(variableName)
                 variables.push(renderElement('div', {},
