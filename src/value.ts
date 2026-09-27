@@ -83,6 +83,15 @@ function getAggrandizements(aggrandizements: Aggrandizement[]): string {
     return varRef
 }
 
+function getAttachmentPosition(position: string): number {
+    const matches = position.match(/{(\d+), (\d+)}/)
+    if (matches && matches.length) {
+        return Number(matches[1]);
+    }
+
+    return 0
+}
+
 function renderObjectValue(container: HTMLElement, value?: any) {
     if (!value) {
         container.innerText = '';
@@ -97,8 +106,11 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
             let str = escapeHTML(String(value.Value.string));
-            for (let v in value.Value.attachmentsByRange) {
-                let attachment = value.Value.attachmentsByRange[v];
+            const sortedAttachments = Object.keys(value.Value.attachmentsByRange).sort((a: string, b: string): number => {
+                return getAttachmentPosition(a) - getAttachmentPosition(b);
+            });
+            for (let a of sortedAttachments) {
+                let attachment = value.Value.attachmentsByRange[a];
                 let varTypeName = attachment.OutputName ?? attachment.Variable ?? attachment.VariableName ?? attachment.PropertyName;
 
                 const inlineVar = renderInlineRef(attachment.Aggrandizements, varTypeName, attachment.Type, attachment.OutputUUID);
