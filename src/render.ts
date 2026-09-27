@@ -699,7 +699,7 @@ export function renderDictionary(data: Array<DictionaryItem>) {
 
     const footer = document.createElement('div');
     footer.className = 'sp-action-list-footer';
-    const itemsSize = data.length;
+    const itemsSize = data ? data.length : 0;
     footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : '');
 
     return renderElement('div', {},
@@ -710,6 +710,10 @@ export function renderDictionary(data: Array<DictionaryItem>) {
 }
 
 export function renderTreeItems(data: Array<DictionaryItem>) {
+    if (!data) {
+        return [];
+    }
+
     let items: HTMLElement[] = [];
     let idx = 0;
     for (let item of data) {
