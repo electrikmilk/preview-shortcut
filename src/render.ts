@@ -711,7 +711,7 @@ export function renderDictionary(data: Array<DictionaryItem>) {
 
 export function renderTreeItems(data: Array<DictionaryItem>) {
     if (!data) {
-        return [];
+        return [renderTreeItem([]), renderTreeItem([]), renderTreeItem([])];
     }
 
     let items: HTMLElement[] = [];
