@@ -228,7 +228,6 @@ export function renderActionHeader(actionData: ActionDefinition, ...content: HTM
         const flexbox = document.createElement('div');
         flexbox.style.display = 'flex';
         flexbox.style.gap = '0.3rem 0.5rem';
-        flexbox.style.alignItems = 'center';
         flexbox.style.flexWrap = 'wrap';
 
         if (actionData.title) {
@@ -254,7 +253,6 @@ export function renderContainer(...content: HTMLElement[]) {
         const flexbox = document.createElement('div');
         flexbox.style.display = 'flex';
         flexbox.style.gap = '0.3rem 0.5rem';
-        flexbox.style.alignItems = 'center';
         flexbox.style.flexWrap = 'wrap';
 
         flexbox.append(...content);

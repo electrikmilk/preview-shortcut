@@ -105,7 +105,7 @@ function renderObjectValue(container: HTMLElement, value?: any) {
     let aggrandizements: Aggrandizement[] = []
     if (value.Value) {
         if (value.Value.attachmentsByRange) {
-            let str = escapeHTML(String(value.Value.string));
+            let str = escapeHTML(String(value.Value.string)).replaceAll('&#xA;', '<br/>');
             const sortedAttachments = Object.keys(value.Value.attachmentsByRange).sort((a: string, b: string): number => {
                 return getAttachmentPosition(a) - getAttachmentPosition(b);
             });

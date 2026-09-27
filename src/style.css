@@ -358,9 +358,8 @@
 
 .sp-container .sp-value {
     background: #f2f7ff;
-    display: flex;
-    flex-wrap: wrap;
     word-break: break-word;
+    white-space: wrap;
     text-align: left !important;
 }
 
