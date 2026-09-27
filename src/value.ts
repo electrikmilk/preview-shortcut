@@ -219,6 +219,7 @@ export function renderInlineRef(aggrandizements: Aggrandizement[], varName: stri
                     }
                     if (attachmentAction?.background) {
                         icon.style.backgroundColor = attachmentAction?.background;
+                        icon.style.color = 'white';
                     }
                 }
                 break;
