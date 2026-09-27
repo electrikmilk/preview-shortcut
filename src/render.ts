@@ -700,7 +700,7 @@ export function renderDictionary(data: Array<DictionaryItem>) {
     const footer = document.createElement('div');
     footer.className = 'sp-action-list-footer';
     const itemsSize = data ? data.length : 0;
-    footer.innerText = itemsSize + ' item' + (itemsSize ? 's' : '');
+    footer.innerText = itemsSize + ' item' + (itemsSize != 1 ? 's' : '');
 
     return renderElement('div', {},
         table,
