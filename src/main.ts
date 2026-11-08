@@ -4,7 +4,7 @@ import 'framework7-icons';
 import './style.css';
 
 import {
-    container,
+    container, renderAutomations,
     renderDetails,
     renderInputs,
     renderShortcut,
@@ -30,6 +30,7 @@ export interface PreviewOptions {
     data: object
     header: boolean
     meta: boolean
+    automations: boolean
     variables: boolean
     framework7: Framework7
 }
@@ -50,6 +51,13 @@ export interface ShortcutData {
     WFWorkflowTypes?: Array<String>
     WFWorkflowImportQuestions?: Array<WFWorkflowImportQuestion>
     WFWorkflowNoInputBehavior?: WFWorkflowNoInputBehavior
+    WFWorkflowTriggers?: Array<WFWorkflowTrigger>
+}
+
+export interface WFWorkflowTrigger {
+    WFTriggerIdentifier: string
+    WFTriggerSerializedParameters: object
+    WFTriggerUUID: string
 }
 
 interface WFWorkflowImportQuestion {
@@ -112,6 +120,7 @@ export class ShortcutPreview {
     data: ShortcutData = {};
     header: boolean
     meta: boolean
+    automations: boolean
     variables: boolean
     framework7: Framework7
 
@@ -126,6 +135,7 @@ export class ShortcutPreview {
         this.data = options.data ?? null;
         this.header = options.header ?? true;
         this.meta = options.meta ?? true;
+        this.automations = options.automations ?? true;
         this.variables = options.variables ?? false;
         this.framework7 = options.framework7 ?? new Framework7({
             theme: 'ios',
@@ -201,6 +211,9 @@ export class ShortcutPreview {
         }
         if (this.meta) {
             renderDetails(this.data)
+        }
+        if (this.automations) {
+            renderAutomations(this.data)
         }
 
         if (this.header) {

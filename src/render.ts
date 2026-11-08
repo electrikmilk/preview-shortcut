@@ -1,6 +1,7 @@
-import {ActionData, dev, ShortcutData} from "~/main";
+import {ActionData, dev, ShortcutData, WFWorkflowTrigger} from "~/main";
 import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
-import {renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
+import {automations, humanizeTriggerIdentifier, missingFormalAutomationDefinition} from "~/automations";
+import {capitalize, renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {applyStyles, renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";
@@ -648,6 +649,45 @@ function renderSetupTab(shortcut: ShortcutData): HTMLElement[] {
         ),
         renderInsetList(...questions)
     ];
+}
+
+export function renderAutomations(shortcut: ShortcutData) {
+    if (!shortcut.WFWorkflowTriggers || !shortcut.WFWorkflowTriggers.length) {
+        return;
+    }
+    for (const trigger of shortcut.WFWorkflowTriggers) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        if (!shortcut.WFWorkflowHasShortcutInputVariables) {
+            card.classList.add('sp-linked-action');
+        }
+
+        card.innerHTML = renderCardContent(renderAutomation(card, trigger)).outerHTML;
+
+        container.appendChild(card);
+    }
+}
+
+function renderAutomation(card: HTMLElement, trigger: WFWorkflowTrigger): HTMLElement {
+    const parameters: ActionParameters = trigger.WFTriggerSerializedParameters ?? {};
+
+    const definition = automations[trigger.WFTriggerIdentifier];
+    if (definition && definition.render) {
+        return definition.render(card, parameters);
+    }
+
+    missingFormalAutomationDefinition(trigger.WFTriggerIdentifier);
+
+    const auto = document.createElement('div');
+    auto.appendChild(renderHeader(
+        renderActionIcon('gear', 'white', 'darkgray'),
+        humanizeTriggerIdentifier(trigger.WFTriggerIdentifier)
+    ));
+    if (Object.keys(parameters).length) {
+        auto.appendChild(renderParameters(null, parameters));
+    }
+
+    return auto;
 }
 
 export function renderScrollableContent(...content: HTMLElement[]) {
