@@ -356,6 +356,7 @@ export function renderParameters(actionData: ActionDefinition | null, parameters
 
 export const contentItemTypes = {
     "WFAppStoreAppContentItem": "App store app",
+    "WFAppContentItem": "Installed app",
     "WFArticleContentItem": "Article",
     "WFContactContentItem": "Contact",
     "WFDateContentItem": "Date",
@@ -430,7 +431,7 @@ export function renderInputs(shortcut: ShortcutData) {
 
     let workflows = [];
     if (shortcut.WFWorkflowTypes) {
-        for (const workflow of shortcut.WFWorkflowTypes) {
+        for (const workflow of shortcut.WFWorkflowTypes.filter(wt => wt !== 'Watch' && wt !== 'WFWorkflowTypeShowInSearch')) {
             // @ts-ignore
             workflows.push(workflowTypes[workflow]);
         }
