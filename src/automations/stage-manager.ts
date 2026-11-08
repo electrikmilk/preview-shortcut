@@ -13,7 +13,7 @@ const stateTitles = {
 };
 
 const definition: AutomationDefinition = {
-    title: 'When',
+    title: 'When Stage Manager',
     icon: 'rectangle_3_offgrid_fill',
     color: Colors.Blue,
     background: 'transparent',
@@ -22,7 +22,6 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['WFStageManagerType'],
-            renderValue('Stage Manager'),
             renderEnumValue(stateTitles, params.WFStageManagerType, 'on'),
         );
     }

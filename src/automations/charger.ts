@@ -1,6 +1,7 @@
 import {AutomationDefinition, renderAutomationContent, renderEnumValue} from "~/automations";
 import {Colors} from "~/colors";
 import {renderValue} from "~/value";
+import {actionText} from "~/actions";
 
 interface ChargerTriggerParameters {
     WFConnectionType?: string
@@ -13,7 +14,7 @@ const connectionTitles = {
 };
 
 const definition: AutomationDefinition = {
-    title: 'When',
+    title: 'When power',
     icon: 'bolt_fill',
     color: Colors.Green,
     background: 'transparent',
@@ -22,7 +23,6 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['WFConnectionType'],
-            renderValue('Charger'),
             renderEnumValue(connectionTitles, params.WFConnectionType, 'connect'),
         );
     }

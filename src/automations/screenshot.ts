@@ -22,7 +22,7 @@ function renderLocations(locations?: string[]): HTMLElement {
 }
 
 const definition: AutomationDefinition = {
-    title: 'When',
+    title: 'When I save a screenshot to',
     icon: 'camera_viewfinder',
     color: Colors.Blue,
     background: 'transparent',
@@ -31,8 +31,6 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['ScreenshotLocations'],
-            renderValue('Screenshot'),
-            actionText('is saved to'),
             renderLocations(params.ScreenshotLocations),
         );
     }

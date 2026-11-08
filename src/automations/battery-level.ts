@@ -16,9 +16,9 @@ const comparisonTitles = {
 };
 
 const definition: AutomationDefinition = {
-    title: 'When',
-    icon: 'battery_100',
-    color: Colors.Green,
+    title: 'When battery level',
+    icon: 'battery_25',
+    color: Colors.Gray,
     background: 'transparent',
     render: (_container: HTMLElement, params: BatteryLevelTriggerParameters) => {
         // Cherri offsets the level by -0.01 because Shortcuts requires a decimal, so round it back.
@@ -28,7 +28,6 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['WFBatteryLevel', 'WFBatteryLevelComparison'],
-            renderValue('Battery Level'),
             renderEnumValue(comparisonTitles, params.WFBatteryLevelComparison, 'equals'),
             renderValue(`${level}%`),
         );

@@ -13,7 +13,7 @@ const connectionTitles = {
 };
 
 const definition: AutomationDefinition = {
-    title: 'When',
+    title: 'When display',
     icon: 'tv',
     color: Colors.Blue,
     background: 'transparent',
@@ -22,7 +22,6 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['WFConnectionType'],
-            renderValue('Display'),
             renderEnumValue(connectionTitles, params.WFConnectionType, 'connect'),
         );
     }
