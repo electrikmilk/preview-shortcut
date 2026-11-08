@@ -219,6 +219,12 @@
     margin-left: -22px;
 }
 
+.sp-preview .sp-automation-or {
+    font-weight: bold;
+    text-align: center;
+    color: #888888;
+}
+
 .sp-preview .sp-actions-empty {
     padding: 10rem 0;
     text-align: center;

@@ -655,16 +655,23 @@ export function renderAutomations(shortcut: ShortcutData) {
     if (!shortcut.WFWorkflowTriggers || !shortcut.WFWorkflowTriggers.length) {
         return;
     }
+    let t = 0;
     for (const trigger of shortcut.WFWorkflowTriggers) {
         const card = document.createElement('div');
         card.className = 'card';
-        if (!shortcut.WFWorkflowHasShortcutInputVariables) {
+        if (t === 0 && !shortcut.WFWorkflowHasShortcutInputVariables) {
             card.classList.add('sp-linked-action');
         }
 
         card.innerHTML = renderCardContent(renderAutomation(card, trigger)).outerHTML;
 
         container.appendChild(card);
+
+        t++
+        if (t >= 1 && t !== shortcut.WFWorkflowTriggers.length) {
+            // @ts-ignore
+            container.appendChild(renderElement('div', {className: 'sp-automation-or'}, renderText('or')))
+        }
     }
 }
 
