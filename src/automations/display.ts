@@ -1,6 +1,5 @@
 import {AutomationDefinition, renderAutomationContent, renderEnumValue} from "~/automations";
 import {Colors} from "~/colors";
-import {renderValue} from "~/value";
 
 interface DisplayTriggerParameters {
     WFConnectionType?: string

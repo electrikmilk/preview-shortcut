@@ -1,7 +1,5 @@
 import {AutomationDefinition, renderAutomationContent, renderEnumValue} from "~/automations";
 import {Colors} from "~/colors";
-import {renderValue} from "~/value";
-import {actionText} from "~/actions";
 
 interface ChargerTriggerParameters {
     WFConnectionType?: string

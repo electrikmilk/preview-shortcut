@@ -1,4 +1,3 @@
-import {actionText} from "~/actions";
 import {AutomationDefinition, renderAutomationContent} from "~/automations";
 import {Colors} from "~/colors";
 import {renderValue} from "~/value";
