@@ -212,9 +212,6 @@ export class ShortcutPreview {
         if (this.meta) {
             renderDetails(this.data)
         }
-        if (this.automations) {
-            renderAutomations(this.data)
-        }
 
         if (this.header) {
             const header = renderClass('sp-header');
@@ -245,6 +242,10 @@ export class ShortcutPreview {
 
         if (this.meta) {
             renderInputs(this.data);
+        }
+
+        if (this.automations) {
+            renderAutomations(this.data)
         }
 
         if (this.data.WFWorkflowActions && this.data.WFWorkflowActions.length !== 0) {
