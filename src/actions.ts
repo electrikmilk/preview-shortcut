@@ -75,6 +75,9 @@ import SetFocusMode from "~/actions/set-focus-mode";
 import SelectFile from "~/actions/file-select";
 import SelectPhoto from "~/actions/select-photo";
 import AskLLM from "~/actions/ask-llm";
+import SetStoredContent from "~/actions/set-stored-content";
+import GetStoredContent from "~/actions/get-stored-content";
+import DeleteStoredContent from "~/actions/delete-stored-content";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -168,6 +171,9 @@ export let actions: ActionDefinitions = {
     'file.select': SelectFile,
     'selectphoto': SelectPhoto,
     'askllm': AskLLM,
+    'setstoredcontent': SetStoredContent,
+    'getstoredcontent': GetStoredContent,
+    'deletestoredcontent': DeleteStoredContent,
 };
 
 export interface ToggleSetParameters {
