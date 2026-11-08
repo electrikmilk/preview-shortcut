@@ -1,6 +1,6 @@
 import {ActionDefinition} from "~/actions";
 import {renderActionHeader, renderParameters} from "~/render";
-import {renderValue} from "~/value";
+import {escapeHTML, renderValue} from "~/value";
 
 import Wifi from "~/automations/wifi";
 import Bluetooth from "~/automations/bluetooth";
@@ -68,6 +68,17 @@ export function renderEnumValue(titles: EnumTitles, value: string | undefined, d
     const selectedValue = value ?? defaultValue;
 
     return renderValue(titles[selectedValue] ?? selectedValue);
+}
+
+// Shortcuts stores a single selection as a string and several as an array.
+export function renderNameList(names: string | string[] | undefined, placeholder: string): HTMLElement {
+    const nameList = Array.isArray(names) ? names : [names];
+    const escapedNames = nameList.filter(name => name).map(name => escapeHTML(String(name)));
+    if (!escapedNames.length) {
+        return renderValue(undefined, placeholder);
+    }
+
+    return renderValue(escapedNames.join(', '));
 }
 
 export function humanizeTriggerIdentifier(identifier: string): string {

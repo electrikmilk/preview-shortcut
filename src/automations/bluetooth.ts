@@ -1,10 +1,10 @@
 import {actionText} from "~/actions";
-import {AutomationDefinition, renderAutomationContent, renderEnumValue} from "~/automations";
+import {AutomationDefinition, renderAutomationContent, renderEnumValue, renderNameList} from "~/automations";
 import {Colors} from "~/colors";
-import {renderValue} from "~/value";
 
 interface BluetoothTriggerParameters {
     WFBluetoothConnectionType?: string
+    WFSelectedDevices?: string | string[]
 }
 
 const connectionTitles = {
@@ -18,17 +18,14 @@ const definition: AutomationDefinition = {
     icon: '',
     color: Colors.Blue,
     background: 'transparent',
-    params: {
-        WFSelectedDevices: 'Devices',
-    },
     render: (container: HTMLElement, params: BluetoothTriggerParameters) => {
         container.classList.add('sp-bluetooth-action');
 
         return renderAutomationContent(
             definition,
             params,
-            ['WFBluetoothConnectionType'],
-            renderValue('Bluetooth'),
+            ['WFBluetoothConnectionType', 'WFSelectedDevices'],
+            renderNameList(params.WFSelectedDevices, 'Any Device'),
             actionText('is'),
             renderEnumValue(connectionTitles, params.WFBluetoothConnectionType, 'connect'),
         );

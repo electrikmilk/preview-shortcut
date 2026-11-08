@@ -1,7 +1,6 @@
 import {actionText} from "~/actions";
-import {AutomationDefinition, renderAutomationContent, renderEnumValue} from "~/automations";
+import {AutomationDefinition, renderAutomationContent, renderEnumValue, renderNameList} from "~/automations";
 import {Colors} from "~/colors";
-import {escapeHTML, renderValue} from "~/value";
 
 interface WifiTriggerParameters {
     WFConnectionType?: string
@@ -14,16 +13,6 @@ const connectionTitles = {
     disconnected: 'Disconnected',
     both: 'Joined or Disconnected',
 };
-
-function renderNetworks(networks?: string | string[]): HTMLElement {
-    const networkNames = Array.isArray(networks) ? networks : [networks];
-    const names = networkNames.filter(name => name).map(name => escapeHTML(String(name)));
-    if (!names.length) {
-        return renderValue(undefined, 'Any Network');
-    }
-
-    return renderValue(names.join(', '));
-}
 
 const definition: AutomationDefinition = {
     title: 'When',
@@ -39,7 +28,7 @@ const definition: AutomationDefinition = {
             definition,
             params,
             ['WFConnectionType', 'WFNetworks'],
-            renderNetworks(params.WFNetworks),
+            renderNameList(params.WFNetworks, 'Any Network'),
             actionText('is'),
             renderEnumValue(connectionTitles, params.WFConnectionType, 'joined'),
         );
