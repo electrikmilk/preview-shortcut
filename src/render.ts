@@ -1,7 +1,7 @@
 import {ActionData, dev, ShortcutData, WFWorkflowTrigger} from "~/main";
 import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
 import {automations, humanizeTriggerIdentifier, missingFormalAutomationDefinition} from "~/automations";
-import {capitalize, renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
+import {renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
 import {DictionaryItem} from "~/actions/dictionary";
 import {applyStyles, renderClass, renderElement, renderText} from "~/element";
 import {Colors} from "~/colors";

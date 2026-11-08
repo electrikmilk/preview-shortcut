@@ -4,7 +4,8 @@ import 'framework7-icons';
 import './style.css';
 
 import {
-    container, renderAutomations,
+    container,
+    renderAutomations,
     renderDetails,
     renderInputs,
     renderShortcut,
