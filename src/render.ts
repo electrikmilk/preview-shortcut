@@ -62,6 +62,7 @@ export function renderShortcut(actionData: Array<ActionData>) {
 export function resetContainers() {
     containers = [];
     containers.push(container);
+    containerIndex = 0;
 }
 
 export function newContainer() {

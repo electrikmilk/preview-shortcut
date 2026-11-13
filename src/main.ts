@@ -4,7 +4,6 @@ import 'framework7-icons';
 import './style.css';
 
 import {
-    container,
     renderAutomations,
     renderDetails,
     renderInputs,
@@ -203,7 +202,8 @@ export class ShortcutPreview {
         }
         preview.innerHTML = '';
 
-        setContainer(renderClass('sp-container ios'))
+        const rootContainer = renderClass('sp-container ios');
+        setContainer(rootContainer)
 
         resetContainers()
 
@@ -256,9 +256,9 @@ export class ShortcutPreview {
                 className: 'sp-actions-empty',
                 innerText: 'This Shortcut contains 0 actions.'
             });
-            container.appendChild(empty);
+            rootContainer.appendChild(empty);
         }
 
-        preview.appendChild(container);
+        preview.appendChild(rootContainer);
     }
 }
