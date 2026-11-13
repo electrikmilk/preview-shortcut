@@ -92,6 +92,17 @@ function getAttachmentPosition(position: string): number {
     return 0
 }
 
+function renderQuantityPart(part?: string | number | object): HTMLElement {
+    const element = renderElement('span');
+    if (typeof part === 'object') {
+        renderObjectValue(element, part);
+        return element;
+    }
+
+    element.textContent = part === undefined ? '' : String(part);
+    return element;
+}
+
 function renderObjectValue(container: HTMLElement, value?: any) {
     if (!value) {
         container.innerText = '';
@@ -122,6 +133,15 @@ function renderObjectValue(container: HTMLElement, value?: any) {
 
         if (value.Value["string"]) {
             container.innerHTML = value.Value["string"];
+            return;
+        }
+
+        if (value.WFSerializationType === 'WFQuantityFieldValue') {
+            container.append(
+                renderQuantityPart(value.Value.Magnitude),
+                ' ',
+                renderQuantityPart(value.Value.Unit),
+            );
             return;
         }
 
