@@ -78,6 +78,10 @@ import AskLLM from "~/actions/ask-llm";
 import SetStoredContent from "~/actions/set-stored-content";
 import GetStoredContent from "~/actions/get-stored-content";
 import DeleteStoredContent from "~/actions/delete-stored-content";
+import Hash from "~/actions/hash";
+import GetClipboard from "~/actions/get-clipboard";
+import GetCurrentLocation from "~/actions/get-current-location";
+import AdjustDate from "~/actions/adjust-date";
 
 interface ActionDefinitions {
     [key: string]: ActionDefinition
@@ -174,6 +178,10 @@ export let actions: ActionDefinitions = {
     'setstoredcontent': SetStoredContent,
     'getstoredcontent': GetStoredContent,
     'deletestoredcontent': DeleteStoredContent,
+    'hash': Hash,
+    'getclipboard': GetClipboard,
+    'getcurrentlocation': GetCurrentLocation,
+    'adjustdate': AdjustDate,
 };
 
 export interface ToggleSetParameters {
