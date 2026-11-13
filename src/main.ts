@@ -4,6 +4,7 @@ import 'framework7-icons';
 import './style.css';
 
 import {
+    assertControlFlowClosed,
     renderAutomations,
     renderDetails,
     renderInputs,
@@ -200,6 +201,10 @@ export class ShortcutPreview {
             Log.fail(`Selector '${this.selector}' selects nothing.`);
             return;
         }
+        if (this.data.WFWorkflowActions) {
+            assertControlFlowClosed(this.data.WFWorkflowActions);
+        }
+
         preview.innerHTML = '';
 
         const rootContainer = renderClass('sp-container ios');

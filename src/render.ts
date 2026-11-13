@@ -1,4 +1,4 @@
-import {ActionData, dev, ShortcutData, WFWorkflowTrigger} from "~/main";
+import {ActionData, dev, Log, ShortcutData, WFWorkflowTrigger} from "~/main";
 import {ActionDefinition, actions, actionText, missingFormalDefinition} from "~/actions";
 import {automations, humanizeTriggerIdentifier, missingFormalAutomationDefinition} from "~/automations";
 import {renderInlineRef, renderUnstyledValue, renderValue} from "~/value";
@@ -63,6 +63,23 @@ export function resetContainers() {
     containers = [];
     containers.push(container);
     containerIndex = 0;
+}
+
+export function assertControlFlowClosed(actionData: Array<ActionData>) {
+    const openedAtActions: number[] = [];
+    actionData.forEach((action, index) => {
+        // @ts-ignore
+        const controlFlowMode = action.WFWorkflowActionParameters?.['WFControlFlowMode'];
+        if (controlFlowMode === controlFlowStart) {
+            openedAtActions.push(index + 1);
+        } else if (controlFlowMode === controlFlowEnd) {
+            openedAtActions.pop();
+        }
+    });
+    if (openedAtActions.length === 0) {
+        return;
+    }
+    Log.fail(`Unclosed control flow block(s) opened at action(s) ${openedAtActions.join(', ')}.`);
 }
 
 export function newContainer() {
